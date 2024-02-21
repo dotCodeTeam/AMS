@@ -1,23 +1,35 @@
-package com.dotCode.dto;
+package com.dotCode.model.dto;
 
-public class EmployeeDto {
+public class EmployeeDto implements java.io.Serializable{
 
+    private String empNo;
     private String empId;
     private String empPwd;
     private String empName;
     private String phone;
     private String email;
-    private String authority;
+    private String adminId;
+    private String positionId;
 
     public EmployeeDto(){}
 
-    public EmployeeDto(String empId, String empPwd, String empName, String phone, String email, String access) {
+    public EmployeeDto(String empNo, String empId, String empPwd, String empName, String phone, String email, String positionId, String adminId) {
+        this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
         this.empName = empName;
         this.phone = phone;
         this.email = email;
-        this.authority = access;
+        this.positionId = positionId;
+        this.adminId = adminId;
+    }
+
+    public String getEmpNo() {
+        return empNo;
+    }
+
+    public void setEmpNo(String empNo) {
+        this.empNo = empNo;
     }
 
     public String getEmpId() {
@@ -60,23 +72,33 @@ public class EmployeeDto {
         this.email = email;
     }
 
-    public String getAccess() {
-        return authority;
+    public String getPositionId() {
+        return positionId;
     }
 
-    public void setAccess(String access) {
-        this.authority = access;
+    public void setPositionId(String positionId) {
+        this.positionId = positionId;
+    }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
     @Override
     public String toString() {
         return "EmployeeDto{" +
-                "empId='" + empId + '\'' +
+                "empNo='" + empNo + '\'' +
+                ", empId='" + empId + '\'' +
                 ", empPwd='" + empPwd + '\'' +
                 ", empName='" + empName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", access='" + authority + '\'' +
+                ", positionId='" + positionId + '\'' +
+                ", adminId='" + adminId + '\'' +
                 '}';
     }
 }
