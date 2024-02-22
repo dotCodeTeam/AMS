@@ -52,13 +52,13 @@ public class EmployeeDAO {
 
             if ( rset.next() ){
                 empDTO.setEmpNo(rset.getString("EMP_NO"));
-                empDTO.setEmpId(rset.getString("EMP_NO"));
-                empDTO.setEmpPwd(rset.getString("EMP_NO"));
-                empDTO.setEmpName(rset.getString("EMP_NO"));
-                empDTO.setPhone(rset.getString("EMP_NO"));
-                empDTO.setEmail(rset.getString("EMP_NO"));
-                empDTO.setAdminId(rset.getString("EMP_NO"));
-                empDTO.setPositionId(rset.getString("EMP_NO"));
+                empDTO.setEmpId(rset.getString("EMP_ID"));
+                empDTO.setEmpPwd(rset.getString("EMP_PW"));
+                empDTO.setEmpName(rset.getString("EMP_NAME"));
+                empDTO.setPhone(rset.getString("PHONE"));
+                empDTO.setEmail(rset.getString("EMAIL"));
+                empDTO.setAdminCode(rset.getString("ADMIN_ID"));
+                empDTO.setJobCode(rset.getString("POSITION_ID"));
                 isTrue = true;
             }
 
@@ -74,7 +74,7 @@ public class EmployeeDAO {
 
     public int checkAdmin(){
         int result = 1;
-        if ( this.empDTO.getAdminId().equals("0") ) {
+        if ( this.empDTO.getAdminCode().equals("0") ) {
             result = 0;
         }
         return result;

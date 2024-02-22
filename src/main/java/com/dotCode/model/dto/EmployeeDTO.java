@@ -13,15 +13,15 @@ public class EmployeeDTO implements java.io.Serializable{
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(String empNo, String empId, String empPwd, String empName, String phone, String email, String positionId, String adminId) {
+    public EmployeeDTO(String empNo, String empId, String empPwd, String empName, String jobCode, String phone, String email, String adminCode) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
         this.empName = empName;
+        this.jobCode = jobCode;
         this.phone = phone;
         this.email = email;
-        this.jobCode = positionId;
-        this.adminCode = adminId;
+        this.adminCode = adminCode;
     }
 
     public String getEmpNo() {
@@ -56,6 +56,14 @@ public class EmployeeDTO implements java.io.Serializable{
         this.empName = empName;
     }
 
+    public String getJobCode() {
+        return jobCode;
+    }
+
+    public void setJobCode(String jobCode) {
+        this.jobCode = jobCode;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -72,33 +80,25 @@ public class EmployeeDTO implements java.io.Serializable{
         this.email = email;
     }
 
-    public String getPositionId() {
-        return jobCode;
-    }
-
-    public void setPositionId(String positionId) {
-        this.jobCode = positionId;
-    }
-
-    public String getAdminId() {
+    public String getAdminCode() {
         return adminCode;
     }
 
-    public void setAdminId(String adminId) {
-        this.adminCode = adminId;
+    public void setAdminCode(String adminCode) {
+        this.adminCode = adminCode;
     }
 
     @Override
     public String toString() {
-        return "EmployeeDto{" +
+        return "EmployeeDTO{" +
                 "empNo='" + empNo + '\'' +
                 ", empId='" + empId + '\'' +
                 ", empPwd='" + empPwd + '\'' +
                 ", empName='" + empName + '\'' +
+                ", jobCode='" + jobCode + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", positionId='" + jobCode + '\'' +
-                ", adminId='" + adminCode + '\'' +
+                ", adminCode='" + adminCode + '\'' +
                 '}';
     }
 }
