@@ -6,10 +6,10 @@ public class EmployeeDTO implements java.io.Serializable{
     private String empId;
     private String empPwd;
     private String empName;
+    private String jobCode;
     private String phone;
     private String email;
-    private String adminId;
-    private String positionId;
+    private String adminCode;
 
     public EmployeeDTO(){}
 
@@ -20,8 +20,8 @@ public class EmployeeDTO implements java.io.Serializable{
         this.empName = empName;
         this.phone = phone;
         this.email = email;
-        this.positionId = positionId;
-        this.adminId = adminId;
+        this.jobCode = positionId;
+        this.adminCode = adminId;
     }
 
     public String getEmpNo() {
@@ -73,19 +73,19 @@ public class EmployeeDTO implements java.io.Serializable{
     }
 
     public String getPositionId() {
-        return positionId;
+        return jobCode;
     }
 
     public void setPositionId(String positionId) {
-        this.positionId = positionId;
+        this.jobCode = positionId;
     }
 
     public String getAdminId() {
-        return adminId;
+        return adminCode;
     }
 
     public void setAdminId(String adminId) {
-        this.adminId = adminId;
+        this.adminCode = adminId;
     }
 
     @Override
@@ -97,8 +97,8 @@ public class EmployeeDTO implements java.io.Serializable{
                 ", empName='" + empName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", positionId='" + positionId + '\'' +
-                ", adminId='" + adminId + '\'' +
+                ", positionId='" + jobCode + '\'' +
+                ", adminId='" + adminCode + '\'' +
                 '}';
     }
 }

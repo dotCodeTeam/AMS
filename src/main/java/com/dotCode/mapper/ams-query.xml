@@ -7,6 +7,5 @@
                 E.*
         FROM    EMPLOYEE E
         WHERE E.EMP_ID = ? AND E.EMP_PW = ?
-
     </entry>
 </properties>
