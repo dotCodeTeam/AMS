@@ -34,7 +34,7 @@ public class EmployeeFeature {
         String pwd = sc.nextLine();
 
         try {
-            prop.loadFromXML(new FileInputStream("src/main/java/com/dotCode/mapper/ams-querry.xml"));
+            prop.loadFromXML(new FileInputStream("src/main/java/com/dotCode/mapper/ams-query.xml"));
 
             String query = prop.getProperty("getEmpInfo");
             System.out.println(query);
