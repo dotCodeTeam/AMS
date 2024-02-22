@@ -73,11 +73,6 @@ public class EmployeeDAO {
         }
         return isTrue;
     }
-
-    public EmployeeDTO getEmpInfo(){
-        return this.empDTO;
-    }
-
     public int checkAdmin(){
         int result = 1;
         if ( this.empDTO.getAdminCode().equals("0") ) {
@@ -85,4 +80,9 @@ public class EmployeeDAO {
         }
         return result;
     }
+
+    public EmployeeDTO getEmpInfo(){
+        return this.empDTO;
+    }
+
 }
