@@ -1,5 +1,6 @@
 package com.dotCode.view;
 
+import com.dotCode.common.JDBCTemplete;
 import com.dotCode.model.dao.EmployeeDAO;
 
 import java.sql.Connection;
@@ -8,7 +9,6 @@ import java.util.Scanner;
 import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class AmsMenu {
-
     Scanner sc = new Scanner(System.in);
     Connection con = getConnection();
     EmployeeDAO registDAO = new EmployeeDAO();
@@ -23,9 +23,7 @@ public class AmsMenu {
         int choice;
 
             if ( isLogin ) {
-                System.out.println("=============================");
-                System.out.println("로그인 되었습니다!!");
-                System.out.println(registDAO.getEmpInfo().getEmpName()+ "님 환영합니다!!");
+
                 System.out.println("============ AMS ============");
                 System.out.println("1. 출근");
                 System.out.println("2. 나의 정보 열람");
@@ -83,5 +81,4 @@ public class AmsMenu {
         }
 
     }
-
 }
