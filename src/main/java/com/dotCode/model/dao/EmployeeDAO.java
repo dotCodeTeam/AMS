@@ -60,10 +60,16 @@ public class EmployeeDAO {
                 empDTO.setAdminCode(rset.getString("ADMIN_ID"));
                 empDTO.setJobCode(rset.getString("POSITION_ID"));
                 isTrue = true;
+                System.out.println("=============================");
+                System.out.println("로그인 되었습니다!!");
+                System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(rset);
+            close(pstmt);
         }
         return isTrue;
     }
