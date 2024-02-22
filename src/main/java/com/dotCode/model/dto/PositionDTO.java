@@ -1,13 +1,13 @@
 package com.dotCode.model.dto;
 
-public class PositionDto {
+public class PositionDTO {
 
     private String positionId;
     private String positionName;
 
-    public PositionDto(){}
+    public PositionDTO(){}
 
-    public PositionDto(String positionId, String positionName) {
+    public PositionDTO(String positionId, String positionName) {
         this.positionId = positionId;
         this.positionName = positionName;
     }

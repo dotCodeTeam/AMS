@@ -2,16 +2,16 @@ package com.dotCode.model.dto;
 
 import java.util.Date;
 
-public class EmptyDto implements java.io.Serializable{
+public class EmptyDTO implements java.io.Serializable{
 
     private String emptyCategory;
     private String emptyName;
     private java.util.Date emptyDate;
     private String emptyCause;
 
-    public EmptyDto(){}
+    public EmptyDTO(){}
 
-    public EmptyDto(String emptyCategory, String emptyName, Date emptyDate, String emptyCause) {
+    public EmptyDTO(String emptyCategory, String emptyName, Date emptyDate, String emptyCause) {
         this.emptyCategory = emptyCategory;
         this.emptyName = emptyName;
         this.emptyDate = emptyDate;

@@ -1,6 +1,6 @@
 package com.dotCode.model.dto;
 
-public class AttendanceDto implements java.io.Serializable{
+public class AttendanceDTO implements java.io.Serializable{
 
     private int ontimeCount;
     private int lateCount;
@@ -8,9 +8,9 @@ public class AttendanceDto implements java.io.Serializable{
     private int attendanceScore;
     private int offtimeStatus;
 
-    public AttendanceDto(){}
+    public AttendanceDTO(){}
 
-    public AttendanceDto(int ontimeCount, int lateCount, int absentCount, int attendanceScore, int offtimeStatus) {
+    public AttendanceDTO(int ontimeCount, int lateCount, int absentCount, int attendanceScore, int offtimeStatus) {
         this.ontimeCount = ontimeCount;
         this.lateCount = lateCount;
         this.absentCount = absentCount;

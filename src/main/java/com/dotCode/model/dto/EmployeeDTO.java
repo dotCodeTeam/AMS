@@ -1,6 +1,6 @@
 package com.dotCode.model.dto;
 
-public class EmployeeDto implements java.io.Serializable{
+public class EmployeeDTO implements java.io.Serializable{
 
     private String empNo;
     private String empId;
@@ -11,9 +11,9 @@ public class EmployeeDto implements java.io.Serializable{
     private String adminId;
     private String positionId;
 
-    public EmployeeDto(){}
+    public EmployeeDTO(){}
 
-    public EmployeeDto(String empNo, String empId, String empPwd, String empName, String phone, String email, String positionId, String adminId) {
+    public EmployeeDTO(String empNo, String empId, String empPwd, String empName, String phone, String email, String positionId, String adminId) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;

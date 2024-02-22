@@ -1,9 +1,8 @@
-package com.dotCode.controller;
+    package com.dotCode.controller;
 
-import com.dotCode.model.dto.EmployeeDto;
+import com.dotCode.model.dto.EmployeeDTO;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,14 +16,14 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class EmployeeFeature {
 
-    Scanner sc = new Scanner(System.in);
+    Scanner sc;
     Connection con = getConnection();
     PreparedStatement pstmt = null;
     ResultSet rset = null;
-    Properties prop = new Properties();
-    EmployeeDto row = new EmployeeDto();
+    EmployeeDTO row = null;
 
     public boolean logIn() {
+        sc = new Scanner(System.in);
         boolean isTrue = true;
 
         System.out.println("============ AMS ============");
@@ -34,6 +33,7 @@ public class EmployeeFeature {
         String pwd = sc.nextLine();
 
         try {
+            Properties prop = new Properties();
             prop.loadFromXML(new FileInputStream("src/main/java/com/dotCode/mapper/ams-query.xml"));
 
             String query = prop.getProperty("getEmpInfo");
