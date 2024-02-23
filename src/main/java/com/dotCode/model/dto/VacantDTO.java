@@ -6,12 +6,12 @@ public class VacantDTO implements java.io.Serializable{
 
     private String vacantCategory;
     private String vacantName;
-    private java.util.Date vacantDate;
+    private String vacantDate;
     private String vacantCause;
 
     public VacantDTO(){}
 
-    public VacantDTO(String vacantCategory, String vacantName, Date vacantDate, String vacantCause) {
+    public VacantDTO(String vacantCategory, String vacantName, String vacantDate, String vacantCause) {
         this.vacantCategory = vacantCategory;
         this.vacantName = vacantName;
         this.vacantDate = vacantDate;
@@ -34,11 +34,11 @@ public class VacantDTO implements java.io.Serializable{
         this.vacantName = vacantName;
     }
 
-    public Date getVacantDate() {
+    public String getVacantDate() {
         return vacantDate;
     }
 
-    public void setVacantDate(Date vacantDate) {
+    public void setVacantDate(String vacantDate) {
         this.vacantDate = vacantDate;
     }
 
