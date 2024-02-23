@@ -13,10 +13,11 @@ public class EmployeeDTO implements java.io.Serializable{
     private String phone;
     private String email;
     private int adminCode;
+    private String currentVacantStatus;
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode) {
+    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode,String currentVacantStatus) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
@@ -26,6 +27,7 @@ public class EmployeeDTO implements java.io.Serializable{
         this.phone = phone;
         this.email = email;
         this.adminCode = adminCode;
+        this.currentVacantStatus = currentVacantStatus;
     }
 
     public int getEmpNo() {
@@ -100,6 +102,14 @@ public class EmployeeDTO implements java.io.Serializable{
         this.adminCode = adminCode;
     }
 
+    public String getCurrentVacantStatus() {
+        return currentVacantStatus;
+    }
+
+    public void setCurrentVacantStatus(String currentVacantStatus) {
+        this.currentVacantStatus = currentVacantStatus;
+    }
+
     @Override
     public String toString() {
         return "EmployeeDTO{" +
@@ -112,6 +122,7 @@ public class EmployeeDTO implements java.io.Serializable{
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", adminCode=" + adminCode +
+                ", currentVacantStatus=" + currentVacantStatus +
                 '}';
     }
 }
