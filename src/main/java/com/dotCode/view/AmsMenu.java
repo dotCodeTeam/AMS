@@ -82,7 +82,9 @@ public class AmsMenu {
                             case 5:
 
                                 break;
-                            case 6: isMenu = false; break;
+                            case 6:
+                                System.out.println("로그아웃 되었습니다." + registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
+                                isMenu = false; break;
                             case 7:
                                 System.out.println("============ AMS ============");
                                 System.out.println("1. 사원 등록");
