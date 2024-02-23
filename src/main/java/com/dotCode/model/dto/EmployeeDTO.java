@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class EmployeeDTO implements java.io.Serializable{
 
-    private String empNo;
+    private int empNo;
     private String empId;
     private String empPwd;
     private String empName;
     private Date hireDate;
-    private String jobCode;
+    private int jobCode;
     private String phone;
     private String email;
-    private String adminCode;
+    private int adminCode;
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(String empNo, String empId, String empPwd, String empName, Date hireDate, String jobCode, String phone, String email, String adminCode) {
+    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, Date hireDate, int jobCode, String phone, String email, int adminCode) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
@@ -28,11 +28,11 @@ public class EmployeeDTO implements java.io.Serializable{
         this.adminCode = adminCode;
     }
 
-    public String getEmpNo() {
+    public int getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(String empNo) {
+    public void setEmpNo(int empNo) {
         this.empNo = empNo;
     }
 
@@ -68,11 +68,11 @@ public class EmployeeDTO implements java.io.Serializable{
         this.hireDate = hireDate;
     }
 
-    public String getJobCode() {
+    public int getJobCode() {
         return jobCode;
     }
 
-    public void setJobCode(String jobCode) {
+    public void setJobCode(int jobCode) {
         this.jobCode = jobCode;
     }
 
@@ -92,11 +92,11 @@ public class EmployeeDTO implements java.io.Serializable{
         this.email = email;
     }
 
-    public String getAdminCode() {
+    public int getAdminCode() {
         return adminCode;
     }
 
-    public void setAdminCode(String adminCode) {
+    public void setAdminCode(int adminCode) {
         this.adminCode = adminCode;
     }
 

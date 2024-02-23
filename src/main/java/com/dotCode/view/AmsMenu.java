@@ -16,15 +16,19 @@ public class AmsMenu {
     public void menu(){
 
         boolean isTrue = true;
+
         while ( isTrue ) {
+
             boolean isLogin = false;
             isLogin = registDAO.logIn(con);
 
-            boolean isUsingMenu = true;
-            int choice;
 
             if ( isLogin ) {
-                while ( isUsingMenu ) {
+
+                int choice;
+                boolean isMenu = true;
+
+                while ( isMenu ) {
 
                     System.out.println("============ AMS ============");
                     System.out.println("1. 출근");
@@ -34,8 +38,9 @@ public class AmsMenu {
                     System.out.println("5. 증빙서류 제출");
                     System.out.println("6. 로그아웃");
                     if ( registDAO.checkAdmin() == 0 ) {
-                        System.out.println("7. 사원 관리");
-                        System.out.println("8. 출결 현황 관리"); }
+                        System.out.println("7. 전체 사원 정보");
+                        System.out.println("8. 사원 출결 관리");
+                    }
                     System.out.println("0. 프로그램 종료");
                     System.out.println("=============================");
                     System.out.print(">> ");
@@ -56,11 +61,11 @@ public class AmsMenu {
                                 break;
                             case 5:
                                 break;
-                            case 6:
-                                break;
+                            case 6: isMenu = false; break;
                             case 0: isTrue = false; break;
                         }
-                    } else {
+                    }
+                    else {
                         sc.nextLine();
                         switch (choice) {
 
@@ -93,13 +98,16 @@ public class AmsMenu {
 
                                 }
                                 break;
-                            case 6:
-                                break;
+                            case 6: isMenu = false; break;
                             case 7:
+                                break;
+                            case 8:
                                 System.out.println("============ AMS ============");
                                 System.out.println("1. 조회");
                                 System.out.println("2. 변경");
-                                System.out.println("3. 처음으로");
+                                System.out.println("3. 부재 신청 허가");
+                                System.out.println("4. 증빙 서류 관리");
+                                System.out.println("5. 처음으로");
                                 System.out.println("=============================");
                                 System.out.print(">> ");
                                 selectChoice = sc.nextInt();
@@ -112,9 +120,9 @@ public class AmsMenu {
                                         break;
                                     case 4:
                                         break;
+                                    case 5:
+                                        break;
                                 }
-                                break;
-                            case 8:
                                 break;
                             case 0: isTrue = false; break;
                         }
@@ -122,6 +130,7 @@ public class AmsMenu {
                     }
 
                 }
+
             } else {    System.out.println("해당하는 정보가 없습니다.");}
 
         }

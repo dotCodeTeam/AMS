@@ -75,7 +75,7 @@ public class EmployeeDAO {
     }
     public int checkAdmin(){
         int result = 1;
-        if ( this.empDTO.getAdminCode().equals("0") ) {    result = 0;   }
+        if ( this.empDTO.getAdminCode() == 0 ) {    result = 0;   }
         return result;
     }
 
