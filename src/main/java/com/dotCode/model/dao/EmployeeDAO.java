@@ -54,10 +54,11 @@ public class EmployeeDAO {
                 empDTO.setEmpId(rset.getString("EMP_ID"));
                 empDTO.setEmpPwd(rset.getString("EMP_PW"));
                 empDTO.setEmpName(rset.getString("EMP_NAME"));
+                empDTO.setJobCode(rset.getInt("JOB_CODE"));
+                empDTO.setHireDate(rset.getString("EMP_HIREDATE"));
                 empDTO.setPhone(rset.getString("PHONE"));
                 empDTO.setEmail(rset.getString("EMAIL"));
-                empDTO.setAdminCode(rset.getInt("ADMIN_ID"));
-                empDTO.setJobCode(rset.getInt("POSITION_ID"));
+                empDTO.setAdminCode(rset.getInt("ADMIN_CODE"));
                 System.out.println("=============================");
                 System.out.println("로그인 되었습니다!!");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");

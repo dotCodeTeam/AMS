@@ -8,21 +8,21 @@ public class EmployeeDTO implements java.io.Serializable{
     private String empId;
     private String empPwd;
     private String empName;
-    private Date hireDate;
     private int jobCode;
+    private String hireDate;
     private String phone;
     private String email;
     private int adminCode;
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, Date hireDate, int jobCode, String phone, String email, int adminCode) {
+    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
         this.empName = empName;
-        this.hireDate = hireDate;
         this.jobCode = jobCode;
+        this.hireDate = hireDate;
         this.phone = phone;
         this.email = email;
         this.adminCode = adminCode;
@@ -60,20 +60,20 @@ public class EmployeeDTO implements java.io.Serializable{
         this.empName = empName;
     }
 
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
     public int getJobCode() {
         return jobCode;
     }
 
     public void setJobCode(int jobCode) {
         this.jobCode = jobCode;
+    }
+
+    public String getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(String hireDate) {
+        this.hireDate = hireDate;
     }
 
     public String getPhone() {
@@ -103,15 +103,15 @@ public class EmployeeDTO implements java.io.Serializable{
     @Override
     public String toString() {
         return "EmployeeDTO{" +
-                "empNo='" + empNo + '\'' +
+                "empNo=" + empNo +
                 ", empId='" + empId + '\'' +
                 ", empPwd='" + empPwd + '\'' +
                 ", empName='" + empName + '\'' +
+                ", jobCode=" + jobCode +
                 ", hireDate=" + hireDate +
-                ", jobCode='" + jobCode + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", adminCode='" + adminCode + '\'' +
+                ", adminCode=" + adminCode +
                 '}';
     }
 }
