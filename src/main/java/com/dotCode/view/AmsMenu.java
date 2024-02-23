@@ -2,7 +2,6 @@ package com.dotCode.view;
 
 import com.dotCode.common.JDBCTemplete;
 import com.dotCode.model.dao.EmployeeDAO;
-
 import java.sql.Connection;
 import java.util.Scanner;
 
@@ -21,7 +20,6 @@ public class AmsMenu {
 
             boolean isLogin = false;
             isLogin = registDAO.logIn(con);
-
 
             if ( isLogin ) {
 
@@ -55,13 +53,16 @@ public class AmsMenu {
                                 break;
                             case 2:
                                 break;
-                            case 3: registDAO.getEmpInfo();
+                            case 3:
+                                System.out.println(registDAO.getEmpInfo());
                                 break;
                             case 4:
                                 break;
                             case 5:
                                 break;
-                            case 6: isMenu = false; break;
+                            case 6: isMenu = false;
+                                System.out.println("로그아웃 되었습니다." + registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
+                                break;
                             case 0: isTrue = false; break;
                         }
                     }
@@ -74,6 +75,7 @@ public class AmsMenu {
                             case 2:
                                 break;
                             case 3:
+                                System.out.println(registDAO.getEmpInfo());
                                 break;
                             case 4:
                                 break;
@@ -132,7 +134,9 @@ public class AmsMenu {
 
                 }
 
-            } else {    System.out.println("해당하는 정보가 없습니다.");}
+            } else {
+                sc.nextLine();
+                System.out.println("해당하는 정보가 없습니다.");}
 
         }
 
