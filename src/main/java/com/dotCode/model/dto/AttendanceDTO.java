@@ -6,16 +6,14 @@ public class AttendanceDTO implements java.io.Serializable{
     private int lateCount;
     private int absentCount;
     private int totalAttendanceScore;
-    private String offtimeStatus;
 
     public AttendanceDTO(){}
 
-    public AttendanceDTO(int ontimeCount, int lateCount, int absentCount, int totalAttendanceScore, String offtimeStatus) {
+    public AttendanceDTO(int ontimeCount, int lateCount, int absentCount, int totalAttendanceScore) {
         this.ontimeCount = ontimeCount;
         this.lateCount = lateCount;
         this.absentCount = absentCount;
         this.totalAttendanceScore = totalAttendanceScore;
-        this.offtimeStatus = offtimeStatus;
     }
 
     public int getOntimeCount() {
@@ -50,14 +48,6 @@ public class AttendanceDTO implements java.io.Serializable{
         this.totalAttendanceScore = totalAttendanceScore;
     }
 
-    public String getOfftimeStatus() {
-        return offtimeStatus;
-    }
-
-    public void setOfftimeStatus(String offtimeStatus) {
-        this.offtimeStatus = offtimeStatus;
-    }
-
     @Override
     public String toString() {
         return "AttendanceDto{" +
@@ -65,7 +55,6 @@ public class AttendanceDTO implements java.io.Serializable{
                 ", lateCount=" + lateCount +
                 ", absentCount=" + absentCount +
                 ", attendanceScore=" + totalAttendanceScore +
-                ", offtimeStatus=" + offtimeStatus +
                 '}';
     }
 }
