@@ -112,17 +112,18 @@ public class EmployeeDTO implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
-                "empNo=" + empNo +
-                ", empId='" + empId + '\'' +
-                ", empPwd='" + empPwd + '\'' +
-                ", empName='" + empName + '\'' +
-                ", jobCode=" + jobCode +
-                ", hireDate=" + hireDate +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", adminCode=" + adminCode +
-                ", currentVacantStatus=" + currentStatus +
+        return  empName +
+                "님의 정보 {" +
+                "사번= " + empNo +
+                ", 아이디='" + empId + '\'' +
+                ", 비밀번호='" + empPwd + '\'' +
+                ", 이름= '" + empName + '\'' +
+                ", 직급=" + jobCode +
+                ", 고용일자=" + hireDate +
+                ", 핸드폰='" + phone + '\'' +
+                ", 이메일='" + email + '\'' +
+                ", 관리사번=" + adminCode +
+                ", 부재상태=" + currentStatus +
                 '}';
     }
 }

@@ -55,6 +55,7 @@ public class AmsMenu {
                                 break;
                             case 3:
                                 System.out.println(registDAO.getEmpInfo());
+                                System.out.println(registDAO.getEmpAtdInfo());
                                 break;
                             case 4:
                                 break;
@@ -76,6 +77,7 @@ public class AmsMenu {
                                 break;
                             case 3:
                                 System.out.println(registDAO.getEmpInfo());
+                                System.out.println(registDAO.getEmpAtdInfo());
                                 break;
                             case 4:
                                 break;
@@ -136,6 +138,7 @@ public class AmsMenu {
 
             } else {
                 sc.nextLine();
+                System.out.println("로그인 실패...");
                 System.out.println("해당하는 정보가 없습니다.");}
 
         }

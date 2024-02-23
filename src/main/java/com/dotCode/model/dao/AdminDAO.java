@@ -1,5 +1,6 @@
 package com.dotCode.model.dao;
 
+import com.dotCode.model.dto.AttendanceDTO;
 import com.dotCode.model.dto.EmployeeDTO;
 
 import java.sql.Connection;
@@ -23,6 +24,8 @@ public class AdminDAO extends EmployeeDAO {
         return super.checkAdmin();
     }
 
-
-
+    @Override
+    public AttendanceDTO getEmpAtdInfo() {
+        return super.getEmpAtdInfo();
+    }
 }

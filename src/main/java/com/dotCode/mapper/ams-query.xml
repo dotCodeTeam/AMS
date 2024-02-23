@@ -8,36 +8,42 @@
         FROM    EMPLOYEE E
         WHERE E.EMP_ID = ? AND E.EMP_PW = ?
     </entry>
+    <entry key="getAttendanceInfo">
+        SELECT
+                A.*
+        FROM    ATTENDANCE A
+        WHERE   A.EMP_NO = ?
+    </entry>
     <entry key="insertEmp">
-        INSERT
-        INTO EMPLOYEE
-        (
-            EMP_NO
-            , EMP_ID
-            , EMP_PW
-            , EMP_NAME
-            , JOB_CODE
-            , EMP_HIREDATE
-            , PHONE
-            , EMAIL
-            , ADMIN_ID
-            )
-        VALUES
-        (
-              ?
-            , ?
-            , ?
-            , ?
-            , ?
-            , ?
-            , ?
-            , ?
-            , ?
-        )
+        INSERT INTO
+        EMPLOYEE (
+                    EMP_NO
+                    , EMP_ID
+                    , EMP_PW
+                    , EMP_NAME
+                    , JOB_CODE
+                    , EMP_HIREDATE
+                    , PHONE
+                    , EMAIL
+                    , ADMIN_CODE
+                    , CURRENT_STATUS
+                )
+        VALUES (
+                      ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                )
     </entry>
     <entry key="deleteEmp">
         DELETE FROM EMPLOYEE E
-        WHERE E.EMP_NO = ?
+        WHERE E.EMP_NO = ? AND E.EMP_NAME = ?
     </entry>
     <entry key="updateEmp">
         UPDATE
@@ -51,41 +57,41 @@
             , E.EMP_HIREDATE = ?
             , E.PHONE = ?
             , E.EMAIL = ?
-            , E.ADMIN_ID = ?
+            , E.ADMIN_CODE = ?
+            , E.CURRENT_STATUS = ?
         WHERE
             E.EMP_NO = ?
     </entry>
     <entry key="insertAttendance">
-        INSERT
-        INTO ATTENDANCE
-        (
-              ONTIME_COUNT
-            , LATE_COUNT
-            , ABSENT_COUNT
-            , ATTENDANCE_TOTALSCORE
-            , OFFTIME_STATUS
-            , EMP_NO
-        )
-        VALUES
-        (
-              ?
-            , ?
-            , ?
-            , ?
-            , ?
-            , ?
-        )
+        INSERT INTO
+            ATTENDANCE (
+                          EMP_NO
+                        , TOTAL_DAY_COUNT
+                        , ONTIME_COUNT
+                        , LATE_COUNT
+                        , ABSENT_COUNT
+                        , TOTAL_SCORE
+                    )
+            VALUES (
+                          ?
+                        , ?
+                        , ?
+                        , ?
+                        , ?
+                        , ?
+                    )
     </entry>
     <entry key="deleteAttendance">
         DELETE
-        FROM ATTENDANCE A
+            FROM ATTENDANCE A
         WHERE
-            A.ONTIME_COUNT = ?
+              A.EMP_NO = ?
+            , A.TOTAL_DAY_COUNT = ?
+            , A.ONTIME_COUNT = ?
             , A.LATE_COUNT = ?
             , A.ABSENT_COUNT = ?
             , A.ATTENDANCE_TOTALSCORE = ?
             , A.OFFTIME_STATUS = ?
-            , A.EMP_NO =?
     </entry>
     <entry key="getLastEmpNo">
         SELECT MAX(EMP_NO)
