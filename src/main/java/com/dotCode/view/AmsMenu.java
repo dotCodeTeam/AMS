@@ -53,9 +53,9 @@ public class AmsMenu {
 
                             case 1:
                                 break;
-                            case 2: registDAO.getEmpInfo();
+                            case 2:
                                 break;
-                            case 3:
+                            case 3: registDAO.getEmpInfo();
                                 break;
                             case 4:
                                 break;
