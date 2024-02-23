@@ -6,6 +6,8 @@ public class VacantDTO implements java.io.Serializable{
 
     private String vacantCategory;
     private String vacantName;
+    private String receiveCurrentDate;
+    private Date sendCurrentDate;
     private String receiveVacantDate;
     private Date sendVacantDate;
     private String vacantCause;
