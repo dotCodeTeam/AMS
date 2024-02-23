@@ -15,87 +15,117 @@ public class AmsMenu {
 
     public void menu(){
 
-        while ( true ) {
-        boolean isLogin = false;
-        isLogin = registDAO.logIn(con);
+        boolean isTrue = true;
+        while ( isTrue ) {
+            boolean isLogin = false;
+            isLogin = registDAO.logIn(con);
 
-        boolean isCheck = true;
-        int choice;
+            boolean isUsingMenu = true;
+            int choice;
 
             if ( isLogin ) {
+                while ( isUsingMenu ) {
 
-                System.out.println("============ AMS ============");
-                System.out.println("1. 출근");
-                System.out.println("2. 공지사항");
-                System.out.println("2. 나의 정보 열람");
-                System.out.println("3. 부재 신청");
-                System.out.println("4. 증빙서류 제출");
-                if ( registDAO.checkAdmin() == 0 ){
-                    System.out.println("5. 사원 관리");
-                    System.out.println("6. 출결 현황 관리");
-                    System.out.println("7. 서류 제출 현황");
-                }
-                System.out.println("0. 퇴근");
-                System.out.println("=============================");
-                System.out.print(">> ");
-                choice = sc.nextInt();
+                    System.out.println("============ AMS ============");
+                    System.out.println("1. 출근");
+                    System.out.println("2. 퇴근");
+                    System.out.println("3. 나의 정보 열람");
+                    System.out.println("4. 부재 신청");
+                    System.out.println("5. 증빙서류 제출");
+                    System.out.println("6. 로그아웃");
+                    if ( registDAO.checkAdmin() == 0 ) {
+                        System.out.println("7. 사원 관리");
+                        System.out.println("8. 출결 현황 관리"); }
+                    System.out.println("0. 프로그램 종료");
+                    System.out.println("=============================");
+                    System.out.print(">> ");
+                    choice = sc.nextInt();
 
-                if ( registDAO.checkAdmin() != 0 ){
-                    switch (choice) {
+                    int selectChoice;
+                    if ( registDAO.checkAdmin() != 0 ){
+                        sc.nextLine();
+                        switch (choice) {
 
-                        case 1:
-                            break;
-                        case 2: registDAO.getEmpInfo();
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 0:
-                            break;
+                            case 1:
+                                break;
+                            case 2: registDAO.getEmpInfo();
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                            case 6:
+                                break;
+                            case 0: isTrue = false; break;
+                        }
+                    } else {
+                        sc.nextLine();
+                        switch (choice) {
+
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                System.out.println("============ AMS ============");
+                                System.out.println("1. 사원 등록");
+                                System.out.println("2. 사원 정보 조회");
+                                System.out.println("3. 사원 해고");
+                                System.out.println("4. 처음으로");
+                                System.out.println("=============================");
+                                System.out.print(">> ");
+                                selectChoice = sc.nextInt();
+                                switch ( selectChoice ) {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+
+                                }
+                                break;
+                            case 6:
+                                break;
+                            case 7:
+                                System.out.println("============ AMS ============");
+                                System.out.println("1. 조회");
+                                System.out.println("2. 변경");
+                                System.out.println("3. 처음으로");
+                                System.out.println("=============================");
+                                System.out.print(">> ");
+                                selectChoice = sc.nextInt();
+                                switch ( selectChoice ) {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+                                }
+                                break;
+                            case 8:
+                                break;
+                            case 0: isTrue = false; break;
+                        }
+
                     }
-                } else {
-                    switch (choice) {
-
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            System.out.println("============ AMS ============");
-                            System.out.println("1. 사원 등록");
-                            System.out.println("2. 사원 정보 조회");
-                            System.out.println("3. 사원 해고");
-                            System.out.println("=============================");
-                            sc.nextLine();
-                            int selectChoice = sc.nextInt();
-                            switch ( selectChoice ) {
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-                                    break;
-
-                            }
-                            break;
-                        case 6:
-                            break;
-                        case 7:
-                            break;
-                        case 0:
-                            break;
-                    }
 
                 }
-
             } else {    System.out.println("해당하는 정보가 없습니다.");}
 
         }
 
     }
+
 }
