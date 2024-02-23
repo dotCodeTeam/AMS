@@ -59,6 +59,7 @@ public class EmployeeDAO {
                 empDTO.setPhone(rset.getString("PHONE"));
                 empDTO.setEmail(rset.getString("EMAIL"));
                 empDTO.setAdminCode(rset.getInt("ADMIN_CODE"));
+                empDTO.setCurrentStatus(rset.getString("CURRENT_STATUS"));
                 System.out.println("=============================");
                 System.out.println("로그인 되었습니다!!");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
