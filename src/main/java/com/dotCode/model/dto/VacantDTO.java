@@ -6,15 +6,17 @@ public class VacantDTO implements java.io.Serializable{
 
     private String vacantCategory;
     private String vacantName;
-    private String vacantDate;
+    private String receiveVacantDate;
+    private Date sendVacantDate;
     private String vacantCause;
 
     public VacantDTO(){}
 
-    public VacantDTO(String vacantCategory, String vacantName, String vacantDate, String vacantCause) {
+    public VacantDTO(String vacantCategory, String vacantName, String receiveVacantDate, Date sendVacantDate, String vacantCause) {
         this.vacantCategory = vacantCategory;
         this.vacantName = vacantName;
-        this.vacantDate = vacantDate;
+        this.receiveVacantDate = receiveVacantDate;
+        this.sendVacantDate = sendVacantDate;
         this.vacantCause = vacantCause;
     }
 
@@ -34,12 +36,20 @@ public class VacantDTO implements java.io.Serializable{
         this.vacantName = vacantName;
     }
 
-    public String getVacantDate() {
-        return vacantDate;
+    public String getReceiveVacantDate() {
+        return receiveVacantDate;
     }
 
-    public void setVacantDate(String vacantDate) {
-        this.vacantDate = vacantDate;
+    public void setReceiveVacantDate(String receiveVacantDate) {
+        this.receiveVacantDate = receiveVacantDate;
+    }
+
+    public Date getSendVacantDate() {
+        return sendVacantDate;
+    }
+
+    public void setSendVacantDate(Date sendVacantDate) {
+        this.sendVacantDate = sendVacantDate;
     }
 
     public String getVacantCause() {
@@ -55,7 +65,8 @@ public class VacantDTO implements java.io.Serializable{
         return "VacantDTO{" +
                 "vacantCategory='" + vacantCategory + '\'' +
                 ", vacantName='" + vacantName + '\'' +
-                ", vacantDate=" + vacantDate +
+                ", receiveVacantDate='" + receiveVacantDate + '\'' +
+                ", sendVacantDate=" + sendVacantDate +
                 ", vacantCause='" + vacantCause + '\'' +
                 '}';
     }
