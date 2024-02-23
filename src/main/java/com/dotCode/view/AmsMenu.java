@@ -75,6 +75,7 @@ public class AmsMenu {
                             case 2:
                                 break;
                             case 3:
+                                System.out.println(registDAO.getEmpInfo());
                                 break;
                             case 4:
                                 break;

@@ -63,6 +63,8 @@ public class EmployeeDAO {
                 System.out.println("로그인 되었습니다!!");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
                 isTrue = true;
+
+                System.out.println(this.empDTO);
             }
 
         } catch (SQLException e) {
