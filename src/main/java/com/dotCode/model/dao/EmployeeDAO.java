@@ -13,7 +13,6 @@ import java.util.Properties;
 import java.util.Scanner;
 
 import static com.dotCode.common.JDBCTemplete.close;
-import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class EmployeeDAO {
 
