@@ -1,11 +1,14 @@
 package com.dotCode.model.dto;
 
+import java.util.Date;
+
 public class EmployeeDTO implements java.io.Serializable{
 
     private String empNo;
     private String empId;
     private String empPwd;
     private String empName;
+    private Date hireDate;
     private String jobCode;
     private String phone;
     private String email;
@@ -13,11 +16,12 @@ public class EmployeeDTO implements java.io.Serializable{
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(String empNo, String empId, String empPwd, String empName, String jobCode, String phone, String email, String adminCode) {
+    public EmployeeDTO(String empNo, String empId, String empPwd, String empName, Date hireDate, String jobCode, String phone, String email, String adminCode) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
         this.empName = empName;
+        this.hireDate = hireDate;
         this.jobCode = jobCode;
         this.phone = phone;
         this.email = email;
@@ -54,6 +58,14 @@ public class EmployeeDTO implements java.io.Serializable{
 
     public void setEmpName(String empName) {
         this.empName = empName;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
     }
 
     public String getJobCode() {
@@ -95,6 +107,7 @@ public class EmployeeDTO implements java.io.Serializable{
                 ", empId='" + empId + '\'' +
                 ", empPwd='" + empPwd + '\'' +
                 ", empName='" + empName + '\'' +
+                ", hireDate=" + hireDate +
                 ", jobCode='" + jobCode + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +

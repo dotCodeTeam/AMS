@@ -59,10 +59,10 @@ public class EmployeeDAO {
                 empDTO.setEmail(rset.getString("EMAIL"));
                 empDTO.setAdminCode(rset.getString("ADMIN_ID"));
                 empDTO.setJobCode(rset.getString("POSITION_ID"));
-                isTrue = true;
                 System.out.println("=============================");
                 System.out.println("로그인 되었습니다!!");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
+                isTrue = true;
             }
 
         } catch (SQLException e) {
@@ -75,9 +75,7 @@ public class EmployeeDAO {
     }
     public int checkAdmin(){
         int result = 1;
-        if ( this.empDTO.getAdminCode().equals("0") ) {
-            result = 0;
-        }
+        if ( this.empDTO.getAdminCode().equals("0") ) {    result = 0;   }
         return result;
     }
 

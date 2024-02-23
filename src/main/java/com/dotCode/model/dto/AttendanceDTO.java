@@ -5,16 +5,16 @@ public class AttendanceDTO implements java.io.Serializable{
     private int ontimeCount;
     private int lateCount;
     private int absentCount;
-    private int attendanceScore;
-    private int offtimeStatus;
+    private int totalAttendanceScore;
+    private String offtimeStatus;
 
     public AttendanceDTO(){}
 
-    public AttendanceDTO(int ontimeCount, int lateCount, int absentCount, int attendanceScore, int offtimeStatus) {
+    public AttendanceDTO(int ontimeCount, int lateCount, int absentCount, int totalAttendanceScore, String offtimeStatus) {
         this.ontimeCount = ontimeCount;
         this.lateCount = lateCount;
         this.absentCount = absentCount;
-        this.attendanceScore = attendanceScore;
+        this.totalAttendanceScore = totalAttendanceScore;
         this.offtimeStatus = offtimeStatus;
     }
 
@@ -42,19 +42,19 @@ public class AttendanceDTO implements java.io.Serializable{
         this.absentCount = absentCount;
     }
 
-    public int getAttendanceScore() {
-        return attendanceScore;
+    public int gettotalAttendanceScore() {
+        return totalAttendanceScore;
     }
 
-    public void setAttendanceScore(int attendanceScore) {
-        this.attendanceScore = attendanceScore;
+    public void settotalAttendanceScore(int totalAttendanceScore) {
+        this.totalAttendanceScore = totalAttendanceScore;
     }
 
-    public int getOfftimeStatus() {
+    public String getOfftimeStatus() {
         return offtimeStatus;
     }
 
-    public void setOfftimeStatus(int offtimeStatus) {
+    public void setOfftimeStatus(String offtimeStatus) {
         this.offtimeStatus = offtimeStatus;
     }
 
@@ -64,7 +64,7 @@ public class AttendanceDTO implements java.io.Serializable{
                 "ontimeCount=" + ontimeCount +
                 ", lateCount=" + lateCount +
                 ", absentCount=" + absentCount +
-                ", attendanceScore=" + attendanceScore +
+                ", attendanceScore=" + totalAttendanceScore +
                 ", offtimeStatus=" + offtimeStatus +
                 '}';
     }
