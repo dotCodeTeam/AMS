@@ -18,13 +18,11 @@ import static com.dotCode.common.JDBCTemplete.close;
 public class EmployeeDAO {
 
     private Scanner sc;
-    private PreparedStatement pstmt1 = null;
-    private PreparedStatement pstmt2 = null;
-    private ResultSet rset1 = null;
-    private ResultSet rset2 = null;
+    private PreparedStatement pstmt = null;
+    private ResultSet rset = null;
     private Properties prop = new Properties();
-    private EmployeeDTO empDTO = null;
-    private AttendanceDTO empAtdDTO = null;
+    private EmployeeDTO empDTO;
+    private AttendanceDTO empAtdDTO;
 
     public EmployeeDAO(){
         empDTO = new EmployeeDTO();
@@ -50,36 +48,40 @@ public class EmployeeDAO {
         String query2 = prop.getProperty("getAttendanceInfo");
 
         try {
-            pstmt1 = con.prepareStatement(query1);
-            pstmt1.setString(1,id);
-            pstmt1.setString(2,pwd);
+            pstmt = con.prepareStatement(query1);
+            pstmt.setString(1,id);
+            pstmt.setString(2,pwd);
 
 
-            rset1 = pstmt1.executeQuery();
+            rset = pstmt.executeQuery();
 
-            if ( rset1.next() ){
-                empDTO.setEmpNo(rset1.getInt("EMP_NO"));
-                empDTO.setEmpId(rset1.getString("EMP_ID"));
-                empDTO.setEmpPwd(rset1.getString("EMP_PW"));
-                empDTO.setEmpName(rset1.getString("EMP_NAME"));
-                empDTO.setJobCode(rset1.getInt("JOB_CODE"));
-                empDTO.setHireDate(rset1.getString("EMP_HIREDATE"));
-                empDTO.setPhone(rset1.getString("PHONE"));
-                empDTO.setEmail(rset1.getString("EMAIL"));
-                empDTO.setAdminCode(rset1.getInt("ADMIN_CODE"));
-                empDTO.setCurrentStatus(rset1.getString("CURRENT_STATUS"));
+            if ( rset.next() ){
+                empDTO.setEmpNo(rset.getInt("EMP_NO"));
+                empDTO.setEmpId(rset.getString("EMP_ID"));
+                empDTO.setEmpPwd(rset.getString("EMP_PW"));
+                empDTO.setEmpName(rset.getString("EMP_NAME"));
+                empDTO.setJobCode(rset.getInt("JOB_CODE"));
+                empDTO.setHireDate(rset.getString("EMP_HIREDATE"));
+                empDTO.setPhone(rset.getString("PHONE"));
+                empDTO.setEmail(rset.getString("EMAIL"));
+                empDTO.setAdminCode(rset.getInt("ADMIN_CODE"));
+                empDTO.setCurrentStatus(rset.getString("CURRENT_STATUS"));
 
-                pstmt2 = con.prepareStatement(query2);
-                pstmt2.setInt(1,empDTO.getEmpNo());
-                rset2 = pstmt2.executeQuery();
+                // 값을 다 가져오면 초기화
+                pstmt = null;
+                rset = null;
 
-                if(rset2.next()){
-                    empAtdDTO.setEmpNo(rset2.getInt("EMP_NO"));
-                    empAtdDTO.setTotalDayCount(rset2.getInt("TOTAL_DAY_COUNT"));
-                    empAtdDTO.setOntimeCount(rset2.getInt("ONTIME_COUNT"));
-                    empAtdDTO.setLateCount(rset2.getInt("LATE_COUNT"));
-                    empAtdDTO.setAbsentCount(rset2.getInt("ABSENT_COUNT"));
-                    empAtdDTO.setTotalScore(rset2.getInt("TOTAL_SCORE"));
+                pstmt = con.prepareStatement(query2);
+                pstmt.setInt(1,empDTO.getEmpNo());
+                rset = pstmt.executeQuery();
+
+                if(rset.next()){
+                    empAtdDTO.setEmpNo(rset.getInt("EMP_NO"));
+                    empAtdDTO.setTotalDayCount(rset.getInt("TOTAL_DAY_COUNT"));
+                    empAtdDTO.setOntimeCount(rset.getInt("ONTIME_COUNT"));
+                    empAtdDTO.setLateCount(rset.getInt("LATE_COUNT"));
+                    empAtdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
+                    empAtdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
                 }
                 System.out.println("=============================");
                 System.out.println("로그인 성공...");
@@ -90,10 +92,8 @@ public class EmployeeDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            close(rset2);
-            close(rset1);
-            close(pstmt2);
-            close(pstmt1);
+            close(rset);
+            close(pstmt);
         }
         return isTrue;
     }

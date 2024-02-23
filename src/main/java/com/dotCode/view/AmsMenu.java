@@ -62,7 +62,8 @@ public class AmsMenu {
                             case 5:
                                 break;
                             case 6: isMenu = false;
-                                System.out.println("로그아웃 되었습니다." + registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
+                                System.out.println("로그아웃 성공... " );
+                                System.out.println(registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
                             case 0: isTrue = false;
                                 break;
@@ -84,7 +85,10 @@ public class AmsMenu {
                                 break;
                             case 5:
                                 break;
-                            case 6: isMenu = false;
+                            case 6:
+                                isMenu = false;
+                                System.out.println("로그아웃 성공... " );
+                                System.out.println(registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
                             case 7:
                                 System.out.println("========= 전체 사원 정보 =========");
