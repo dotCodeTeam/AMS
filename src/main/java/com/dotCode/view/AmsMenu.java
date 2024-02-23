@@ -78,7 +78,11 @@ public class AmsMenu {
                             case 4:
                                 break;
                             case 5:
-                                System.out.println("============ AMS ============");
+                                break;
+                            case 6: isMenu = false;
+                                break;
+                            case 7:
+                                System.out.println("============ 전체 사원 정보 ============");
                                 System.out.println("1. 사원 등록");
                                 System.out.println("2. 사원 정보 조회");
                                 System.out.println("3. 사원 해고");
@@ -98,11 +102,8 @@ public class AmsMenu {
 
                                 }
                                 break;
-                            case 6: isMenu = false; break;
-                            case 7:
-                                break;
                             case 8:
-                                System.out.println("============ AMS ============");
+                                System.out.println("============ 사원 관리 ============");
                                 System.out.println("1. 조회");
                                 System.out.println("2. 변경");
                                 System.out.println("3. 부재 신청 허가");

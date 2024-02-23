@@ -8,4 +8,87 @@
         FROM    EMPLOYEE E
         WHERE E.EMP_ID = ? AND E.EMP_PW = ?
     </entry>
+    <entry key="insertEmp">
+        INSERT
+        INTO EMPLOYEE
+        (
+        EMP_NO
+        , EMP_ID
+        , EMP_PW
+        , EMP_NAME
+        , JOB_CODE
+        , EMP_HIREDATE
+        , PHONE
+        , EMAIL
+        , ADMIN_ID
+        )
+        VALUES
+        (
+        ?
+        , ?
+        , ?
+        , ?
+        , ?
+        , ?
+        , ?
+        , ?
+        , ?
+        )
+    </entry>
+    <entry key="deleteEmp">
+        DELETE FROM EMPLOYEE E
+        WHERE E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmp">
+        UPDATE
+            EMPLOYEE E
+        SET
+            E.EMP_NO = ?
+            , E.EMP_ID = ?
+            , E.EMP_PW = ?
+            , E.EMP_NAME = ?
+            , E.JOB_CODE = ?
+            , E.EMP_HIREDATE = ?
+            , E.PHONE = ?
+            , E.EMAIL = ?
+            , E.ADMIN_ID = ?
+        WHERE
+            E.EMP_NO = ?
+    </entry>
+    <entry key="insertAttendance">
+        INSERT
+        INTO ATTENDANCE
+        (
+        ONTIME_COUNT
+        , LATE_COUNT
+        , ABSENT_COUNT
+        , ATTENDANCE_TOTALSCORE
+        , OFFTIME_STATUS
+        , EMP_NO
+        )
+        VALUES
+        (
+        ?
+        , ?
+        , ?
+        , ?
+        , ?
+        , ?
+        )
+    </entry>
+    <entry key="deleteAttendance">
+        DELETE
+        FROM ATTENDANCE A
+        WHERE
+            A.ONTIME_COUNT = ?
+            , A.LATE_COUNT = ?
+            , A.ABSENT_COUNT = ?
+            , A.ATTENDANCE_TOTALSCORE = ?
+            , A.OFFTIME_STATUS = ?
+            , A.EMP_NO =?
+    </entry>
+    <entry key="getLastEmpNo">
+        SELECT MAX(EMP_NO)
+        FROM EMPLOYEE
+    </entry>
 </properties>
