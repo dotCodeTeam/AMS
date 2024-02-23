@@ -12,27 +12,27 @@
         INSERT
         INTO EMPLOYEE
         (
-        EMP_NO
-        , EMP_ID
-        , EMP_PW
-        , EMP_NAME
-        , JOB_CODE
-        , EMP_HIREDATE
-        , PHONE
-        , EMAIL
-        , ADMIN_ID
-        )
+            EMP_NO
+            , EMP_ID
+            , EMP_PW
+            , EMP_NAME
+            , JOB_CODE
+            , EMP_HIREDATE
+            , PHONE
+            , EMAIL
+            , ADMIN_ID
+            )
         VALUES
         (
-        ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , ?
+              ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
         )
     </entry>
     <entry key="deleteEmp">
@@ -59,21 +59,21 @@
         INSERT
         INTO ATTENDANCE
         (
-        ONTIME_COUNT
-        , LATE_COUNT
-        , ABSENT_COUNT
-        , ATTENDANCE_TOTALSCORE
-        , OFFTIME_STATUS
-        , EMP_NO
+              ONTIME_COUNT
+            , LATE_COUNT
+            , ABSENT_COUNT
+            , ATTENDANCE_TOTALSCORE
+            , OFFTIME_STATUS
+            , EMP_NO
         )
         VALUES
         (
-        ?
-        , ?
-        , ?
-        , ?
-        , ?
-        , ?
+              ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
         )
     </entry>
     <entry key="deleteAttendance">
