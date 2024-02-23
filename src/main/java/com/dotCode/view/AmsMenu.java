@@ -108,8 +108,8 @@ public class AmsMenu {
                                 break;
                             case 8:
                                 System.out.println("============ 사원 관리 ============");
-                                System.out.println("1. 조회");
-                                System.out.println("2. 변경");
+                                System.out.println("1. 사원 정보 조회");
+                                System.out.println("2. 사원 정보 변경");
                                 System.out.println("3. 부재 신청 허가");
                                 System.out.println("4. 증빙 서류 관리");
                                 System.out.println("5. 처음으로");
