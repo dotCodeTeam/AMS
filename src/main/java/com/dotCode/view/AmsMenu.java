@@ -64,7 +64,8 @@ public class AmsMenu {
                             case 6: isMenu = false;
                                 System.out.println("로그아웃 되었습니다." + registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
-                            case 0: isTrue = false; break;
+                            case 0: isTrue = false;
+                                break;
                         }
                     }
                     else {
@@ -86,12 +87,12 @@ public class AmsMenu {
                             case 6: isMenu = false;
                                 break;
                             case 7:
-                                System.out.println("============ 전체 사원 정보 ============");
+                                System.out.println("========= 전체 사원 정보 =========");
                                 System.out.println("1. 사원 등록");
                                 System.out.println("2. 사원 정보 조회");
                                 System.out.println("3. 사원 해고");
                                 System.out.println("4. 처음으로");
-                                System.out.println("=============================");
+                                System.out.println("================================");
                                 System.out.print(">> ");
                                 selectChoice = sc.nextInt();
                                 switch ( selectChoice ) {
@@ -103,17 +104,16 @@ public class AmsMenu {
                                         break;
                                     case 4:
                                         break;
-
                                 }
                                 break;
                             case 8:
-                                System.out.println("============ 사원 관리 ============");
+                                System.out.println("========= 사원 출결 관리 =========");
                                 System.out.println("1. 사원 정보 조회");
                                 System.out.println("2. 사원 정보 변경");
                                 System.out.println("3. 부재 신청 허가");
                                 System.out.println("4. 증빙 서류 관리");
                                 System.out.println("5. 처음으로");
-                                System.out.println("=============================");
+                                System.out.println("================================");
                                 System.out.print(">> ");
                                 selectChoice = sc.nextInt();
                                 switch ( selectChoice ) {
@@ -129,7 +129,8 @@ public class AmsMenu {
                                         break;
                                 }
                                 break;
-                            case 0: isTrue = false; break;
+                            case 0: isTrue = false;
+                                break;
                         }
 
                     }
