@@ -51,14 +51,14 @@ public class EmployeeDAO {
             rset = pstmt.executeQuery();
 
             if ( rset.next() ){
-                empDTO.setEmpNo(rset.getString("EMP_NO"));
+                empDTO.setEmpNo(rset.getInt("EMP_NO"));
                 empDTO.setEmpId(rset.getString("EMP_ID"));
                 empDTO.setEmpPwd(rset.getString("EMP_PW"));
                 empDTO.setEmpName(rset.getString("EMP_NAME"));
                 empDTO.setPhone(rset.getString("PHONE"));
                 empDTO.setEmail(rset.getString("EMAIL"));
-                empDTO.setAdminCode(rset.getString("ADMIN_ID"));
-                empDTO.setJobCode(rset.getString("POSITION_ID"));
+                empDTO.setAdminCode(rset.getInt("ADMIN_ID"));
+                empDTO.setJobCode(rset.getInt("POSITION_ID"));
                 System.out.println("=============================");
                 System.out.println("로그인 되었습니다!!");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
