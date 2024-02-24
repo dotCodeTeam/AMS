@@ -18,20 +18,20 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class EmployeeDAO {
 
-    Connection con = getConnection();
     private EmployeeDTO empDTO;
-    private AttendanceDTO empAtdDTO;
+    private AttendanceDTO atdDTO;
     private VacantDTO vacantDTO;
-    private Scanner sc;
-    private Properties prop = new Properties();
-    private PreparedStatement pstmt = null;
-    private ResultSet rset = null;
+    protected Scanner sc = new Scanner(System.in);
+    protected Connection con = getConnection();
+    protected Properties prop = new Properties();
+    protected PreparedStatement pstmt = null;
+    protected ResultSet rset = null;
 
     public EmployeeDAO(){
         empDTO = new EmployeeDTO();
-        empAtdDTO = new AttendanceDTO();
+        atdDTO = new AttendanceDTO();
         try {
-            prop.loadFromXML(new FileInputStream("src/main/java/com/dotCode/mapper/ams-query.xml"));
+            prop.loadFromXML(new FileInputStream("src/main/java/com/dotCode/mapper/employee-query.xml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -47,11 +47,10 @@ public class EmployeeDAO {
         System.out.print("     PW : ");
         String pwd = sc.nextLine();
 
-        String query1 = prop.getProperty("getEmpInfo");
-        String query2 = prop.getProperty("getAttendanceInfo");
+        String query = prop.getProperty("getEmpInfo");
 
         try {
-            pstmt = con.prepareStatement(query1);
+            pstmt = con.prepareStatement(query);
             pstmt.setString(1,id);
             pstmt.setString(2,pwd);
 
@@ -69,22 +68,6 @@ public class EmployeeDAO {
                 empDTO.setAdminCode(rset.getInt("ADMIN_CODE"));
                 empDTO.setCurrentStatus(rset.getString("CURRENT_STATUS"));
 
-                // 값을 다 가져오면 초기화
-                pstmt = null;
-                rset = null;
-
-                pstmt = con.prepareStatement(query2);
-                pstmt.setInt(1,empDTO.getEmpNo());
-                rset = pstmt.executeQuery();
-
-                if(rset.next()){
-                    empAtdDTO.setEmpNo(rset.getInt("EMP_NO"));
-                    empAtdDTO.setTotalDayCount(rset.getInt("TOTAL_DAY_COUNT"));
-                    empAtdDTO.setOntimeCount(rset.getInt("ONTIME_COUNT"));
-                    empAtdDTO.setLateCount(rset.getInt("LATE_COUNT"));
-                    empAtdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
-                    empAtdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
-                }
                 System.out.println("=============================");
                 System.out.println("로그인 성공...");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
@@ -93,10 +76,6 @@ public class EmployeeDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            close(rset);
-            close(pstmt);
-            close(con);
         }
         return isTrue;
     }
@@ -111,8 +90,29 @@ public class EmployeeDAO {
         return this.empDTO;
     }
 
-    public AttendanceDTO getEmpAtdInfo(){
-        return this.empAtdDTO;
+    public AttendanceDTO getAtdInfo(){
+        String query = prop.getProperty("getAtdInfo");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empDTO.getEmpNo());
+            rset = pstmt.executeQuery();
+
+            if(rset.next()){
+                atdDTO.setEmpNo(rset.getInt("EMP_NO"));
+                atdDTO.setTotalDayCount(rset.getInt("TOTAL_DAY_COUNT"));
+                atdDTO.setOntimeCount(rset.getInt("ONTIME_COUNT"));
+                atdDTO.setLateCount(rset.getInt("LATE_COUNT"));
+                atdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
+                atdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+        return this.atdDTO;
     }
 
 }
