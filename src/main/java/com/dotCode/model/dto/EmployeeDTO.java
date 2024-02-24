@@ -114,7 +114,7 @@ public class EmployeeDTO implements java.io.Serializable{
     public String toString() {
         return  empName +
                 "님의 정보 {" +
-                "사번= " + empNo +
+                " 사번=" + empNo +
                 ", 아이디='" + empId + '\'' +
                 ", 비밀번호='" + empPwd + '\'' +
                 ", 이름= '" + empName + '\'' +
