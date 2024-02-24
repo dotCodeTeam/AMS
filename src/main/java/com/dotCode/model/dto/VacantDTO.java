@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class VacantDTO implements java.io.Serializable{
 
-    private int empNo;
     private String vacantCategory;
+    private int empNo;
     private String receiveCurrentDate;
     private Date sendCurrentDate;
     private String receiveVacantDate;
@@ -15,9 +15,9 @@ public class VacantDTO implements java.io.Serializable{
 
     public VacantDTO(){}
 
-    public VacantDTO(int empNo, String vacantCategory, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause,String acceptStatus) {
-        this.empNo = empNo;
+    public VacantDTO(String vacantCategory, int empNo, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause,String acceptStatus) {
         this.vacantCategory = vacantCategory;
+        this.empNo = empNo;
         this.receiveCurrentDate = receiveCurrentDate;
         this.sendCurrentDate = sendCurrentDate;
         this.receiveVacantDate = receiveVacantDate;
@@ -26,20 +26,20 @@ public class VacantDTO implements java.io.Serializable{
         this.acceptStatus = acceptStatus;
     }
 
-    public int getEmpNo() {
-        return empNo;
-    }
-
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
-    }
-
     public String getVacantCategory() {
         return vacantCategory;
     }
 
     public void setVacantCategory(String vacantCategory) {
         this.vacantCategory = vacantCategory;
+    }
+
+    public int getEmpNo() {
+        return empNo;
+    }
+
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
     }
 
     public String getReceiveCurrentDate() {
