@@ -2,6 +2,8 @@ package com.dotCode.view;
 
 import com.dotCode.common.JDBCTemplete;
 import com.dotCode.model.dao.EmployeeDAO;
+import com.dotCode.model.dto.EmployeeDTO;
+
 import java.sql.Connection;
 import java.util.Scanner;
 
