@@ -28,4 +28,5 @@ public class AdminDAO extends EmployeeDAO {
     public AttendanceDTO getEmpAtdInfo() {
         return super.getEmpAtdInfo();
     }
+
 }
