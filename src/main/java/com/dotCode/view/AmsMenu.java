@@ -10,14 +10,14 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 public class AmsMenu {
     Scanner sc = new Scanner(System.in);
     Connection con = getConnection();
-    EmployeeDAO registDAO = new EmployeeDAO();
+    EmployeeDAO registDAO;
 
     public void menu(){
 
         boolean isTrue = true;
 
         while ( isTrue ) {
-
+            registDAO = new EmployeeDAO();  // 인스턴스 초기화
             boolean isLogin = false;
             isLogin = registDAO.logIn(con);
 

@@ -17,12 +17,12 @@ import static com.dotCode.common.JDBCTemplete.close;
 
 public class EmployeeDAO {
 
-    private Scanner sc;
-    private PreparedStatement pstmt = null;
-    private ResultSet rset = null;
-    private Properties prop = new Properties();
     private EmployeeDTO empDTO;
     private AttendanceDTO empAtdDTO;
+    private Scanner sc;
+    private Properties prop = new Properties();
+    private PreparedStatement pstmt = null;
+    private ResultSet rset = null;
 
     public EmployeeDAO(){
         empDTO = new EmployeeDTO();
