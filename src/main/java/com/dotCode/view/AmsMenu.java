@@ -56,11 +56,13 @@ public class AmsMenu {
                                 break;
                             case 5:
                                 break;
-                            case 6: isMenu = false;
+                            case 6: isLogin = false;
                                 System.out.println("로그아웃 성공... " );
                                 System.out.println(empDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
-                            case 0: isMenu = false;
+                            case 0:
+                                isLogin = false;
+                                isMenu = false;
                                 break;
                         }
                     }
@@ -81,7 +83,7 @@ public class AmsMenu {
                             case 5:
                                 break;
                             case 6:
-                                isMenu = false;
+                                isLogin = false;
                                 System.out.println("로그아웃 성공... " );
                                 System.out.println(empDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
@@ -131,7 +133,9 @@ public class AmsMenu {
                                     }
                                 }
                                 break;
-                            case 0: isMenu = false;
+                            case 0:
+                                isLogin = false;
+                                isMenu = false;
                                 break;
                         }
 

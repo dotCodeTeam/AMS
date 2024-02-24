@@ -113,7 +113,7 @@ public class EmployeeDTO implements java.io.Serializable{
     @Override
     public String toString() {
         return  empName +
-                "님의 정보 {" +
+                "님의 개인정보\n{" +
                 " 사번=" + empNo +
                 ", 아이디='" + empId + '\'' +
                 ", 비밀번호='" + empPwd + '\'' +

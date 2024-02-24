@@ -69,7 +69,7 @@ public class AttendanceDTO implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return  "     근태 현황 {" +
+        return  "근태 현황\n{" +
                 " 사번=" + empNo +
                 ", 총 근무 일자=" + totalDayCount +
                 ", 정시 출근 일자=" + ontimeCount +
