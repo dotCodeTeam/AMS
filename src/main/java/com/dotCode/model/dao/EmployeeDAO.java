@@ -1,7 +1,9 @@
 package com.dotCode.model.dao;
 
 import com.dotCode.model.dto.AttendanceDTO;
+import com.dotCode.model.dto.DocumentDTO;
 import com.dotCode.model.dto.EmployeeDTO;
+import com.dotCode.model.dto.VacantDTO;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -19,6 +22,8 @@ public class EmployeeDAO {
 
     private EmployeeDTO empDTO;
     private AttendanceDTO empAtdDTO;
+    private DocumentDTO docDTO;
+    private VacantDTO vacantDTO;
     private Scanner sc;
     private Properties prop = new Properties();
     private PreparedStatement pstmt = null;
@@ -51,7 +56,6 @@ public class EmployeeDAO {
             pstmt = con.prepareStatement(query1);
             pstmt.setString(1,id);
             pstmt.setString(2,pwd);
-
 
             rset = pstmt.executeQuery();
 
@@ -103,6 +107,14 @@ public class EmployeeDAO {
         if ( this.empDTO.getAdminCode() == 0 ) {    result = 0;   }
         return result;
     }
+
+    public void submitDoc(int empNo,int vacantCategory){
+
+        docDTO = new DocumentDTO();
+
+        String query = ""; // 쿼리 > 받은 값 넣기
+    }
+
 
     public EmployeeDTO getEmpInfo(){
         return this.empDTO;
