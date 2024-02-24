@@ -2,18 +2,38 @@ package com.dotCode.model.dto;
 
 public class AttendanceDTO implements java.io.Serializable{
 
+    private int empNo;
+    private int totalDayCount;
     private int ontimeCount;
     private int lateCount;
     private int absentCount;
-    private int totalAttendanceScore;
+    private int totalScore;
 
     public AttendanceDTO(){}
 
-    public AttendanceDTO(int ontimeCount, int lateCount, int absentCount, int totalAttendanceScore) {
+    public AttendanceDTO(int empNo, int totalDayCount, int ontimeCount, int lateCount, int absentCount, int totalScore) {
+        this.empNo = empNo;
+        this.totalDayCount = totalDayCount;
         this.ontimeCount = ontimeCount;
         this.lateCount = lateCount;
         this.absentCount = absentCount;
-        this.totalAttendanceScore = totalAttendanceScore;
+        this.totalScore = totalScore;
+    }
+
+    public int getEmpNo() {
+        return empNo;
+    }
+
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
+    }
+
+    public int getTotalDayCount() {
+        return totalDayCount;
+    }
+
+    public void setTotalDayCount(int totalDayCount) {
+        this.totalDayCount = totalDayCount;
     }
 
     public int getOntimeCount() {
@@ -39,22 +59,22 @@ public class AttendanceDTO implements java.io.Serializable{
     public void setAbsentCount(int absentCount) {
         this.absentCount = absentCount;
     }
-
-    public int gettotalAttendanceScore() {
-        return totalAttendanceScore;
+    public int getTotalScore() {
+        return totalScore;
     }
 
-    public void settotalAttendanceScore(int totalAttendanceScore) {
-        this.totalAttendanceScore = totalAttendanceScore;
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
     }
 
     @Override
     public String toString() {
-        return "AttendanceDto{" +
-                "ontimeCount=" + ontimeCount +
-                ", lateCount=" + lateCount +
-                ", absentCount=" + absentCount +
-                ", attendanceScore=" + totalAttendanceScore +
+        return  "     근태 현황 {" +
+                "총 근무일자=" + totalDayCount +
+                ", 정시출근일자=" + ontimeCount +
+                ", 지각=" + lateCount +
+                ", 결근=" + absentCount +
+                ", 근태점수=" + totalScore +
                 '}';
     }
 }

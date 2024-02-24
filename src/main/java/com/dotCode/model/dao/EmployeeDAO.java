@@ -1,5 +1,6 @@
 package com.dotCode.model.dao;
 
+import com.dotCode.model.dto.AttendanceDTO;
 import com.dotCode.model.dto.EmployeeDTO;
 
 import java.io.FileInputStream;
@@ -16,13 +17,16 @@ import static com.dotCode.common.JDBCTemplete.close;
 
 public class EmployeeDAO {
 
-    protected Scanner sc;
-    protected PreparedStatement pstmt = null;
-    protected ResultSet rset = null;
-    protected Properties prop = new Properties();
-    protected EmployeeDTO empDTO = new EmployeeDTO();
+    private EmployeeDTO empDTO;
+    private AttendanceDTO empAtdDTO;
+    private Scanner sc;
+    private Properties prop = new Properties();
+    private PreparedStatement pstmt = null;
+    private ResultSet rset = null;
 
     public EmployeeDAO(){
+        empDTO = new EmployeeDTO();
+        empAtdDTO = new AttendanceDTO();
         try {
             prop.loadFromXML(new FileInputStream("src/main/java/com/dotCode/mapper/ams-query.xml"));
         } catch (IOException e) {
@@ -40,12 +44,14 @@ public class EmployeeDAO {
         System.out.print("     PW : ");
         String pwd = sc.nextLine();
 
-        String query = prop.getProperty("getEmpInfo");
+        String query1 = prop.getProperty("getEmpInfo");
+        String query2 = prop.getProperty("getAttendanceInfo");
 
         try {
-            pstmt = con.prepareStatement(query);
+            pstmt = con.prepareStatement(query1);
             pstmt.setString(1,id);
             pstmt.setString(2,pwd);
+
 
             rset = pstmt.executeQuery();
 
@@ -59,8 +65,26 @@ public class EmployeeDAO {
                 empDTO.setPhone(rset.getString("PHONE"));
                 empDTO.setEmail(rset.getString("EMAIL"));
                 empDTO.setAdminCode(rset.getInt("ADMIN_CODE"));
+                empDTO.setCurrentStatus(rset.getString("CURRENT_STATUS"));
+
+                // 값을 다 가져오면 초기화
+                pstmt = null;
+                rset = null;
+
+                pstmt = con.prepareStatement(query2);
+                pstmt.setInt(1,empDTO.getEmpNo());
+                rset = pstmt.executeQuery();
+
+                if(rset.next()){
+                    empAtdDTO.setEmpNo(rset.getInt("EMP_NO"));
+                    empAtdDTO.setTotalDayCount(rset.getInt("TOTAL_DAY_COUNT"));
+                    empAtdDTO.setOntimeCount(rset.getInt("ONTIME_COUNT"));
+                    empAtdDTO.setLateCount(rset.getInt("LATE_COUNT"));
+                    empAtdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
+                    empAtdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
+                }
                 System.out.println("=============================");
-                System.out.println("로그인 되었습니다!!");
+                System.out.println("로그인 성공...");
                 System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
                 isTrue = true;
 
@@ -75,6 +99,7 @@ public class EmployeeDAO {
         }
         return isTrue;
     }
+
     public int checkAdmin(){
         int result = 1;
         if ( this.empDTO.getAdminCode() == 0 ) {    result = 0;   }
@@ -83,6 +108,10 @@ public class EmployeeDAO {
 
     public EmployeeDTO getEmpInfo(){
         return this.empDTO;
+    }
+
+    public AttendanceDTO getEmpAtdInfo(){
+        return this.empAtdDTO;
     }
 
 }

@@ -13,10 +13,11 @@ public class EmployeeDTO implements java.io.Serializable{
     private String phone;
     private String email;
     private int adminCode;
+    private String currentStatus;
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode) {
+    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode,String currentStatus) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
@@ -26,6 +27,7 @@ public class EmployeeDTO implements java.io.Serializable{
         this.phone = phone;
         this.email = email;
         this.adminCode = adminCode;
+        this.currentStatus = currentStatus;
     }
 
     public int getEmpNo() {
@@ -100,18 +102,28 @@ public class EmployeeDTO implements java.io.Serializable{
         this.adminCode = adminCode;
     }
 
+    public String getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
-                "empNo=" + empNo +
-                ", empId='" + empId + '\'' +
-                ", empPwd='" + empPwd + '\'' +
-                ", empName='" + empName + '\'' +
-                ", jobCode=" + jobCode +
-                ", hireDate=" + hireDate +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", adminCode=" + adminCode +
+        return  empName +
+                "님의 정보 {" +
+                "사번= " + empNo +
+                ", 아이디='" + empId + '\'' +
+                ", 비밀번호='" + empPwd + '\'' +
+                ", 이름= '" + empName + '\'' +
+                ", 직급=" + jobCode +
+                ", 고용일자=" + hireDate +
+                ", 핸드폰='" + phone + '\'' +
+                ", 이메일='" + email + '\'' +
+                ", 관리사번=" + adminCode +
+                ", 부재상태=" + currentStatus +
                 '}';
     }
 }

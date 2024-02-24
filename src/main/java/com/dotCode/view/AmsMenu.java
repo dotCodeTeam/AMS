@@ -12,14 +12,14 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 public class AmsMenu {
     Scanner sc = new Scanner(System.in);
     Connection con = getConnection();
-    EmployeeDAO registDAO = new EmployeeDAO();
+    EmployeeDAO registDAO;
 
     public void menu(){
 
         boolean isTrue = true;
 
         while ( isTrue ) {
-
+            registDAO = new EmployeeDAO();  // 인스턴스 초기화
             boolean isLogin = false;
             isLogin = registDAO.logIn(con);
 
@@ -57,15 +57,18 @@ public class AmsMenu {
                                 break;
                             case 3:
                                 System.out.println(registDAO.getEmpInfo());
+                                System.out.println(registDAO.getEmpAtdInfo());
                                 break;
                             case 4:
                                 break;
                             case 5:
                                 break;
                             case 6: isMenu = false;
-                                System.out.println("로그아웃 되었습니다." + registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
+                                System.out.println("로그아웃 성공... " );
+                                System.out.println(registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
-                            case 0: isTrue = false; break;
+                            case 0: isTrue = false;
+                                break;
                         }
                     }
                     else {
@@ -78,20 +81,24 @@ public class AmsMenu {
                                 break;
                             case 3:
                                 System.out.println(registDAO.getEmpInfo());
+                                System.out.println(registDAO.getEmpAtdInfo());
                                 break;
                             case 4:
                                 break;
                             case 5:
                                 break;
-                            case 6: isMenu = false;
+                            case 6:
+                                isMenu = false;
+                                System.out.println("로그아웃 성공... " );
+                                System.out.println(registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
                             case 7:
-                                System.out.println("============ 전체 사원 정보 ============");
+                                System.out.println("========= 전체 사원 정보 =========");
                                 System.out.println("1. 사원 등록");
                                 System.out.println("2. 사원 정보 조회");
                                 System.out.println("3. 사원 해고");
                                 System.out.println("4. 처음으로");
-                                System.out.println("=============================");
+                                System.out.println("================================");
                                 System.out.print(">> ");
                                 selectChoice = sc.nextInt();
                                 switch ( selectChoice ) {
@@ -103,17 +110,16 @@ public class AmsMenu {
                                         break;
                                     case 4:
                                         break;
-
                                 }
                                 break;
                             case 8:
-                                System.out.println("============ 사원 관리 ============");
-                                System.out.println("1. 조회");
-                                System.out.println("2. 변경");
+                                System.out.println("========= 사원 출결 관리 =========");
+                                System.out.println("1. 사원 정보 조회");
+                                System.out.println("2. 사원 정보 변경");
                                 System.out.println("3. 부재 신청 허가");
                                 System.out.println("4. 증빙 서류 관리");
                                 System.out.println("5. 처음으로");
-                                System.out.println("=============================");
+                                System.out.println("================================");
                                 System.out.print(">> ");
                                 selectChoice = sc.nextInt();
                                 switch ( selectChoice ) {
@@ -129,7 +135,8 @@ public class AmsMenu {
                                         break;
                                 }
                                 break;
-                            case 0: isTrue = false; break;
+                            case 0: isTrue = false;
+                                break;
                         }
 
                     }
@@ -138,6 +145,7 @@ public class AmsMenu {
 
             } else {
                 sc.nextLine();
+                System.out.println("로그인 실패...");
                 System.out.println("해당하는 정보가 없습니다.");}
 
         }
