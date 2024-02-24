@@ -1,7 +1,6 @@
 package com.dotCode.model.dao;
 
 import com.dotCode.model.dto.AttendanceDTO;
-import com.dotCode.model.dto.DocumentDTO;
 import com.dotCode.model.dto.EmployeeDTO;
 import com.dotCode.model.dto.VacantDTO;
 
@@ -11,18 +10,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
 import static com.dotCode.common.JDBCTemplete.close;
+import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class EmployeeDAO {
 
+    Connection con = getConnection();
     private EmployeeDTO empDTO;
     private AttendanceDTO empAtdDTO;
-    private DocumentDTO docDTO;
     private VacantDTO vacantDTO;
     private Scanner sc;
     private Properties prop = new Properties();
@@ -39,7 +37,7 @@ public class EmployeeDAO {
         }
     }
 
-    public boolean logIn(Connection con) {
+    public boolean logIn() {
         boolean isTrue = false;
         sc = new Scanner(System.in);
 
@@ -98,6 +96,7 @@ public class EmployeeDAO {
         } finally {
             close(rset);
             close(pstmt);
+            close(con);
         }
         return isTrue;
     }
@@ -107,14 +106,6 @@ public class EmployeeDAO {
         if ( this.empDTO.getAdminCode() == 0 ) {    result = 0;   }
         return result;
     }
-
-    public void submitDoc(int empNo,int vacantCategory){
-
-        docDTO = new DocumentDTO();
-
-        String query = ""; // 쿼리 > 받은 값 넣기
-    }
-
 
     public EmployeeDTO getEmpInfo(){
         return this.empDTO;

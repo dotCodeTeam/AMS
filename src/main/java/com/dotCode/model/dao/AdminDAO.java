@@ -10,8 +10,8 @@ public class AdminDAO extends EmployeeDAO {
     public AdminDAO() {}
 
     @Override
-    public boolean logIn(Connection con) {
-        return super.logIn(con);
+    public boolean logIn() {
+        return super.logIn();
     }
 
     @Override

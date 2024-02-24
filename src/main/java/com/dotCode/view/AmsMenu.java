@@ -1,18 +1,15 @@
 package com.dotCode.view;
 
-import com.dotCode.common.JDBCTemplete;
 import com.dotCode.model.dao.EmployeeDAO;
-import java.sql.Connection;
+
 import java.util.Scanner;
 
-import static com.dotCode.common.JDBCTemplete.getConnection;
-
 public class AmsMenu {
-    Scanner sc = new Scanner(System.in);
-    Connection con = getConnection();
+    Scanner sc;
     EmployeeDAO registDAO;
 
     public void menu(){
+        sc = new Scanner(System.in);
 
         boolean isTrue = true;
 
@@ -20,7 +17,7 @@ public class AmsMenu {
             registDAO = new EmployeeDAO();  // 인스턴스 초기화
 
             boolean isLogin = false;
-            isLogin = registDAO.logIn(con);
+            isLogin = registDAO.logIn();
 
             if ( isLogin ) {
 
@@ -49,7 +46,6 @@ public class AmsMenu {
                     if ( registDAO.checkAdmin() != 0 ){
                         sc.nextLine();
                         switch (choice) {
-
                             case 1:
                                 break;
                             case 2:
@@ -60,15 +56,8 @@ public class AmsMenu {
                                 break;
                             case 4:
                                 break;
-
                             case 5:
-                                int empNo = 0;
-                                int vacantCategory = 0;
-                                System.out.println("========= 증빙 서류 제출 =========");
-                                System.out.println(""); // 입력받기
-                                registDAO.submitDoc(empNo,vacantCategory);
                                 break;
-
                             case 6: isMenu = false;
                                 System.out.println("로그아웃 성공... " );
                                 System.out.println(registDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
@@ -91,10 +80,8 @@ public class AmsMenu {
                                 break;
                             case 4:
                                 break;
-
                             case 5:
                                 break;
-
                             case 6:
                                 isMenu = false;
                                 System.out.println("로그아웃 성공... " );
@@ -131,7 +118,6 @@ public class AmsMenu {
                                 System.out.print(">> ");
                                 selectChoice = sc.nextInt();
                                 switch ( selectChoice ) {
-
                                     case 1:
                                         break;
                                     case 2:
@@ -140,7 +126,6 @@ public class AmsMenu {
                                         break;
                                     case 4:
                                         break;
-
                                     case 5:
                                         break;
                                 }
