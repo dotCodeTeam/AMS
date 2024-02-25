@@ -38,7 +38,6 @@
                     , ?
                     , ?
                     , ?
-                    , ?
                 )
     </entry>
     <entry key="deleteEmp">
@@ -101,20 +100,18 @@
         SELECT EMPLOYEE
         FROM EMPLOYEE
     </entry>
-    <entry key="insertVacant">
+    <entry key="insertAtdDTO">
             INSERT INTO
-            VACANT (
+            ATTENDANCE (
             EMP_NO
-            , VACANT_CATEGORY
-            , VACANT_NAME
-            , VACANT_DATE
-            , VACANT_CAUSE
-            , PRESENT_DATE
-            , ACCEPT_STATUS
+            , ONTIME_COUNT
+            , LATE_COUNT
+            , ABSENT_COUNT
+            , ATTENDANCE_TOTAL_SCORE
+            , TOTAY_DAY_COUNT
             )
             VALUES (
             ?
-            , ?
             , ?
             , ?
             , ?

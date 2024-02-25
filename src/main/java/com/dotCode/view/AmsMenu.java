@@ -32,7 +32,7 @@ public class AmsMenu {
                     System.out.println("5. 증빙서류 제출");
                     System.out.println("6. 로그아웃");
                     if ( empDAO.checkAdmin() == 0 ) {
-                        System.out.println("7. 전체 사원 정보");
+                        System.out.println("7. 사원 정보 관리");
                         System.out.println("8. 사원 근태 관리");
                     }
                     System.out.println("0. 프로그램 종료");
@@ -88,7 +88,7 @@ public class AmsMenu {
                                 System.out.println(empDAO.getEmpInfo().getEmpName() + "님 오늘도 수고하셨습니다!");
                                 break;
                             case 7:
-                                System.out.println("========= 전체 사원 정보 =========");
+                                System.out.println("========= 사원 정보 관리 =========");
                                 System.out.println("1. 사원 등록");
                                 System.out.println("2. 사원 정보 수정");
                                 System.out.println("3. 사원 해고");
@@ -98,6 +98,7 @@ public class AmsMenu {
                                 selectChoice = sc.nextInt();
                                 switch ( selectChoice ) {
                                     case 1:
+                                        adminDAO.AddEmp();
                                         break;
                                     case 2:
                                         break;
