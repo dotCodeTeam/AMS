@@ -4,9 +4,8 @@ import java.util.Date;
 
 public class VacantDTO implements java.io.Serializable {
 
-    private int empNO;
     private String vacantCategory;
-    private String vacantName;
+    private int empNo;
     private String receiveCurrentDate;
     private Date sendCurrentDate;
     private String receiveVacantDate;
@@ -17,25 +16,15 @@ public class VacantDTO implements java.io.Serializable {
     public VacantDTO() {
     }
 
-    public VacantDTO(int empNO, String vacantCategory, String vacantName, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause, String acceptStatus) {
-
-        this.empNO = empNO;
+    public VacantDTO(String vacantCategory, int empNo, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause,String acceptStatus) {
         this.vacantCategory = vacantCategory;
-        this.vacantName = vacantName;
+        this.empNo = empNo;
         this.receiveCurrentDate = receiveCurrentDate;
         this.sendCurrentDate = sendCurrentDate;
         this.receiveVacantDate = receiveVacantDate;
         this.sendVacantDate = sendVacantDate;
         this.vacantCause = vacantCause;
         this.acceptStatus = acceptStatus;
-    }
-
-    public int getEmpNO() {
-        return empNO;
-    }
-
-    public void setEmpNO(int empNO) {
-        this.empNO = empNO;
     }
 
     public String getVacantCategory() {
@@ -46,12 +35,12 @@ public class VacantDTO implements java.io.Serializable {
         this.vacantCategory = vacantCategory;
     }
 
-    public String getVacantName() {
-        return vacantName;
+    public int getEmpNo() {
+        return empNo;
     }
 
-    public void setVacantName(String vacantName) {
-        this.vacantName = vacantName;
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
     }
 
     public String getReceiveCurrentDate() {
@@ -105,9 +94,8 @@ public class VacantDTO implements java.io.Serializable {
     @Override
     public String toString() {
         return "VacantDTO{" +
-                "empNO=" + empNO +
-                ", vacantCategory='" + vacantCategory + '\'' +
-                ", vacantName='" + vacantName + '\'' +
+                "vacantCategory='" + vacantCategory + '\'' +
+                ", empNo='" + empNo +
                 ", receiveCurrentDate='" + receiveCurrentDate + '\'' +
                 ", sendCurrentDate=" + sendCurrentDate +
                 ", receiveVacantDate='" + receiveVacantDate + '\'' +
