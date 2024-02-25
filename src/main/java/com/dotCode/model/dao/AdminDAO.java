@@ -50,7 +50,7 @@ public class AdminDAO extends EmployeeDAO {
 
     @Override
     public boolean logIn() {
-                return super.logIn();
+        return super.logIn();
     }
     @Override
     public int checkAdmin() {
@@ -64,9 +64,21 @@ public class AdminDAO extends EmployeeDAO {
 
     @Override
     public AttendanceDTO getAtdInfo() {
-        return super.getAtdInfo();
+        int selectEmpNo;
+        System.out.print("조회할 사번 입력 >> ");
+        selectEmpNo = sc.nextInt();
+
+        for ( int i = 0 ; i < atdDTOList.size(); i++ ) {
+            if(atdDTOList.get(i).getEmpNo() == selectEmpNo){
+                atdDTO = this.atdDTOList.get(i);
+            }
+        }
+
+        System.out.println(atdDTO);
+
+        return this.atdDTO;
     }
-    public void getAtdInfo(AttendanceDTO atdDTO){
+    public AttendanceDTO getAtdInfo(AttendanceDTO atdDTO){
 
         String query = prop.getProperty("getAtdInfo");
 
@@ -92,7 +104,7 @@ public class AdminDAO extends EmployeeDAO {
             close(rset);
             close(pstmt);
         }
-
+        return atdDTO;
     }
 
     public void getAllAtdInfo(){
@@ -101,8 +113,8 @@ public class AdminDAO extends EmployeeDAO {
         }
     }
 
-    public AttendanceDTO updateAtdInfo(){
-        System.out.print("정보를 변경할 사원의 사번 입력 >> ");
+    public void updateAtdInfo(){
+        System.out.print("근태 정보를 변경할 사원의 사번 입력 >> ");
         int empNo = sc.nextInt();
 
         for ( int i = 0 ; i < atdDTOList.size(); i++ ){
@@ -120,10 +132,12 @@ public class AdminDAO extends EmployeeDAO {
                 System.out.println(" 3.지각 ");
                 System.out.println(" 4.결근 ");
                 System.out.println(" 5.근태 점수 ");
+                System.out.println(" 6.이전으로 ");
                 System.out.println("=========================");
                 System.out.print(">> ");
                 int culumn = sc.nextInt();
-                String query = null;
+
+                String query = "";
                 int updateValue;
                 int result = 0;
 
@@ -178,10 +192,23 @@ public class AdminDAO extends EmployeeDAO {
                         pstmt.setInt(2,atdDTO.getEmpNo());
                         result = pstmt.executeUpdate();
                         break;
+                    case 6:
+                        result = -1;
+                        break;
+                    default:
+                        System.out.println("잘못된 입력입니다...");
+                        break;
                 }
 
-                if ( result > 0) {  getAtdInfo(atdDTO);  }
-                else {  System.out.println("변경 실패");  }
+                if ( result > 0 ) {
+                    System.out.println(getAtdInfo(atdDTO));
+                    System.out.println(getAtdInfo(atdDTO).getEmpNo() + "번 사원의 근태 정보가 변경되었습니다.");
+                }
+                else if ( result < 0 ){  System.out.println("이전으로 돌아갑니다.");  }
+                else {
+                    System.out.println(getAtdInfo(atdDTO));
+                    System.out.println("정보 변경에 실패 했습니다.");
+                }
 
             }
             else  {
@@ -193,8 +220,6 @@ public class AdminDAO extends EmployeeDAO {
             close(rset);
             close(pstmt);
         }
-
-        return atdDTO;
 
     }
 

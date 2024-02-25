@@ -117,7 +117,7 @@ public class EmployeeDTO implements java.io.Serializable{
                 " 사번=" + empNo +
                 ", 아이디='" + empId + '\'' +
                 ", 비밀번호='" + empPwd + '\'' +
-                ", 이름= '" + empName + '\'' +
+                ", 이름='" + empName + '\'' +
                 ", 직급=" + jobCode +
                 ", 고용일자=" + hireDate +
                 ", 핸드폰='" + phone + '\'' +
