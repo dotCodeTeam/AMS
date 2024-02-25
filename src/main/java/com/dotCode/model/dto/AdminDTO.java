@@ -8,7 +8,7 @@ public class AdminDTO extends EmployeeDTO {
         super();
     }
 
-    public AdminDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode, String currentStatus) {
-        super(empNo, empId, empPwd, empName, jobCode, hireDate, phone, email, adminCode, currentStatus);
+    public AdminDTO(int empNo, String empId, String empPwd, String empName, String statusCode, String jobCode, String hireDate, String phone, String email, String adminCode) {
+        super(empNo, empId, empPwd, empName, statusCode, jobCode, hireDate, phone, email, adminCode);
     }
 }

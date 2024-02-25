@@ -2,16 +2,35 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment/>
-    <entry key="getAllAtdInfo">
-        SELECT *
-        FROM ATTENDANCE A
-    </entry>
     <entry key="getAtdInfo">
         SELECT
                 A.*
         FROM    ATTENDANCE A
         WHERE   A.EMP_NO = ?
     </entry>
+    <entry key="getAllAtdInfo">
+        SELECT *
+        FROM    ATTENDANCE
+    </entry>
+    <entry key="getVcntInfo">
+        SELECT
+                V.*
+        FROM    VACANT V
+        WHERE   V.EMP_NO = ?
+    </entry>
+    <entry key="getAllVcntInfo">
+        SELECT *
+        FROM    VACANT
+    </entry>
+    <entry key="updateVcntAcpt">
+        UPDATE
+                Vacant V
+        SET
+                V.ACCEPT_STATUS = ?
+        WHERE
+                V.EMP_NO = ?
+    </entry>
+
     <entry key="updateAtdTotalDayCount">
         UPDATE
             ATTENDANCE A
@@ -52,4 +71,6 @@
         WHERE
             A.EMP_NO = ?
     </entry>
+
+
 </properties>
