@@ -200,14 +200,6 @@ public class AdminDAO extends EmployeeDAO {
     }
 
 
-
-
-    public void getAllEmpInfo(){
-        for(EmployeeDTO empDTO : empDTOList){
-            System.out.println(empDTO);
-        }
-    }
-
     public void AddEmp() {
 
         System.out.println("============ Add Employee ============");
@@ -287,14 +279,13 @@ public class AdminDAO extends EmployeeDAO {
 //                                System.out.println("3. 사원 해고");
 //                                System.out.println("4. 처음으로"
     }
-    public void updateEmpInfo(){
-// 사원 전체 정보를 가저온 후 그중 사원 번호를 골라 수정하고 싶은 내용 수정, 수정 하지 않을 내용은 엔터키로 스킵
-        for(AttendanceDTO atdDTO : atdDTOList){
-            System.out.println(atdDTO);
+    public void getAllEmpInfo(){
+        for(EmployeeDTO empDTO : empDTOList){
+            System.out.println(empDTO);
         }
     }
 
-    public AttendanceDTO updateAtdInfo(){
+    public EmployeeDTO updateEmpInfo(){
 
         System.out.print("정보를 변경할 사원의 사번 입력 >> ");
         int empNo = sc.nextInt();
@@ -320,7 +311,7 @@ public class AdminDAO extends EmployeeDAO {
                 String query = null;
                 int updateValue;
                 int result = 0;
-
+// emp로 변경,  쿼리문 작성
                 switch (culumn){
                     case 1:
                         sc.nextLine();
