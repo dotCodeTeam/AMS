@@ -200,6 +200,12 @@ public class AdminDAO extends EmployeeDAO {
     }
 
 
+    public void getAllEmpInfo(){
+        for(EmployeeDTO empDTO : empDTOList){
+            System.out.println(empDTO);
+        }
+    }
+
     public void AddEmp() {
 
         System.out.println("============ Add Employee ============");
@@ -273,15 +279,6 @@ public class AdminDAO extends EmployeeDAO {
         } finally {
             close(rset);
             close(pstmt);
-        }
-
-//                                System.out.println("2. 사원 정보 수정");
-//                                System.out.println("3. 사원 해고");
-//                                System.out.println("4. 처음으로"
-    }
-    public void getAllEmpInfo(){
-        for(EmployeeDTO empDTO : empDTOList){
-            System.out.println(empDTO);
         }
     }
 
@@ -385,6 +382,17 @@ public class AdminDAO extends EmployeeDAO {
     }
 
     public void deleteEmpInfo(){
+
+        if ( index >= 0 && index < br.size()) {
+            br.remove(index);
+            System.out.println("삭제되었습니다.");
+        } else {
+            System.out.println("해당 사원 번호가 없습니다. 다시 확인해주세요.");
+        }
+        for(int i = 0; i < .size(); i++ ){
+            br.get(i).setbNo(i+1);
+        }
+
 
     }
 
