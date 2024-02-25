@@ -2,8 +2,9 @@ package com.dotCode.model.dto;
 
 import java.util.Date;
 
-public class VacantDTO implements java.io.Serializable{
+public class VacantDTO implements java.io.Serializable {
 
+    private int empNO;
     private String vacantCategory;
     private String vacantName;
     private String receiveCurrentDate;
@@ -13,9 +14,12 @@ public class VacantDTO implements java.io.Serializable{
     private String vacantCause;
     private String acceptStatus;
 
-    public VacantDTO(){}
+    public VacantDTO() {
+    }
 
-    public VacantDTO(String vacantCategory, String vacantName, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause,String acceptStatus) {
+    public VacantDTO(int empNO, String vacantCategory, String vacantName, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause, String acceptStatus) {
+
+        this.empNO = empNO;
         this.vacantCategory = vacantCategory;
         this.vacantName = vacantName;
         this.receiveCurrentDate = receiveCurrentDate;
@@ -24,6 +28,14 @@ public class VacantDTO implements java.io.Serializable{
         this.sendVacantDate = sendVacantDate;
         this.vacantCause = vacantCause;
         this.acceptStatus = acceptStatus;
+    }
+
+    public int getEmpNO() {
+        return empNO;
+    }
+
+    public void setEmpNO(int empNO) {
+        this.empNO = empNO;
     }
 
     public String getVacantCategory() {
@@ -93,7 +105,8 @@ public class VacantDTO implements java.io.Serializable{
     @Override
     public String toString() {
         return "VacantDTO{" +
-                "vacantCategory='" + vacantCategory + '\'' +
+                "empNO=" + empNO +
+                ", vacantCategory='" + vacantCategory + '\'' +
                 ", vacantName='" + vacantName + '\'' +
                 ", receiveCurrentDate='" + receiveCurrentDate + '\'' +
                 ", sendCurrentDate=" + sendCurrentDate +
@@ -104,3 +117,4 @@ public class VacantDTO implements java.io.Serializable{
                 '}';
     }
 }
+

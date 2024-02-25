@@ -97,4 +97,25 @@
         SELECT MAX(EMP_NO)
         FROM EMPLOYEE
     </entry>
+    <entry key="insertVacant">
+            INSERT INTO
+            VACANT (
+            EMP_NO
+            , VACANT_CATEGORY
+            , VACANT_NAME
+            , VACANT_DATE
+            , VACANT_CAUSE
+            , PRESENT_DATE
+            , ACCEPT_STATUS
+            )
+            VALUES (
+            ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            )
+    </entry>
 </properties>
