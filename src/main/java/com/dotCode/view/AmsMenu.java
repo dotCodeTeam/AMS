@@ -64,6 +64,9 @@ public class AmsMenu {
                                 isLogin = false;
                                 isMenu = false;
                                 break;
+                            default:
+                                System.out.println("잘못된 입력입니다...");
+                                break;
                         }
                     }
                     else {
@@ -120,7 +123,32 @@ public class AmsMenu {
                                     selectChoice = sc.nextInt();
                                     switch ( selectChoice ) {
                                         case 1:
-                                            adminDAO.getAllAtdInfo();
+                                            sc.nextLine();
+                                            int selectType;
+                                            boolean isSelect = true;
+                                            while (isSelect) {
+                                                System.out.println("======= 근태 정보 조회 ========");
+                                                System.out.println("1. 사번 조회");
+                                                System.out.println("2. 전체 조회");
+                                                System.out.println("3. 이전으로");
+                                                System.out.println("=============================");
+                                                System.out.print(">> ");
+                                                selectType = sc.nextInt();
+                                                switch (selectType) {
+                                                    case 1:
+                                                        adminDAO.getAtdInfo();
+                                                        break;
+                                                    case 2:
+                                                        adminDAO.getAllAtdInfo();
+                                                        break;
+                                                    case 3:
+                                                        isSelect = false;
+                                                        break;
+                                                    default:
+                                                        System.out.println("잘못된 입력입니다...");
+                                                        break;
+                                                }
+                                            }
                                             break;
                                         case 2:
                                             adminDAO.updateAtdInfo();
@@ -130,12 +158,18 @@ public class AmsMenu {
                                         case 4:
                                             isTrue = false;
                                             break;
+                                        default:
+                                            System.out.println("잘못된 입력입니다...");
+                                            break;
                                     }
                                 }
                                 break;
                             case 0:
                                 isLogin = false;
                                 isMenu = false;
+                                break;
+                            default:
+                                System.out.println("잘못된 입력입니다...");
                                 break;
                         }
 
