@@ -73,4 +73,84 @@
     </entry>
 
 
+    <entry key="updateEmpNo">
+        UPDATE
+        employee A
+        SET
+        A.EMP_NO = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpId">
+        UPDATE
+        employee A
+        SET
+        A.EMP_ID = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpPw">
+        UPDATE
+        employee A
+        SET
+        A.EMP_PW = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpName">
+        UPDATE
+        employee A
+        SET
+        A.EMP_NAME = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpStatusCode">
+        UPDATE
+        employee A
+        SET
+        A.STATUS_CODE = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpJobCode">
+        UPDATE
+        employee A
+        SET
+        A.JOB_CODE = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpHigherDate">
+        UPDATE
+        employee A
+        SET
+        A.EMP_HIREDATE = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpPhone">
+        UPDATE
+        employee A
+        SET
+        A.PHONE = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpEmail">
+        UPDATE
+        employee A
+        SET
+        A.EMAIL = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpAdminCode">
+        UPDATE
+        employee A
+        SET
+        A.ADMIN_CODE = ?
+        WHERE
+        A.EMP_NO = ?
+    </entry>
 </properties>

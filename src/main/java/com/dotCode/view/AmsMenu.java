@@ -91,9 +91,9 @@ public class AmsMenu {
                                 isLogin = false;
                                 break;
                             case 6:
-                                System.out.println("========= 전체 사원 정보 =========");
+                                System.out.println("========= 사원 정보 관리 =========");
                                 System.out.println("1. 사원 등록");
-                                System.out.println("2. 사원 정보 조회");
+                                System.out.println("2. 사원 정보 수정");
                                 System.out.println("3. 사원 해고");
                                 System.out.println("4. 처음으로");
                                 System.out.println("================================");
@@ -101,8 +101,10 @@ public class AmsMenu {
                                 adminChoice = sc.nextInt();
                                 switch ( adminChoice ) {
                                     case 1:
+                                        adminDAO.AddEmp();
                                         break;
                                     case 2:
+//                                        adminDAO.updateEmpInfo();
                                         break;
                                     case 3:
                                         break;

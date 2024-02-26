@@ -2,7 +2,7 @@ package com.dotCode.model.dto;
 
 import java.util.Date;
 
-public class VacantDTO implements java.io.Serializable{
+public class VacantDTO implements java.io.Serializable {
 
     private int vacantNo;
     private int empNo;
@@ -12,7 +12,8 @@ public class VacantDTO implements java.io.Serializable{
     private String cause;
     private String acceptStatus;
 
-    public VacantDTO(){}
+    public VacantDTO() {
+    }
 
     public VacantDTO(int vacantNo, int empNo, String statusCode, String applyDate, String dayDate, String cause, String acceptStatus) {
         this.vacantNo = vacantNo;
@@ -93,3 +94,4 @@ public class VacantDTO implements java.io.Serializable{
                 '}';
     }
 }
+
