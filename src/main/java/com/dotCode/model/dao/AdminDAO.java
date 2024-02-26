@@ -418,6 +418,33 @@ public class AdminDAO extends EmployeeDAO {
         }
     }
 
+    public EmployeeDTO getEmpInfo(int empNo){
+        String query = prop.getProperty("getEmpInfo");
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empNo);
+            rset = pstmt.executeQuery();
+
+            if(rset.next()){
+                empDTO.setEmpNo(rset.getInt("EMP_NO"));
+                empDTO.setEmpId(rset.getString("EMP_ID"));
+                empDTO.setEmpPwd(rset.getString("EMP_PW"));
+                empDTO.setEmpName(rset.getString("EMP_NAME"));
+                empDTO.setStatusCode(rset.getString("JOB_CODE"));
+                empDTO.setJobCode(rset.getString("EMP_HIREDATE"));
+                empDTO.setHireDate(rset.getString(""));
+                empDTO.setPhone(rset.getString("EMP_ID"));
+                empDTO.setEmail(rset.getString("EMP_ID"));
+                empDTO.setAdminCode(rset.getString("EMP_ID"));
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return empDTO;
+    }
+
     public void AddEmp() {
 
         System.out.println("============ Add Employee ============");
@@ -460,7 +487,6 @@ public class AdminDAO extends EmployeeDAO {
 
             if (result > 0) {
 
-               // empDTO = new EmployeeDTO();
                 this.empDTOList.add(empDTO);
                 System.out.println(empDTO.getEmpName() + "님의 사원 정보가 성공적으로 등록되었습니다.");
 
@@ -469,20 +495,15 @@ public class AdminDAO extends EmployeeDAO {
                 if (rset.next()) {
                     newEmpNo = rset.getInt(1);
                 }
-                String query1 = prop.getProperty("insertAtdDTO");
+                String query1 = prop.getProperty("insertAtdDTOEmpNo");
 
-                // VacantDTO에 대한 정보 설정
+                // AttendanceDTO에 대한 정보 설정
                 pstmt = con.prepareStatement(query1);
                 pstmt.setInt(1, newEmpNo);
 
-                // VacantDTO 추가
+                // AttendanceDTO 추가
                 int insertAtdDTO = pstmt.executeUpdate();
 
-                if (insertAtdDTO > 0) {
-                    System.out.println("VacantDTO 정보가 추가되었습니다.");
-                } else {
-                    System.out.println("VacantDTO 정보 추가 실패");
-                }
             } else {
                 System.out.println("사원 정보 등록에 실패했습니다.");
             }
@@ -522,6 +543,7 @@ public class AdminDAO extends EmployeeDAO {
                 System.out.println("=========================");
                 System.out.print(">> ");
                 int culumn = sc.nextInt();
+
                 String query = null;
                 int updateValue;
                 int result = 0;
@@ -629,7 +651,7 @@ public class AdminDAO extends EmployeeDAO {
                         break;
                 }
 
-                if ( result > 0) {  getAtdInfo(atdDTO);  }
+                if ( result > 0) {  empDTOList = getAllEmpInfo(empNo);  }
                 else {  System.out.println("변경 실패");  }
 
             }
@@ -642,23 +664,20 @@ public class AdminDAO extends EmployeeDAO {
             close(rset);
             close(pstmt);
         }
-
         return empDTO;
-
-
     }
+    public void deleteEmpInfo(int empNo){
 
-    public void deleteEmpInfo(){
+        if ( this.empDTOList.get(empNo).getEmpNo() == empNo ){
+            empDTO = this.empDTOList.remove(empNo);
+            System.out.println("삭제되었습니다.");
+        } else {
+            System.out.println("해당 사원 번호가 없습니다. 다시 확인해주세요.");
 
-//        if ( index >= 0 && index < br.size()) {
-//            br.remove(index);
-//            System.out.println("삭제되었습니다.");
-//        } else {
-//            System.out.println("해당 사원 번호가 없습니다. 다시 확인해주세요.");
-//        }
-//        for(int i = 0; i < .size(); i++ ){
-//            br.get(i).setbNo(i+1);
-//        }
+      for ( int i = 0 ; i < empDTOList.size(); i++ ){
+          empDTOList.get(i).setEmpNo(i+1);
+            }
+        }
 
 
     }

@@ -86,23 +86,13 @@
         WHERE
             E.EMP_NO = ?
     </entry>
-    <entry key="insertAttendance">
+    <entry key="insertAtdDTOEmpNo">
         INSERT INTO
             ATTENDANCE (
                           EMP_NO
-                        , TOTAL_DAY_COUNT
-                        , ONTIME_COUNT
-                        , LATE_COUNT
-                        , ABSENT_COUNT
-                        , TOTAL_SCORE
                     )
             VALUES (
                           ?
-                        , ?
-                        , ?
-                        , ?
-                        , ?
-                        , ?
                     )
     </entry>
     <entry key="deleteAttendance">

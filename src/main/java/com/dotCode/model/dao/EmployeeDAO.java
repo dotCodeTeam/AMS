@@ -21,7 +21,7 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class EmployeeDAO {
 
-    private EmployeeDTO empDTO;
+    protected EmployeeDTO empDTO;
     private AttendanceDTO atdDTO;
     protected Scanner sc = new Scanner(System.in);
     protected Connection con = getConnection();
