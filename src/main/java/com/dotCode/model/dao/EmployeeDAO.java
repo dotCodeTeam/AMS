@@ -312,15 +312,6 @@ public class EmployeeDAO {
 
     public void setVcntInfo(){
         int empNo = empDTO.getEmpNo();
-        try {
-            sdf = new SimpleDateFormat("yyyy-MM-dd");
-            LocalDate currentDate = LocalDate.now();
-            String current = String.valueOf(currentDate);
-            Date date = sdf.parse(current);
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
         System.out.print("부재신청코드를 입력해 주세요 (B1 : 출장, B2 : 외출, C1 : 월차, C2 : 연차) >> ");
         String vacantCode = sc.nextLine();
@@ -329,36 +320,41 @@ public class EmployeeDAO {
         System.out.print("사유 >> ");
         String cause = sc.nextLine();
 
-        String query = prop.getProperty("setVcntInfo");
-        int result = 0;
-        try {
-            sdf = new SimpleDateFormat("yyyy-MM-dd");
-            LocalDate crntDate = LocalDate.now();
-            Date dateCrnt = sdf.parse(String.valueOf(crntDate));
-            java.sql.Date currentDate = new java.sql.Date(dateCrnt.getTime());
-            Date dateDay = sdf.parse(dayDate);
-            java.sql.Date dyDate = new java.sql.Date(dateDay.getTime());
+        if ( !vacantCode.equals("B1") || !vacantCode.equals("B2") || !vacantCode.equals("C1")|| !vacantCode.equals("C2")) {
+            System.out.println("부재코드 입력이 잘못되었습니다...");
 
-            vcntDTO = new VacantDTO();
-            pstmt = con.prepareStatement(query);
-            pstmt.setInt(1,empNo);
-            pstmt.setString(2,vacantCode);
-            pstmt.setDate(3,currentDate);
-            pstmt.setDate(4,dyDate);
-            pstmt.setString(5,cause);
+        }   else {
+            String query = prop.getProperty("setVcntInfo");
+            int result = 0;
+            try {
+                sdf = new SimpleDateFormat("yyyy-MM-dd");
+                LocalDate crntDate = LocalDate.now();
+                Date dateCrnt = sdf.parse(String.valueOf(crntDate));
+                java.sql.Date currentDate = new java.sql.Date(dateCrnt.getTime());
+                Date dateDay = sdf.parse(dayDate);
+                java.sql.Date dyDate = new java.sql.Date(dateDay.getTime());
 
-            result = pstmt.executeUpdate();
+                vcntDTO = new VacantDTO();
+                pstmt = con.prepareStatement(query);
+                pstmt.setInt(1,empNo);
+                pstmt.setString(2,vacantCode);
+                pstmt.setDate(3,currentDate);
+                pstmt.setDate(4,dyDate);
+                pstmt.setString(5,cause);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            System.out.println("입력이 잘못되었습니다...");
-        }
+                result = pstmt.executeUpdate();
 
-        if( result > 0 ){
-            System.out.println("정상적으로 신청이 완료되었습니다.");
-        } else {
-            System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ParseException e) {
+                System.out.println("입력이 잘못되었습니다...");
+            }
+
+            if( result > 0 ){
+                System.out.println("정상적으로 신청이 완료되었습니다.");
+            } else {
+                System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
+            }
         }
 
 
