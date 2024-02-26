@@ -46,15 +46,15 @@
                     , EMP_ID
                     , EMP_PW
                     , EMP_NAME
+                    , STATUS_CODE
                     , JOB_CODE
                     , EMP_HIREDATE
                     , PHONE
                     , EMAIL
                     , ADMIN_CODE
-                    , CURRENT_STATUS
                 )
         VALUES (
-                      ?
+                      NULL
                     , ?
                     , ?
                     , ?

@@ -430,13 +430,12 @@ public class AdminDAO extends EmployeeDAO {
                 empDTO.setEmpId(rset.getString("EMP_ID"));
                 empDTO.setEmpPwd(rset.getString("EMP_PW"));
                 empDTO.setEmpName(rset.getString("EMP_NAME"));
-                empDTO.setStatusCode(rset.getString("JOB_CODE"));
-                empDTO.setJobCode(rset.getString("EMP_HIREDATE"));
-                empDTO.setHireDate(rset.getString(""));
-                empDTO.setPhone(rset.getString("EMP_ID"));
-                empDTO.setEmail(rset.getString("EMP_ID"));
-                empDTO.setAdminCode(rset.getString("EMP_ID"));
-
+                empDTO.setStatusCode(rset.getString("STATUS_CODE"));
+                empDTO.setJobCode(rset.getString("JOB_CODE"));
+                empDTO.setHireDate(rset.getString("EMP_HIREDATE"));
+                empDTO.setPhone(rset.getString("PHONE"));
+                empDTO.setEmail(rset.getString("EMAIL"));
+                empDTO.setAdminCode(rset.getString("ADMIN_CODE"));
             }
 
         } catch (SQLException e) {
@@ -448,8 +447,6 @@ public class AdminDAO extends EmployeeDAO {
     public void AddEmp() {
 
         System.out.println("============ Add Employee ============");
-        System.out.print("     Emp_No : ");
-        int empNo = sc.nextInt();
         System.out.print("     ID : ");
         String id = sc.nextLine();
         sc.nextLine();
@@ -457,8 +454,10 @@ public class AdminDAO extends EmployeeDAO {
         String pw = sc.nextLine();
         System.out.print("     NAME : ");
         String name = sc.nextLine();
+        System.out.print("      : ");
+
         System.out.print("     Job_Code : ");
-        int jobCode = sc.nextInt();
+        String jobCode = sc.nextLine();
         System.out.print("     Hire_Date : ");
         String hireDate = sc.nextLine();
         sc.nextLine();

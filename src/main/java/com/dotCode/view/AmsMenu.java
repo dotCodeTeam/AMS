@@ -102,7 +102,7 @@ public class AmsMenu {
                                         adminDAO.AddEmp();
                                         break;
                                     case 2:
-                                        adminDAO.updateEmpInfo();
+//                                        adminDAO.updateEmpInfo();
                                         break;
                                     case 3:
                                         break;
