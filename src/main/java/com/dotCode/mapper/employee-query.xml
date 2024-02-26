@@ -14,6 +14,31 @@
         FROM    ATTENDANCE A
         WHERE   A.EMP_NO = ?
     </entry>
+    <entry key="updateStatus">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.STATUS_CODE = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateAtdOntimeCount">
+        UPDATE
+                ATTENDANCE A
+        SET
+                A.ONTIME_COUNT = (A.ONTIME_COUNT+1)
+        WHERE
+                A.EMP_NO = ?
+    </entry>
+    <entry key="updateAtdLateCount">
+        UPDATE
+                ATTENDANCE A
+        SET
+                A.LATE_COUNT = (A.LATE_COUNT+1)
+            ,   A.TOTAL_SCORE = (A.LATE_COUNT-1)
+        WHERE
+                A.EMP_NO = ?
+    </entry>
     <entry key="insertEmp">
         INSERT INTO
         EMPLOYEE (

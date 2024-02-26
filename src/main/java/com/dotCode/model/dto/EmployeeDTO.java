@@ -8,26 +8,26 @@ public class EmployeeDTO implements java.io.Serializable{
     private String empId;
     private String empPwd;
     private String empName;
-    private int jobCode;
+    private String statusCode;
+    private String jobCode;
     private String hireDate;
     private String phone;
     private String email;
-    private int adminCode;
-    private String currentStatus;
+    private String adminCode;
 
     public EmployeeDTO(){}
 
-    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, int jobCode, String hireDate, String phone, String email, int adminCode,String currentStatus) {
+    public EmployeeDTO(int empNo, String empId, String empPwd, String empName, String statusCode, String jobCode, String hireDate, String phone, String email, String adminCode) {
         this.empNo = empNo;
         this.empId = empId;
         this.empPwd = empPwd;
         this.empName = empName;
+        this.statusCode = statusCode;
         this.jobCode = jobCode;
         this.hireDate = hireDate;
         this.phone = phone;
         this.email = email;
         this.adminCode = adminCode;
-        this.currentStatus = currentStatus;
     }
 
     public int getEmpNo() {
@@ -62,11 +62,19 @@ public class EmployeeDTO implements java.io.Serializable{
         this.empName = empName;
     }
 
-    public int getJobCode() {
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getJobCode() {
         return jobCode;
     }
 
-    public void setJobCode(int jobCode) {
+    public void setJobCode(String jobCode) {
         this.jobCode = jobCode;
     }
 
@@ -94,20 +102,12 @@ public class EmployeeDTO implements java.io.Serializable{
         this.email = email;
     }
 
-    public int getAdminCode() {
+    public String getAdminCode() {
         return adminCode;
     }
 
-    public void setAdminCode(int adminCode) {
+    public void setAdminCode(String adminCode) {
         this.adminCode = adminCode;
-    }
-
-    public String getCurrentStatus() {
-        return currentStatus;
-    }
-
-    public void setCurrentStatus(String currentStatus) {
-        this.currentStatus = currentStatus;
     }
 
     @Override
@@ -117,13 +117,13 @@ public class EmployeeDTO implements java.io.Serializable{
                 " 사번=" + empNo +
                 ", 아이디='" + empId + '\'' +
                 ", 비밀번호='" + empPwd + '\'' +
-                ", 이름= '" + empName + '\'' +
+                ", 근무상태=" + statusCode +
+                ", 이름='" + empName + '\'' +
                 ", 직급=" + jobCode +
                 ", 고용일자=" + hireDate +
                 ", 핸드폰='" + phone + '\'' +
                 ", 이메일='" + email + '\'' +
                 ", 관리사번=" + adminCode +
-                ", 부재상태=" + currentStatus +
                 '}';
     }
 }
