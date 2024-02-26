@@ -122,6 +122,23 @@
         SELECT MAX(EMP_NO)
         FROM EMPLOYEE
     </entry>
+    <entry key="getLastVcntNo">
+        SELECT MAX(VACANT_NO)
+        FROM VACANT V
+    </entry>
+    <entry key="setVcntInfo">
+        INSERT INTO
+                VACANT
+        VALUES (
+                    NULL
+                ,   ?
+                ,   ?
+                ,   ?
+                ,   ?
+                ,   ?
+                ,   NULL
+                        )
+    </entry>
     <entry key="selectEmpList">
         SELECT EMPLOYEE
         FROM EMPLOYEE

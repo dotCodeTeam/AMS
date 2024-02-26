@@ -1,7 +1,6 @@
 package com.dotCode.model.dao;
 
 import com.dotCode.model.dto.AttendanceDTO;
-import com.dotCode.model.dto.EmployeeDTO;
 import com.dotCode.model.dto.VacantDTO;
 
 import java.io.FileInputStream;
@@ -51,8 +50,8 @@ public class AdminDAO extends EmployeeDAO {
                 vcntDTO.setVacantNo(rset.getInt("VACANT_NO"));
                 vcntDTO.setEmpNo(rset.getInt("EMP_NO"));
                 vcntDTO.setStatusCode(rset.getString("STATUS_CODE"));
-                vcntDTO.setReceiveApplyDate(rset.getString("APPLY_DATE"));
-                vcntDTO.setReceiveDayDate(rset.getString("DAY_DATE"));
+                vcntDTO.setApplyDate(rset.getString("APPLY_DATE"));
+                vcntDTO.setDayDate(rset.getString("DAY_DATE"));
                 vcntDTO.setCause(rset.getString("CAUSE"));
                 vcntDTO.setAcceptStatus(rset.getString("ACCEPT_STATUS"));
 
@@ -261,6 +260,7 @@ public class AdminDAO extends EmployeeDAO {
     }
 
     public void acceptVacant(){
+        vcntDTO = new VacantDTO();
         System.out.print("사번을 입력하세요 >> ");
         int empNo = sc.nextInt();
         for ( int i = 0 ; i < vcntDTOList.size(); i++ ){
@@ -270,7 +270,7 @@ public class AdminDAO extends EmployeeDAO {
         }
 
         int result = 0;
-        if ( vcntDTO != null ){
+        if ( vcntDTO.getEmpNo() != 0 ){
             sc.nextLine();
             System.out.println("========= 전체 부재 신청 정보 ========");
             for( VacantDTO vcntDTO : vcntDTOList ){
@@ -309,7 +309,7 @@ public class AdminDAO extends EmployeeDAO {
                     System.out.println("입력이 잘못되었습니다...");
                 }
 
-                vcntDTOList = getAllVcntInfo(empNo);
+                vcntDTOList = getAllVcntInfo(vcntDTOList);
                 vcntDTO = getVcntInfo(empNo);
                 System.out.println(vcntDTO);
 
@@ -323,14 +323,10 @@ public class AdminDAO extends EmployeeDAO {
     public void getVcntInfo(){
         System.out.print("사번을 입력하세요 >> ");
         int empNo = sc.nextInt();
+        vcntDTO = new VacantDTO();
+        vcntDTO = getVcntInfo(empNo);
 
-        for (int i = 0 ; i < vcntDTOList.size(); i++ ){
-            if( empNo == vcntDTOList.get(i).getEmpNo() ) {
-                vcntDTO = vcntDTOList.get(i);
-            }
-        }
-
-        if( vcntDTO != null ){
+        if( vcntDTO.getEmpNo() != 0 ){
             String query = prop.getProperty("getVcntInfo");
             try {
                 pstmt = con.prepareStatement(query);
@@ -340,8 +336,8 @@ public class AdminDAO extends EmployeeDAO {
                     vcntDTO.setVacantNo(rset.getInt("VACANT_NO"));
                     vcntDTO.setEmpNo(rset.getInt("EMP_NO"));
                     vcntDTO.setStatusCode(rset.getString("STATUS_CODE"));
-                    vcntDTO.setReceiveApplyDate(rset.getString("APPLY_DATE"));
-                    vcntDTO.setReceiveDayDate(rset.getString("DAY_DATE"));
+                    vcntDTO.setApplyDate(rset.getString("APPLY_DATE"));
+                    vcntDTO.setDayDate(rset.getString("DAY_DATE"));
                     vcntDTO.setCause(rset.getString("CAUSE"));
                     vcntDTO.setAcceptStatus(rset.getString("ACCEPT_STATUS"));
                 }
@@ -367,8 +363,8 @@ public class AdminDAO extends EmployeeDAO {
                 vcntDTO.setVacantNo(rset.getInt("VACANT_NO"));
                 vcntDTO.setEmpNo(rset.getInt("EMP_NO"));
                 vcntDTO.setStatusCode(rset.getString("STATUS_CODE"));
-                vcntDTO.setReceiveApplyDate(rset.getString("APPLY_DATE"));
-                vcntDTO.setReceiveDayDate(rset.getString("DAY_DATE"));
+                vcntDTO.setApplyDate(rset.getString("APPLY_DATE"));
+                vcntDTO.setDayDate(rset.getString("DAY_DATE"));
                 vcntDTO.setCause(rset.getString("CAUSE"));
                 vcntDTO.setAcceptStatus(rset.getString("ACCEPT_STATUS"));
             }
@@ -385,7 +381,7 @@ public class AdminDAO extends EmployeeDAO {
         }
     }
 
-    public List<VacantDTO> getAllVcntInfo(int empNo){
+    public List<VacantDTO> getAllVcntInfo(List<VacantDTO> vcntDTOList){
         vcntDTOList.clear();
 
         String query = prop.getProperty("getAllVcntInfo");
@@ -398,8 +394,8 @@ public class AdminDAO extends EmployeeDAO {
                 vcntDTO.setVacantNo(rset.getInt("VACANT_NO"));
                 vcntDTO.setEmpNo(rset.getInt("EMP_NO"));
                 vcntDTO.setStatusCode(rset.getString("STATUS_CODE"));
-                vcntDTO.setReceiveApplyDate(rset.getString("APPLY_DATE"));
-                vcntDTO.setReceiveDayDate(rset.getString("DAY_DATE"));
+                vcntDTO.setApplyDate(rset.getString("APPLY_DATE"));
+                vcntDTO.setDayDate(rset.getString("DAY_DATE"));
                 vcntDTO.setCause(rset.getString("CAUSE"));
                 vcntDTO.setAcceptStatus(rset.getString("ACCEPT_STATUS"));
 
