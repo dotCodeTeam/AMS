@@ -4,7 +4,7 @@
     <comment/>
     <entry key="getEmpInfo">
         SELECT
-        A.*
+        E.*
         FROM    EMPLOYEE E
         WHERE   E.EMP_ID = ?
     </entry>

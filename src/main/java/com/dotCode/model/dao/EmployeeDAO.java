@@ -253,7 +253,6 @@ public class EmployeeDAO {
     }
 
     public void getEmpInfo(){
-        empDTO = new EmployeeDTO();
         String query = prop.getProperty("getEmpInfo");
         try {
             pstmt = con.prepareStatement(query);

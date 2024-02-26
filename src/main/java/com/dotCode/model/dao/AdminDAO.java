@@ -485,11 +485,11 @@ public class AdminDAO extends EmployeeDAO {
         }
         return empDTO;
     }
-    public EmployeeDTO getEmpInfo(String empName){
+    public EmployeeDTO getEmpInfo(String empId){
         String query = prop.getProperty("getEmpInfo");
         try {
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1,empName);
+            pstmt.setString(1,empId);
             rset = pstmt.executeQuery();
 
             if(rset.next()){
@@ -524,7 +524,7 @@ public class AdminDAO extends EmployeeDAO {
         String name = sc.nextLine();
         System.out.print("     Status_Code : ");
         String statusCode = sc.nextLine();
-        System.out.print("     Job_Code (J6 : 사장 / J5 : 부장 / J4 : 차장 / J3 : 과장 / J2 : 대리 / J1 : 사원 ");
+        System.out.print("     Job_Code ( J6 : 사장 / J5 : 부장 / J4 : 차장 / J3 : 과장 / J2 : 대리 / J1 : 사원 ) : ");
         String jobCode = sc.nextLine();
         System.out.print("     Phone : ");
         String phone = sc.nextLine();
@@ -582,11 +582,15 @@ public class AdminDAO extends EmployeeDAO {
         }
     }
 
-    public EmployeeDTO updateEmpInfo(){
+    public void updateEmpInfo(){
         getAllEmpInfo();
+        for ( EmployeeDTO empDTO : empDTOList ){
+            System.out.println(empDTO);
+        }
         System.out.print("정보를 변경할 사원의 사번 입력 >> ");
         int empNo = sc.nextInt();
 
+        empDTO = new EmployeeDTO();
         for ( int i = 0 ; i < empDTOList.size(); i++ ){
             if ( empNo == empDTOList.get(i).getEmpNo()){
                 empDTO = empDTOList.get(i);
@@ -619,7 +623,6 @@ public class AdminDAO extends EmployeeDAO {
                         System.out.print("사원 ID 변경할 값 입력 >> ");
                         updateValue = sc.nextLine();
 
-                        getAllEmpInfo();
                         int checkId = 0;
                         for (int i = 0 ; i < empDTOList.size(); i++ ){
                             if( updateValue.equals(empDTOList.get(i).getEmpId()) ){
@@ -709,8 +712,10 @@ public class AdminDAO extends EmployeeDAO {
                 }
 
                 if ( result > 0) {  getAllEmpInfo();  }
-                else {  System.out.println("변경 실패");  }
+                else {  System.out.println("변경 실패...");  }
 
+                getEmpInfo(empNo);
+                System.out.println(empDTO);
             }
             else  {
                 System.out.println("해당하는 정보가 없습니다.");
@@ -721,7 +726,6 @@ public class AdminDAO extends EmployeeDAO {
             close(rset);
             close(pstmt);
         }
-        return empDTO;
     }
     public void deleteEmpInfo(int empNo){
 
