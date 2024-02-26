@@ -4,34 +4,36 @@ import java.util.Date;
 
 public class VacantDTO implements java.io.Serializable{
 
-    private String vacantCategory;
+    private int vacantNo;
     private int empNo;
-    private String receiveCurrentDate;
-    private Date sendCurrentDate;
-    private String receiveVacantDate;
-    private Date sendVacantDate;
-    private String vacantCause;
+    private String statusCode;
+    private String receiveApplyDate;
+    private Date sendApplyDate;
+    private String receiveDayDate;
+    private Date sendDayDate;
+    private String cause;
     private String acceptStatus;
 
     public VacantDTO(){}
 
-    public VacantDTO(String vacantCategory, int empNo, String receiveCurrentDate, Date sendCurrentDate, String receiveVacantDate, Date sendVacantDate, String vacantCause,String acceptStatus) {
-        this.vacantCategory = vacantCategory;
+    public VacantDTO(int vacantNo, int empNo, String statusCode, String receiveApplyDate, Date sendApplyDate, String receiveDayDate, Date sendDayDate, String cause, String acceptStatus) {
+        this.vacantNo = vacantNo;
         this.empNo = empNo;
-        this.receiveCurrentDate = receiveCurrentDate;
-        this.sendCurrentDate = sendCurrentDate;
-        this.receiveVacantDate = receiveVacantDate;
-        this.sendVacantDate = sendVacantDate;
-        this.vacantCause = vacantCause;
+        this.statusCode = statusCode;
+        this.receiveApplyDate = receiveApplyDate;
+        this.sendApplyDate = sendApplyDate;
+        this.receiveDayDate = receiveDayDate;
+        this.sendDayDate = sendDayDate;
+        this.cause = cause;
         this.acceptStatus = acceptStatus;
     }
 
-    public String getVacantCategory() {
-        return vacantCategory;
+    public int getVacantNo() {
+        return vacantNo;
     }
 
-    public void setVacantCategory(String vacantCategory) {
-        this.vacantCategory = vacantCategory;
+    public void setVacantNo(int vacantNo) {
+        this.vacantNo = vacantNo;
     }
 
     public int getEmpNo() {
@@ -42,44 +44,52 @@ public class VacantDTO implements java.io.Serializable{
         this.empNo = empNo;
     }
 
-    public String getReceiveCurrentDate() {
-        return receiveCurrentDate;
+    public String getStatusCode() {
+        return statusCode;
     }
 
-    public void setReceiveCurrentDate(String receiveCurrentDate) {
-        this.receiveCurrentDate = receiveCurrentDate;
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
     }
 
-    public Date getSendCurrentDate() {
-        return sendCurrentDate;
+    public String getReceiveApplyDate() {
+        return receiveApplyDate;
     }
 
-    public void setSendCurrentDate(Date sendCurrentDate) {
-        this.sendCurrentDate = sendCurrentDate;
+    public void setReceiveApplyDate(String receiveApplyDate) {
+        this.receiveApplyDate = receiveApplyDate;
     }
 
-    public String getReceiveVacantDate() {
-        return receiveVacantDate;
+    public Date getSendApplyDate() {
+        return sendApplyDate;
     }
 
-    public void setReceiveVacantDate(String receiveVacantDate) {
-        this.receiveVacantDate = receiveVacantDate;
+    public void setSendApplyDate(Date sendApplyDate) {
+        this.sendApplyDate = sendApplyDate;
     }
 
-    public Date getSendVacantDate() {
-        return sendVacantDate;
+    public String getReceiveDayDate() {
+        return receiveDayDate;
     }
 
-    public void setSendVacantDate(Date sendVacantDate) {
-        this.sendVacantDate = sendVacantDate;
+    public void setReceiveDayDate(String receiveDayDate) {
+        this.receiveDayDate = receiveDayDate;
     }
 
-    public String getVacantCause() {
-        return vacantCause;
+    public Date getSendDayDate() {
+        return sendDayDate;
     }
 
-    public void setVacantCause(String vacantCause) {
-        this.vacantCause = vacantCause;
+    public void setSendDayDate(Date sendDayDate) {
+        this.sendDayDate = sendDayDate;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
     }
 
     public String getAcceptStatus() {
@@ -93,13 +103,14 @@ public class VacantDTO implements java.io.Serializable{
     @Override
     public String toString() {
         return "VacantDTO{" +
-                "vacantCategory='" + vacantCategory + '\'' +
-                ", empNo='" + empNo +
-                ", receiveCurrentDate='" + receiveCurrentDate + '\'' +
-                ", sendCurrentDate=" + sendCurrentDate +
-                ", receiveVacantDate='" + receiveVacantDate + '\'' +
-                ", sendVacantDate=" + sendVacantDate +
-                ", vacantCause='" + vacantCause + '\'' +
+                "vacantNo=" + vacantNo +
+                ", empNo=" + empNo +
+                ", statusCode='" + statusCode + '\'' +
+                ", receiveApplyDate='" + receiveApplyDate + '\'' +
+                ", sendApplyDate=" + sendApplyDate +
+                ", receiveDayDate='" + receiveDayDate + '\'' +
+                ", sendDayDate=" + sendDayDate +
+                ", cause='" + cause + '\'' +
                 ", acceptStatus='" + acceptStatus + '\'' +
                 '}';
     }
