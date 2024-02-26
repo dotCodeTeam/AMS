@@ -23,8 +23,8 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 public class EmployeeDAO {
 
     protected EmployeeDTO empDTO;
-    private AttendanceDTO atdDTO;
-    VacantDTO vcntDTO;
+    protected AttendanceDTO atdDTO;
+    protected VacantDTO vcntDTO;
     protected Scanner sc = new Scanner(System.in);
     protected Connection con = getConnection();
     protected Properties prop = new Properties();
@@ -253,6 +253,7 @@ public class EmployeeDAO {
     }
 
     public void getEmpInfo(){
+        empDTO = new EmployeeDTO();
         String query = prop.getProperty("getEmpInfo");
         try {
             pstmt = con.prepareStatement(query);
