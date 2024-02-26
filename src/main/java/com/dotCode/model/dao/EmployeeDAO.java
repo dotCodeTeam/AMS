@@ -172,8 +172,7 @@ public class EmployeeDAO {
         } else if( result < 0 ) {
             System.out.println("지각 처리 되었습니다.");
             System.out.println("오늘 하루도 화이팅입니다!");
-        }
-        else {
+        } else {
             System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
         }
     }

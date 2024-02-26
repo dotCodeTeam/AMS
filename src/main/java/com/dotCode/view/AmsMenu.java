@@ -73,8 +73,10 @@ public class AmsMenu {
                         int adminChoice;
                         switch (choice) {
                             case 1:
+                                empDAO.checkIn();
                                 break;
                             case 2:
+                                empDAO.checkOut();
                                 break;
                             case 3:
                                 empDAO.getEmpInfo();
