@@ -53,6 +53,7 @@ public class AmsMenu {
                                 empDAO.getAtdInfo();
                                 break;
                             case 4:
+                                empDAO.setVcntInfo();
                                 break;
                             case 5:
                                 empDAO.logOut();
@@ -83,6 +84,7 @@ public class AmsMenu {
                                 empDAO.getAtdInfo();
                                 break;
                             case 4:
+                                empDAO.setVcntInfo();
                                 break;
                             case 5:
                                 empDAO.logOut();
@@ -140,6 +142,7 @@ public class AmsMenu {
                                                         adminDAO.getAllAtdInfo();
                                                         break;
                                                     case 3:
+                                                        System.out.println("이전으로 돌아갑니다...");
                                                         isSelect = false;
                                                         break;
                                                     default:
@@ -176,6 +179,7 @@ public class AmsMenu {
                                                         break;
                                                     case 4:
                                                         isVcnt = false;
+                                                        System.out.println("이전으로 돌아갑니다...");
                                                         break;
                                                     default:
                                                         System.out.println("잘못된 입력입니다...");
