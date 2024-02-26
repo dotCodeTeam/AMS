@@ -199,7 +199,6 @@ public class AdminDAO extends EmployeeDAO {
 
     }
 
-
     public void getAllEmpInfo(){
         for(EmployeeDTO empDTO : empDTOList){
             System.out.println(empDTO);
@@ -249,7 +248,7 @@ public class AdminDAO extends EmployeeDAO {
             if (result > 0) {
 
                // empDTO = new EmployeeDTO();
-                this.empList.add(empDTO);
+                this.empDTOList.add(empDTO);
                 System.out.println(empDTO.getEmpName() + "님의 사원 정보가 성공적으로 등록되었습니다.");
 
                 rset = pstmt.getGeneratedKeys();
@@ -297,24 +296,29 @@ public class AdminDAO extends EmployeeDAO {
             if ( empDTO != null ) {
                 sc.nextLine();
                 System.out.println("===== 변경할 항목 선택 =====");
-                System.out.println(" 1. ");
-                System.out.println(" 2. ");
-                System.out.println(" 3. ");
-                System.out.println(" 4. ");
-                System.out.println(" 5. ");
+                System.out.println(" 1. 사원 번호");
+                System.out.println(" 2. 사원 ID");
+                System.out.println(" 3. 사원 PW");
+                System.out.println(" 4. 사원 이름");
+                System.out.println(" 5. 근태 현황");
+                System.out.println(" 6. 직책 코드");
+                System.out.println(" 7. 고용 날짜");
+                System.out.println(" 8. 전화번호");
+                System.out.println(" 9. E-MAIL");
+                System.out.println(" 10. 관리자 코드");
                 System.out.println("=========================");
                 System.out.print(">> ");
                 int culumn = sc.nextInt();
                 String query = null;
                 int updateValue;
                 int result = 0;
-// emp로 변경,  쿼리문 작성
+
                 switch (culumn){
                     case 1:
                         sc.nextLine();
-                        System.out.print("총 근무 일자 변경할 값 입력 >> ");
+                        System.out.print("사원번호 변경할 값 입력 >> ");
                         updateValue = sc.nextInt();
-                        query = prop.getProperty("updateAtdTotalDayCount");
+                        query = prop.getProperty("updateEmpNo");
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,updateValue);
                         pstmt.setInt(2,empDTO.getEmpNo());
@@ -322,42 +326,92 @@ public class AdminDAO extends EmployeeDAO {
                         break;
                     case 2:
                         sc.nextLine();
-                        System.out.print("정시 출근 일자 변경할 값 입력 >> ");
+                        System.out.print("사원 ID 변경할 값 입력 >> ");
                         updateValue = sc.nextInt();
-                        query = prop.getProperty("updateAtdOntimeCount");
+                        query = prop.getProperty("updateEmpId");
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,updateValue);
-                        pstmt.setInt(2,atdDTO.getEmpNo());
+                        pstmt.setInt(2,empDTO.getEmpNo());
                         result = pstmt.executeUpdate();
                         break;
                     case 3:
                         sc.nextLine();
-                        System.out.print("지각 변경할 값 입력 >> ");
+                        System.out.print("사원 PW 변경할 값 입력 >> ");
                         updateValue = sc.nextInt();
-                        query = prop.getProperty("updateAtdLateCount");
+                        query = prop.getProperty("updateEmpPw");
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,updateValue);
-                        pstmt.setInt(2,atdDTO.getEmpNo());
+                        pstmt.setInt(2,empDTO.getEmpNo());
                         result = pstmt.executeUpdate();
                         break;
                     case 4:
                         sc.nextLine();
-                        System.out.print("결근 변경할 값 입력 >> ");
+                        System.out.print("사원 이름 변경할 값 입력 >> ");
                         updateValue = sc.nextInt();
-                        query = prop.getProperty("updateAtdAbsentCount");
+                        query = prop.getProperty("updateEmpName");
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,updateValue);
-                        pstmt.setInt(2,atdDTO.getEmpNo());
+                        pstmt.setInt(2,empDTO.getEmpNo());
                         result = pstmt.executeUpdate();
                         break;
                     case 5:
                         sc.nextLine();
-                        System.out.print("근태 점수 변경할 값 입력 >> ");
+                        System.out.print("근태 현황 변경할 값 입력 >> ");
                         updateValue = sc.nextInt();
-                        query = prop.getProperty("updateAtdTotalScore");
+                        query = prop.getProperty("updateEmpStatusCode");
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,updateValue);
-                        pstmt.setInt(2,atdDTO.getEmpNo());
+                        pstmt.setInt(2,empDTO.getEmpNo());
+                        result = pstmt.executeUpdate();
+                        break;
+                    case 6:
+                        sc.nextLine();
+                        System.out.print("직책 코드 변경할 값 입력 >> ");
+                        updateValue = sc.nextInt();
+                        query = prop.getProperty("updateEmpJobCode");
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setInt(1,updateValue);
+                        pstmt.setInt(2,empDTO.getEmpNo());
+                        result = pstmt.executeUpdate();
+                        break;
+                    case 7:
+                        sc.nextLine();
+                        System.out.print("고용 날짜 변경할 값 입력 >> ");
+                        updateValue = sc.nextInt();
+                        query = prop.getProperty("updateEmpHigherDate");
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setInt(1,updateValue);
+                        pstmt.setInt(2,empDTO.getEmpNo());
+                        result = pstmt.executeUpdate();
+                        break;
+                    case 8:
+                        sc.nextLine();
+                        System.out.print("전화 번호 변경할 값 입력 >> ");
+                        updateValue = sc.nextInt();
+                        query = prop.getProperty("updateEmpPhone");
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setInt(1,updateValue);
+                        pstmt.setInt(2,empDTO.getEmpNo());
+                        result = pstmt.executeUpdate();
+                        break;
+                    case 9:
+                        sc.nextLine();
+                        System.out.print("E-MAIL 변경할 값 입력 >> ");
+                        updateValue = sc.nextInt();
+                        query = prop.getProperty("updateEmpEmail");
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setInt(1,updateValue);
+                        pstmt.setInt(2,empDTO.getEmpNo());
+                        result = pstmt.executeUpdate();
+                        break;
+                    case 10:
+                        sc.nextLine();
+                        System.out.print("관리자 코드 변경할 값 입력 >> ");
+                        updateValue = sc.nextInt();
+                        query = prop.getProperty("updateEmpAdminCode");
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setInt(1,updateValue);
+                        pstmt.setInt(2,empDTO.getEmpNo());
                         result = pstmt.executeUpdate();
                         break;
                 }
@@ -376,22 +430,22 @@ public class AdminDAO extends EmployeeDAO {
             close(pstmt);
         }
 
-        return atdDTO;
+        return empDTO;
 
 
     }
 
     public void deleteEmpInfo(){
 
-        if ( index >= 0 && index < br.size()) {
-            br.remove(index);
-            System.out.println("삭제되었습니다.");
-        } else {
-            System.out.println("해당 사원 번호가 없습니다. 다시 확인해주세요.");
-        }
-        for(int i = 0; i < .size(); i++ ){
-            br.get(i).setbNo(i+1);
-        }
+//        if ( index >= 0 && index < br.size()) {
+//            br.remove(index);
+//            System.out.println("삭제되었습니다.");
+//        } else {
+//            System.out.println("해당 사원 번호가 없습니다. 다시 확인해주세요.");
+//        }
+//        for(int i = 0; i < .size(); i++ ){
+//            br.get(i).setbNo(i+1);
+//        }
 
 
     }
