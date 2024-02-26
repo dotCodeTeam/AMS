@@ -31,7 +31,7 @@ public class AmsMenu {
                     System.out.println("4. 부재 신청");
                     System.out.println("5. 로그아웃");
                     if ( empDAO.checkAdmin() == 0 ) {
-                        System.out.println("6. 전체 사원 정보");
+                        System.out.println("6. 사원 정보 관리");
                         System.out.println("7. 사원 근태 관리");
                     }
                     System.out.println("0. 프로그램 종료");
