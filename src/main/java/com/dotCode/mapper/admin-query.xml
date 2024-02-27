@@ -8,10 +8,107 @@
         FROM    EMPLOYEE E
         WHERE   E.EMP_NO = ?
     </entry>
+
     <entry key="getAllEmpInfo">
         SELECT *
         FROM    EMPLOYEE
     </entry>
+
+    <entry key="insertEmp">
+        INSERT INTO
+                        EMPLOYEE
+        VALUES (
+                        NULL
+                        , ?
+                        , ?
+                        , ?
+                        , ?
+                        , ?
+                        , CURDATE()
+                        , ?
+                        , ?
+                        , ?
+                )
+    </entry>
+
+
+    <entry key="updateEmpId">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.EMP_ID = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpPw">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.EMP_PW = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpName">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.EMP_NAME = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpStatus">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.STATUS_CODE = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpJob">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.JOB_CODE = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpPhone">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.PHONE = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpEmail">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.EMAIL = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+    <entry key="updateEmpAdmin">
+        UPDATE
+                EMPLOYEE E
+        SET
+                E.ADMIN_CODE = ?
+        WHERE
+                E.EMP_NO = ?
+    </entry>
+
+
+    <entry key="deleteEmpInfo">
+        DELETE FROM
+                EMPLOYEE
+        WHERE   EMP_NO = ?
+    </entry>
+    <entry key="deleteAtdInfo">
+        DELETE FROM
+                ATTENDANCE
+        WHERE   EMP_NO = ?
+    </entry>
+
     <entry key="getAtdInfo">
         SELECT
                 A.*
@@ -22,24 +119,6 @@
         SELECT *
         FROM    ATTENDANCE
     </entry>
-    <entry key="getVcntInfo">
-        SELECT
-                V.*
-        FROM    VACANT V
-        WHERE   V.EMP_NO = ?
-    </entry>
-    <entry key="getAllVcntInfo">
-        SELECT *
-        FROM    VACANT
-    </entry>
-    <entry key="updateVcntAcpt">
-        UPDATE
-                Vacant V
-        SET
-                V.ACCEPT_STATUS = ?
-        WHERE
-                V.EMP_NO = ?
-    </entry>
 
     <entry key="updateAtdTotalDayCount">
         UPDATE
@@ -49,6 +128,7 @@
         WHERE
             A.EMP_NO = ?
     </entry>
+
     <entry key="updateAtdOntimeCount">
         UPDATE
             ATTENDANCE A
@@ -81,6 +161,33 @@
         WHERE
             A.EMP_NO = ?
     </entry>
+
+    <entry key="selectVcntInfo">
+        SELECT
+                V.*
+        FROM    VACANT V
+        WHERE   V.VACANT_NO = ?
+    </entry>
+    <entry key="getVcntInfo">
+        SELECT
+                V.*
+        FROM    VACANT V
+        WHERE   V.EMP_NO = ?
+    </entry>
+    <entry key="getAllVcntInfo">
+        SELECT *
+        FROM    VACANT
+    </entry>
+    <entry key="updateVcntAcpt">
+        UPDATE
+                VACANT V
+        SET
+                V.ACCEPT_STATUS = ?
+            ,   V.ACCEPT_CAUSE = ?
+        WHERE
+                V.VACANT_NO = ?
+    </entry>
+
 
 
 </properties>

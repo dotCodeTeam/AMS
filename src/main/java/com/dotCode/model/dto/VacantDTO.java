@@ -11,10 +11,11 @@ public class VacantDTO implements java.io.Serializable{
     private String dayDate;
     private String cause;
     private String acceptStatus;
+    private String acceptCause;
 
     public VacantDTO(){}
 
-    public VacantDTO(int vacantNo, int empNo, String statusCode, String applyDate, String dayDate, String cause, String acceptStatus) {
+    public VacantDTO(int vacantNo, int empNo, String statusCode, String applyDate, String dayDate, String cause, String acceptStatus, String acceptCause) {
         this.vacantNo = vacantNo;
         this.empNo = empNo;
         this.statusCode = statusCode;
@@ -22,6 +23,7 @@ public class VacantDTO implements java.io.Serializable{
         this.dayDate = dayDate;
         this.cause = cause;
         this.acceptStatus = acceptStatus;
+        this.acceptCause = acceptCause;
     }
 
     public int getVacantNo() {
@@ -80,6 +82,14 @@ public class VacantDTO implements java.io.Serializable{
         this.acceptStatus = acceptStatus;
     }
 
+    public String getAcceptCause() {
+        return acceptCause;
+    }
+
+    public void setAcceptCause(String acceptCause) {
+        this.acceptCause = acceptCause;
+    }
+
     @Override
     public String toString() {
         return "VacantDTO{" +
@@ -90,6 +100,7 @@ public class VacantDTO implements java.io.Serializable{
                 ", dayDate='" + dayDate + '\'' +
                 ", cause='" + cause + '\'' +
                 ", acceptStatus='" + acceptStatus + '\'' +
+                ", acceptCause='" + acceptCause + '\'' +
                 '}';
     }
 }
