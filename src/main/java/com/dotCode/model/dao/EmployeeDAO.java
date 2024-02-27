@@ -69,7 +69,7 @@ public class EmployeeDAO {
         }
 
         if ( result > 0 ) {
-            System.out.println("고용일자 업데이트 완료...");
+            System.out.println("총 근무일자 업데이트 완료...");
         } else {
             System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
         }
@@ -136,11 +136,11 @@ public class EmployeeDAO {
             close(pstmt);
         }
 
-        if ( result > 0 & isLate == true ) {
-            System.out.println("지각 처리 되었습니다...");
+        if ( isLate == true ) {
+            System.out.println("정시 출근 되었습니다...");
         } else if ( result > 0 & isLate == false ){
-            System.out.println("정시 출근 처리 되었습니다...");
-        } else {
+            System.out.println("지각 처리 되었습니다...");
+        } else if ( result == 0 ){
             System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
         }
 
@@ -179,7 +179,7 @@ public class EmployeeDAO {
                 getEmpInfo();
                 getAtdInfo();
                 System.out.println("오늘 하루도 화이팅입니다!");
-            }   else {
+            }   else if ( result == 0 ){
                 System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
             }
         }
@@ -200,7 +200,6 @@ public class EmployeeDAO {
             }
         } catch (ParseException e) {
             result = -1;
-            System.out.println("입력 형식이 올바르지 않습니다. (HH:mm 형식으로 입력하세요)");
         } finally {
             close(rset);
             close(pstmt);
@@ -230,19 +229,17 @@ public class EmployeeDAO {
                     close(rset);
                     close(pstmt);
                 }
-            } else {
-                result = -1;
             }
 
             if(result > 0 & checkOutTime == 1) {
                 getEmpInfo();
                 System.out.println("퇴근 처리 되었습니다.");
-            } else if( result < 0 & checkOutTime == 0 ){
-                System.out.println("아직 퇴근할 시간이 아닙니다!");
-            } else if (result < 0 & checkOutTime == -1 ){
-
+            } else if ( result == 0 & checkOutTime == 0 ){
+                System.out.println("아직 퇴근할 수 없습니다!");
+            } else if ( result == 0 & checkOutTime == -1 ){
+                System.out.println("입력 형식이 올바르지 않습니다. (HH:mm 형식으로 입력하세요)");
             } else {
-                System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
+                System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
             }
 
         }
