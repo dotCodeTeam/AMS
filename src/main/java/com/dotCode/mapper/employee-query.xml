@@ -39,32 +39,6 @@
         WHERE
                 A.EMP_NO = ?
     </entry>
-    <entry key="insertEmp">
-        INSERT INTO
-        EMPLOYEE (
-                    EMP_NO
-                    , EMP_ID
-                    , EMP_PW
-                    , EMP_NAME
-                    , STATUS_CODE
-                    , JOB_CODE
-                    , EMP_HIREDATE
-                    , PHONE
-                    , EMAIL
-                    , ADMIN_CODE
-                )
-        VALUES (
-                      NULL
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                )
-    </entry>
     <entry key="deleteEmp">
         DELETE FROM EMPLOYEE E
         WHERE E.EMP_NO = ? AND E.EMP_NAME = ?
@@ -111,20 +85,30 @@
         SELECT MAX(EMP_NO)
         FROM EMPLOYEE
     </entry>
+    <entry key="getLastVcntNo">
+        SELECT MAX(VACANT_NO)
+        FROM VACANT V
+    </entry>
+    <entry key="setVcntInfo">
+        INSERT INTO
+                VACANT
+        VALUES (
+                    NULL
+                ,   ?
+                ,   ?
+                ,   ?
+                ,   ?
+                ,   ?
+                ,   NULL
+                        )
+    </entry>
     <entry key="selectEmpList">
         SELECT EMPLOYEE
         FROM EMPLOYEE
     </entry>
     <entry key="insertAtdDTO">
             INSERT INTO
-            ATTENDANCE (
-            EMP_NO
-            , ONTIME_COUNT
-            , LATE_COUNT
-            , ABSENT_COUNT
-            , ATTENDANCE_TOTAL_SCORE
-            , TOTAY_DAY_COUNT
-            )
+            ATTENDANCE
             VALUES (
             ?
             , ?

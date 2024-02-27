@@ -7,24 +7,20 @@ public class VacantDTO implements java.io.Serializable {
     private int vacantNo;
     private int empNo;
     private String statusCode;
-    private String receiveApplyDate;
-    private Date sendApplyDate;
-    private String receiveDayDate;
-    private Date sendDayDate;
+    private String applyDate;
+    private String dayDate;
     private String cause;
     private String acceptStatus;
 
     public VacantDTO() {
     }
 
-    public VacantDTO(int vacantNo, int empNo, String statusCode, String receiveApplyDate, Date sendApplyDate, String receiveDayDate, Date sendDayDate, String cause, String acceptStatus) {
+    public VacantDTO(int vacantNo, int empNo, String statusCode, String applyDate, String dayDate, String cause, String acceptStatus) {
         this.vacantNo = vacantNo;
         this.empNo = empNo;
         this.statusCode = statusCode;
-        this.receiveApplyDate = receiveApplyDate;
-        this.sendApplyDate = sendApplyDate;
-        this.receiveDayDate = receiveDayDate;
-        this.sendDayDate = sendDayDate;
+        this.applyDate = applyDate;
+        this.dayDate = dayDate;
         this.cause = cause;
         this.acceptStatus = acceptStatus;
     }
@@ -53,36 +49,20 @@ public class VacantDTO implements java.io.Serializable {
         this.statusCode = statusCode;
     }
 
-    public String getReceiveApplyDate() {
-        return receiveApplyDate;
+    public String getApplyDate() {
+        return applyDate;
     }
 
-    public void setReceiveApplyDate(String receiveApplyDate) {
-        this.receiveApplyDate = receiveApplyDate;
+    public void setApplyDate(String applyDate) {
+        this.applyDate = applyDate;
     }
 
-    public Date getSendApplyDate() {
-        return sendApplyDate;
+    public String getDayDate() {
+        return dayDate;
     }
 
-    public void setSendApplyDate(Date sendApplyDate) {
-        this.sendApplyDate = sendApplyDate;
-    }
-
-    public String getReceiveDayDate() {
-        return receiveDayDate;
-    }
-
-    public void setReceiveDayDate(String receiveDayDate) {
-        this.receiveDayDate = receiveDayDate;
-    }
-
-    public Date getSendDayDate() {
-        return sendDayDate;
-    }
-
-    public void setSendDayDate(Date sendDayDate) {
-        this.sendDayDate = sendDayDate;
+    public void setDayDate(String dayDate) {
+        this.dayDate = dayDate;
     }
 
     public String getCause() {
@@ -107,10 +87,8 @@ public class VacantDTO implements java.io.Serializable {
                 "vacantNo=" + vacantNo +
                 ", empNo=" + empNo +
                 ", statusCode='" + statusCode + '\'' +
-                ", receiveApplyDate='" + receiveApplyDate + '\'' +
-                ", sendApplyDate=" + sendApplyDate +
-                ", receiveDayDate='" + receiveDayDate + '\'' +
-                ", sendDayDate=" + sendDayDate +
+                ", applyDate='" + applyDate + '\'' +
+                ", dayDate='" + dayDate + '\'' +
                 ", cause='" + cause + '\'' +
                 ", acceptStatus='" + acceptStatus + '\'' +
                 '}';

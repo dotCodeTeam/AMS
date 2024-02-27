@@ -11,10 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static com.dotCode.common.JDBCTemplete.close;
 import static com.dotCode.common.JDBCTemplete.getConnection;
@@ -22,13 +23,14 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 public class EmployeeDAO {
 
     protected EmployeeDTO empDTO;
-    private AttendanceDTO atdDTO;
+    protected AttendanceDTO atdDTO;
+    protected VacantDTO vcntDTO;
     protected Scanner sc = new Scanner(System.in);
     protected Connection con = getConnection();
     protected Properties prop = new Properties();
     protected PreparedStatement pstmt = null;
     protected ResultSet rset = null;
-    protected SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    protected SimpleDateFormat sdf;
 
     public EmployeeDAO(){
         empDTO = new EmployeeDTO();
@@ -56,12 +58,13 @@ public class EmployeeDAO {
     }
 
     public void logOut(){
-            System.out.println("=============================");
-            System.out.println("로그아웃 성공... " );
-            System.out.println(empDTO.getEmpName()+"님 오늘도 수고하셨습니다!");
+        System.out.println("=============================");
+        System.out.println("로그아웃 성공... " );
+        System.out.println(empDTO.getEmpName()+"님 오늘도 수고하셨습니다!");
     }
 
     public int checkInTime(){
+        sdf = new SimpleDateFormat("HH:mm");
         int isTrue = 0;
         sc = new Scanner(System.in);
         System.out.print("출근 시간을 입력하세요 (HH:mm)>> ");
@@ -239,6 +242,8 @@ public class EmployeeDAO {
 
         if ( empDTO.getEmpId() != null ) {
             System.out.println("=============================");
+            LocalDate currentDate = LocalDate.now();
+            System.out.println(currentDate);
             System.out.println("로그인 성공...");
             System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
             isTrue = true;
@@ -304,5 +309,60 @@ public class EmployeeDAO {
         System.out.println(atdDTO);
 
     }
+
+    public void setVcntInfo(){
+        int empNo = empDTO.getEmpNo();
+        try {
+            sdf = new SimpleDateFormat("yyyy-MM-dd");
+            LocalDate currentDate = LocalDate.now();
+            String current = String.valueOf(currentDate);
+            Date date = sdf.parse(current);
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.print("부재신청코드를 입력해 주세요 (B1 : 출장, B2 : 외출, C1 : 월차, C2 : 연차) >> ");
+        String vacantCode = sc.nextLine();
+        System.out.print("부재 희망하는 날짜 입력 (YYYY-MM-DD) >> ");
+        String dayDate = sc.nextLine();
+        System.out.print("사유 >> ");
+        String cause = sc.nextLine();
+
+        String query = prop.getProperty("setVcntInfo");
+        int result = 0;
+        try {
+            sdf = new SimpleDateFormat("yyyy-MM-dd");
+            LocalDate crntDate = LocalDate.now();
+            Date dateCrnt = sdf.parse(String.valueOf(crntDate));
+            java.sql.Date currentDate = new java.sql.Date(dateCrnt.getTime());
+            Date dateDay = sdf.parse(dayDate);
+            java.sql.Date dyDate = new java.sql.Date(dateDay.getTime());
+
+            vcntDTO = new VacantDTO();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empNo);
+            pstmt.setString(2,vacantCode);
+            pstmt.setDate(3,currentDate);
+            pstmt.setDate(4,dyDate);
+            pstmt.setString(5,cause);
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            System.out.println("입력이 잘못되었습니다...");
+        }
+
+        if( result > 0 ){
+            System.out.println("정상적으로 신청이 완료되었습니다.");
+        } else {
+            System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
+        }
+
+
+    }
+
 
 }

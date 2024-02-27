@@ -2,6 +2,68 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment/>
+    <entry key="getEmpInfo">
+        SELECT
+        E.*
+        FROM    EMPLOYEE E
+        WHERE   E.EMP_ID = ?
+    </entry>
+    <entry key="getAllEmpInfo">
+        SELECT *
+        FROM    EMPLOYEE E
+    </entry>
+    <entry key="insertEmp">
+        INSERT INTO
+                    EMPLOYEE
+        VALUES (
+                    NULL
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    )
+    </entry>
+    <entry key="deleteEmp">
+        DELETE FROM EMPLOYEE E
+        WHERE E.EMP_NO = ? AND E.EMP_NAME = ?
+    </entry>
+    <entry key="updateEmp">
+        UPDATE
+        EMPLOYEE E
+        SET
+        E.EMP_NO = ?
+        , E.EMP_ID = ?
+        , E.EMP_PW = ?
+        , E.EMP_NAME = ?
+        , E.JOB_CODE = ?
+        , E.EMP_HIREDATE = ?
+        , E.PHONE = ?
+        , E.EMAIL = ?
+        , E.ADMIN_CODE = ?
+        , E.CURRENT_STATUS = ?
+        WHERE
+        E.EMP_NO = ?
+    </entry>
+    <entry key="insertAtdDTOEmpNo">
+        INSERT INTO
+                ATTENDANCE (
+                                EMP_NO
+                            )
+            VALUES              (
+                                ?
+                            )
+    </entry>
+    <entry key="deleteAttendance">
+        DELETE
+                FROM ATTENDANCE A
+        WHERE
+                A.EMP_NO = ?
+    </entry>
     <entry key="getAtdInfo">
         SELECT
                 A.*
@@ -72,85 +134,76 @@
             A.EMP_NO = ?
     </entry>
 
-
-    <entry key="updateEmpNo">
-        UPDATE
-        employee A
-        SET
-        A.EMP_NO = ?
-        WHERE
-        A.EMP_NO = ?
-    </entry>
     <entry key="updateEmpId">
         UPDATE
-        employee A
+                employee A
         SET
-        A.EMP_ID = ?
+                A.EMP_ID = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpPw">
         UPDATE
-        employee A
+                employee A
         SET
-        A.EMP_PW = ?
+                A.EMP_PW = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpName">
         UPDATE
-        employee A
+                employee A
         SET
-        A.EMP_NAME = ?
+                A.EMP_NAME = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpStatusCode">
         UPDATE
-        employee A
+                employee A
         SET
-        A.STATUS_CODE = ?
+                A.STATUS_CODE = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpJobCode">
         UPDATE
-        employee A
+                employee A
         SET
-        A.JOB_CODE = ?
+                A.JOB_CODE = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpHigherDate">
         UPDATE
-        employee A
+                employee A
         SET
-        A.EMP_HIREDATE = ?
+                A.EMP_HIREDATE = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpPhone">
         UPDATE
-        employee A
+                employee A
         SET
-        A.PHONE = ?
+                A.PHONE = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpEmail">
         UPDATE
-        employee A
+                employee A
         SET
-        A.EMAIL = ?
+                A.EMAIL = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateEmpAdminCode">
         UPDATE
-        employee A
+                employee A
         SET
-        A.ADMIN_CODE = ?
+                A.ADMIN_CODE = ?
         WHERE
-        A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
 </properties>
