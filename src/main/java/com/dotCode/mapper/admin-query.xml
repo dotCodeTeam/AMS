@@ -2,11 +2,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment/>
-    <entry key="getEmpInfo">
+    <entry key="getEmpNoInfo">
         SELECT
                 E.*
         FROM    EMPLOYEE E
         WHERE   E.EMP_NO = ?
+    </entry>
+    <entry key="getEmpIdInfo">
+        SELECT
+        E.*
+        FROM    EMPLOYEE E
+        WHERE   E.EMP_ID = ?
     </entry>
 
     <entry key="getAllEmpInfo">
@@ -22,13 +28,25 @@
                         , ?
                         , ?
                         , ?
+                        , NULL
                         , ?
                         , ?
-                        , CURDATE()
                         , ?
                         , ?
                         , ?
                 )
+    </entry>
+    <entry key="insertAtd">
+        INSERT INTO
+                    ATTENDANCE
+        VALUES (
+                    ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+                    , ?
+        )
     </entry>
 
 

@@ -14,6 +14,7 @@
         FROM    ATTENDANCE A
         WHERE   A.EMP_NO = ?
     </entry>
+
     <entry key="updateStatus">
         UPDATE
                 EMPLOYEE E
@@ -22,6 +23,7 @@
         WHERE
                 E.EMP_NO = ?
     </entry>
+
     <entry key="updateAtdTotalDayCount">
         UPDATE
                 ATTENDANCE A
@@ -47,81 +49,6 @@
         WHERE
                 A.EMP_NO = ?
     </entry>
-    <entry key="insertEmp">
-        INSERT INTO
-        EMPLOYEE (
-                    EMP_NO
-                    , EMP_ID
-                    , EMP_PW
-                    , EMP_NAME
-                    , JOB_CODE
-                    , EMP_HIREDATE
-                    , PHONE
-                    , EMAIL
-                    , ADMIN_CODE
-                    , CURRENT_STATUS
-                )
-        VALUES (
-                      ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                    , ?
-                )
-    </entry>
-    <entry key="deleteEmp">
-        DELETE FROM EMPLOYEE E
-        WHERE E.EMP_NO = ? AND E.EMP_NAME = ?
-    </entry>
-    <entry key="updateEmp">
-        UPDATE
-            EMPLOYEE E
-        SET
-            E.EMP_NO = ?
-            , E.EMP_ID = ?
-            , E.EMP_PW = ?
-            , E.EMP_NAME = ?
-            , E.JOB_CODE = ?
-            , E.EMP_HIREDATE = ?
-            , E.PHONE = ?
-            , E.EMAIL = ?
-            , E.ADMIN_CODE = ?
-            , E.CURRENT_STATUS = ?
-        WHERE
-            E.EMP_NO = ?
-    </entry>
-    <entry key="insertAttendance">
-        INSERT INTO
-            ATTENDANCE (
-                          EMP_NO
-                        , TOTAL_DAY_COUNT
-                        , ONTIME_COUNT
-                        , LATE_COUNT
-                        , ABSENT_COUNT
-                        , TOTAL_SCORE
-                    )
-            VALUES (
-                          ?
-                        , ?
-                        , ?
-                        , ?
-                        , ?
-                        , ?
-                    )
-    </entry>
-    <entry key="getLastEmpNo">
-        SELECT MAX(EMP_NO)
-        FROM EMPLOYEE
-    </entry>
-    <entry key="getLastVcntNo">
-        SELECT MAX(VACANT_NO)
-        FROM VACANT V
-    </entry>
     <entry key="setVcntInfo">
         INSERT INTO
                 VACANT
@@ -135,9 +62,5 @@
                 ,   NULL
                 ,   NULL
                         )
-    </entry>
-    <entry key="selectEmpList">
-        SELECT EMPLOYEE
-        FROM EMPLOYEE
     </entry>
 </properties>

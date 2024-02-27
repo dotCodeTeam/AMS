@@ -109,14 +109,14 @@ public class AmsMenu {
                                     adminChoice = sc.nextInt();
                                     switch ( adminChoice ) {
                                         case 1:
-                                            adminDAO.insertEmpInfo();
+                                            adminDAO.createEmpInfo();
                                             break;
                                         case 2:
                                             sc.nextLine();
                                             int selectType;
                                             boolean isSelect = true;
                                             while (isSelect) {
-                                                System.out.println("======= 근태 정보 조회 ========");
+                                                System.out.println("======= 사원 정보 조회 ========");
                                                 System.out.println("1. 사번 조회");
                                                 System.out.println("2. 전체 조회");
                                                 System.out.println("3. 이전으로");
