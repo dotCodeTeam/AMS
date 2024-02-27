@@ -17,8 +17,13 @@ public class AmsMenu {
 
         while ( isMenu ) {
             empDAO = new EmployeeDAO();  // 인스턴스 초기화
+            System.out.println("============ AMS ============");
+            System.out.print("     ID : ");
+            String id = sc.nextLine();
+            System.out.print("     PW : ");
+            String pwd = sc.nextLine();
 
-            if ( empDAO.logIn() ) {
+            if ( empDAO.logIn(id,pwd) ) {
 
                 int choice;
                 boolean isLogin = true;
@@ -69,7 +74,7 @@ public class AmsMenu {
                         }
                     }
                     else {
-                        adminDAO = new AdminDAO();
+                        adminDAO = new AdminDAO(empDAO.getEmpInfo(id,pwd));
                         sc.nextLine();
                         int adminChoice;
                         switch (choice) {
@@ -91,28 +96,68 @@ public class AmsMenu {
                                 isLogin = false;
                                 break;
                             case 6:
-                                System.out.println("========= 전체 사원 정보 =========");
-                                System.out.println("1. 사원 등록");
-                                System.out.println("2. 사원 정보 조회");
-                                System.out.println("3. 사원 해고");
-                                System.out.println("4. 처음으로");
-                                System.out.println("================================");
-                                System.out.print(">> ");
-                                adminChoice = sc.nextInt();
-                                switch ( adminChoice ) {
-                                    case 1:
-                                        break;
-                                    case 2:
-                                        break;
-                                    case 3:
-                                        break;
-                                    case 4:
-                                        break;
+                                boolean isEmp = true;
+                                while (isEmp){
+                                    System.out.println("========= 전체 사원 정보 =========");
+                                    System.out.println("1. 사원 등록");
+                                    System.out.println("2. 사원 정보 조회");
+                                    System.out.println("3. 사원 정보 변경");
+                                    System.out.println("4. 사원 해고");
+                                    System.out.println("5. 처음으로");
+                                    System.out.println("================================");
+                                    System.out.print(">> ");
+                                    adminChoice = sc.nextInt();
+                                    switch ( adminChoice ) {
+                                        case 1:
+                                            adminDAO.insertEmpInfo();
+                                            break;
+                                        case 2:
+                                            sc.nextLine();
+                                            int selectType;
+                                            boolean isSelect = true;
+                                            while (isSelect) {
+                                                System.out.println("======= 근태 정보 조회 ========");
+                                                System.out.println("1. 사번 조회");
+                                                System.out.println("2. 전체 조회");
+                                                System.out.println("3. 이전으로");
+                                                System.out.println("=============================");
+                                                System.out.print(">> ");
+                                                selectType = sc.nextInt();
+                                                switch (selectType) {
+                                                    case 1:
+                                                        adminDAO.searchEmpInfo();
+                                                        break;
+                                                    case 2:
+                                                        adminDAO.printAllEmpInfo();
+                                                        break;
+                                                    case 3:
+                                                        System.out.println("이전으로 돌아갑니다...");
+                                                        isSelect = false;
+                                                        break;
+                                                    default:
+                                                        System.out.println("잘못된 입력입니다...");
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case 3:
+                                            adminDAO.updateEmpInfo();
+                                            break;
+                                        case 4:
+                                            adminDAO.deleteEmpInfo();
+                                            break;
+                                        case 5:
+                                            isEmp = false;
+                                            break;
+                                        default:
+                                            System.out.println("잘못된 입력입니다...");
+                                            break;
+                                    }
                                 }
                                 break;
                             case 7:
-                                boolean isTrue = true;
-                                while (isTrue){
+                                boolean isAtn = true;
+                                while (isAtn){
                                     System.out.println("======= 사원 근태 관리 ========");
                                     System.out.println("1. 근태 정보 조회");
                                     System.out.println("2. 근태 정보 변경");
@@ -136,10 +181,10 @@ public class AmsMenu {
                                                 selectType = sc.nextInt();
                                                 switch (selectType) {
                                                     case 1:
-                                                        adminDAO.getAtdInfo();
+                                                        adminDAO.searchAtdInfo();
                                                         break;
                                                     case 2:
-                                                        adminDAO.getAllAtdInfo();
+                                                        adminDAO.printAllAtdInfo();
                                                         break;
                                                     case 3:
                                                         System.out.println("이전으로 돌아갑니다...");
@@ -172,10 +217,10 @@ public class AmsMenu {
                                                         adminDAO.acceptVacant();
                                                         break;
                                                     case 2:
-                                                        adminDAO.getVcntInfo();
+                                                        adminDAO.searchVcntInfo();
                                                         break;
                                                     case 3:
-                                                        adminDAO.getAllVcntInfo();
+                                                        adminDAO.printAllVcntInfo();
                                                         break;
                                                     case 4:
                                                         isVcnt = false;
@@ -188,7 +233,7 @@ public class AmsMenu {
                                             }
                                             break;
                                         case 4:
-                                            isTrue = false;
+                                            isAtn = false;
                                             break;
                                         default:
                                             System.out.println("잘못된 입력입니다...");
@@ -211,7 +256,8 @@ public class AmsMenu {
 
             } else {
                 System.out.println("로그인 실패...");
-                System.out.println("해당하는 정보가 없습니다.");}
+                System.out.println("해당하는 정보가 없습니다.");
+            }
 
         }
 
