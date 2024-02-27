@@ -22,9 +22,9 @@ import static com.dotCode.common.JDBCTemplete.getConnection;
 
 public class EmployeeDAO {
 
-    private EmployeeDTO empDTO;
-    private AttendanceDTO atdDTO;
-    VacantDTO vcntDTO;
+    protected EmployeeDTO empDTO;
+    protected AttendanceDTO atdDTO;
+    protected VacantDTO vcntDTO;
     protected Scanner sc = new Scanner(System.in);
     protected Connection con = getConnection();
     protected Properties prop = new Properties();
@@ -42,17 +42,13 @@ public class EmployeeDAO {
         }
     }
 
-    public boolean logIn() {
+    public boolean logIn(String id, String pwd) {
         boolean isTrue = false;
         sc = new Scanner(System.in);
 
-        System.out.println("============ AMS ============");
-        System.out.print("     ID : ");
-        String id = sc.nextLine();
-        System.out.print("     PW : ");
-        String pwd = sc.nextLine();
-
-        isTrue = getEmpInfo(id,pwd);
+        if ( getEmpInfo(id,pwd).getEmpNo() != 0 ){
+            isTrue = true;
+        }
 
         return isTrue;
     }
@@ -210,8 +206,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public boolean getEmpInfo(String id,String pwd){
-        boolean isTrue = false;
+    public EmployeeDTO getEmpInfo(String id,String pwd){
         String query = prop.getProperty("getEmpInfo");
         try {
             pstmt = con.prepareStatement(query);
@@ -246,13 +241,12 @@ public class EmployeeDAO {
             System.out.println(currentDate);
             System.out.println("로그인 성공...");
             System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
-            isTrue = true;
         }
 
-        return isTrue;
+        return empDTO;
     }
 
-    public void getEmpInfo(){
+    public EmployeeDTO getEmpInfo(){
         String query = prop.getProperty("getEmpInfo");
         try {
             pstmt = con.prepareStatement(query);
@@ -280,8 +274,7 @@ public class EmployeeDAO {
             close(rset);
             close(pstmt);
         }
-
-        System.out.println(empDTO);
+        return empDTO;
     }
     public void getAtdInfo(){
         String query = prop.getProperty("getAtdInfo");
