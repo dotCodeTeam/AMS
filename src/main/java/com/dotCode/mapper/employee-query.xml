@@ -43,7 +43,7 @@
                 ATTENDANCE A
         SET
                 A.LATE_COUNT = (A.LATE_COUNT + ?)
-            ,   A.TOTAL_SCORE = (A.LATE_COUNT - ?)
+            ,   A.TOTAL_SCORE = (A.TOTAL_SCORE - ?)
         WHERE
                 A.EMP_NO = ?
     </entry>
