@@ -584,6 +584,7 @@ public class AdminDAO extends EmployeeDAO {
                 atdDTO.setLateCount(rset.getInt("LATE_COUNT"));
                 atdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
                 atdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
+                atdDTO.setLastReset(rset.getString("LAST_RESET"));
             }
 
         } catch (SQLException e) {
