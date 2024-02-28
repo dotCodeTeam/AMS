@@ -234,8 +234,8 @@ public class EmployeeDAO {
             System.out.println("    이미 퇴근 처리가 되었습니다...");
         }
         else {
-            int checkOutTime = checkOutTime();
             int result = 0;
+            int checkOutTime = checkOutTime();
             if ( checkOutTime == 1 ) {
                 String query = prop.getProperty("updateStatus");
                 try {
