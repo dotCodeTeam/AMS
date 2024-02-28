@@ -654,6 +654,7 @@ public class AdminDAO extends EmployeeDAO {
 
                 if ( atdDTO.getEmpNo() != 0 ) {
                     sc.nextLine();
+                    System.out.println(atdDTO);
                     System.out.println("===== 변경할 항목 선택 =====");
                     System.out.println(" 1.총 근무 일자 ");
                     System.out.println(" 2.정시 출근 일자 ");
@@ -667,10 +668,10 @@ public class AdminDAO extends EmployeeDAO {
                     String query;
                     int updateValue;
                     int result = 0;
-                    System.out.println(atdDTO);
                     switch (selectCulumn){
                         case 1:
                             sc.nextLine();
+                            System.out.println(atdDTO);
                             System.out.print("총 근무 일자 변경 값 >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdTotalDayCount");
@@ -681,6 +682,7 @@ public class AdminDAO extends EmployeeDAO {
                             break;
                         case 2:
                             sc.nextLine();
+                            System.out.println(atdDTO);
                             System.out.print("정시 출근 일자 변경 값  >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdOntimeCount");
@@ -691,6 +693,7 @@ public class AdminDAO extends EmployeeDAO {
                             break;
                         case 3:
                             sc.nextLine();
+                            System.out.println(atdDTO);
                             System.out.print("지각 횟수 변경 값 >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdLateCount");
@@ -701,6 +704,7 @@ public class AdminDAO extends EmployeeDAO {
                             break;
                         case 4:
                             sc.nextLine();
+                            System.out.println(atdDTO);
                             System.out.print("근태 점수 변경 값 >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdTotalScore");
@@ -710,7 +714,7 @@ public class AdminDAO extends EmployeeDAO {
                             result = pstmt.executeUpdate();
                             break;
                         case 5:
-                            System.out.println("    이전으로 돌아갑니다...");
+                            result = -1;
                             break;
                         default:
                             System.out.println("    잘못된 입력입니다...");
@@ -723,10 +727,11 @@ public class AdminDAO extends EmployeeDAO {
                         System.out.println("    " + atdDTO.getEmpNo() + "번 사원의 근태 정보가 변경되었습니다.");
                         getAllAtdInfo();
                         atdDTO = getAtdInfo(this.empNo);
-                    }
-                    else {
+                    } else if( result == -1 ){
+                        System.out.println("이전으로 돌아갑니다...");
+                    } else {
                         System.out.println(atdDTO);
-                        System.out.println("    정보 변경에 실패 했습니다...");
+                        System.out.println("정보 변경에 실패 했습니다...");
                     }
                 }
                 else  {
