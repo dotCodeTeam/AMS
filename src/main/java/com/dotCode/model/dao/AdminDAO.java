@@ -88,6 +88,7 @@ public class AdminDAO extends EmployeeDAO {
         super.setVcntInfo();
     }
 
+    // 사원 관련 기능 메소드
     public void getAllEmpInfo(){
         empDTOList.clear();
         String query = prop.getProperty("getAllEmpInfo");
@@ -140,10 +141,6 @@ public class AdminDAO extends EmployeeDAO {
         }
         return empDTO;
     }
-
-    // 검색 기능 메소드
-
-    // 사원 관련 기능 메소드
     public int getMaxEmpNo(){
         int empNo = 0;
         String query = prop.getProperty("getMaxEmpNo");
