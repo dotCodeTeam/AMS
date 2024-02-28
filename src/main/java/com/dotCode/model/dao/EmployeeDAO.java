@@ -119,11 +119,11 @@ public class EmployeeDAO {
         int nowType = 0;
         try {
             Date workStartTime = sdf.parse("09:00");        // 정시출근시간
-            Date absentTime = sdf.parse("10:05");           // 결근시간
+            Date absentTime = sdf.parse("10:00");           // 결근시간
             Date actualTime = sdf.parse(now);
 
             String query;
-            if (actualTime.after(workStartTime) & actualTime.before(absentTime)) {
+            if (actualTime.after(workStartTime) & (actualTime.before(absentTime) || actualTime.equals(absentTime))) {
                 query = prop.getProperty("updateAtdLateCount");
                 pstmt = con.prepareStatement(query);
                 pstmt.setInt(1,1);
@@ -217,7 +217,7 @@ public class EmployeeDAO {
             Date workDoneTime = sdf.parse("18:00");     // 퇴근시간
             Date actualTime = sdf.parse(now);
 
-            if (actualTime.after(workDoneTime)) {
+            if (actualTime.after(workDoneTime) || actualTime.equals(workDoneTime)) {
                 result = 1;
             }
         } catch (ParseException e) {
@@ -348,6 +348,7 @@ public class EmployeeDAO {
                 atdDTO.setLateCount(rset.getInt("LATE_COUNT"));
                 atdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
                 atdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
+                atdDTO.setLastReset(rset.getString("LAST_RESET"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

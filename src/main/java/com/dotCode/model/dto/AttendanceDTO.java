@@ -8,16 +8,18 @@ public class AttendanceDTO implements java.io.Serializable{
     private int lateCount;
     private int absentCount;
     private int totalScore;
+    private String lastReset;
 
     public AttendanceDTO(){}
 
-    public AttendanceDTO(int empNo, int totalDayCount, int ontimeCount, int lateCount, int absentCount, int totalScore) {
+    public AttendanceDTO(int empNo, int totalDayCount, int ontimeCount, int lateCount, int absentCount, int totalScore, String lastReset) {
         this.empNo = empNo;
         this.totalDayCount = totalDayCount;
         this.ontimeCount = ontimeCount;
         this.lateCount = lateCount;
         this.absentCount = absentCount;
         this.totalScore = totalScore;
+        this.lastReset = lastReset;
     }
 
     public int getEmpNo() {
@@ -68,15 +70,24 @@ public class AttendanceDTO implements java.io.Serializable{
         this.totalScore = totalScore;
     }
 
+    public String getLastReset() {
+        return lastReset;
+    }
+
+    public void setLastReset(String lastReset) {
+        this.lastReset = lastReset;
+    }
+
     @Override
     public String toString() {
-        return " 근태 정보\n{" +
+        return "근태 정보\n{" +
                 " 사번=" + empNo +
                 ", 총 근무일자=" + totalDayCount +
                 ", 정시 출근=" + ontimeCount +
                 ", 지각=" + lateCount +
                 ", 결근=" + absentCount +
-                ", 근태점수=" + totalScore +
+                ", 근태 점수=" + totalScore +
+                ", 최종 초기화 날짜='" + lastReset + '\'' +
                 '}';
     }
 }

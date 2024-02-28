@@ -46,6 +46,7 @@
                     , ?
                     , ?
                     , ?
+                    , ?
         )
     </entry>
 
@@ -187,6 +188,7 @@
            ,    A.LATE_COUNT = ?
            ,    A.ABSENT_COUNT = ?
            ,    A.TOTAL_SCORE = ?
+           ,    A.LAST_RESET = ?
         WHERE
                 A.EMP_NO = ?
     </entry>

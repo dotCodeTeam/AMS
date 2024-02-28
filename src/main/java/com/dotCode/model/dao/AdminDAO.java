@@ -543,6 +543,11 @@ public class AdminDAO extends EmployeeDAO {
         int result = 0;
         String query = prop.getProperty("insertAtd");
         try {
+            sdf = new SimpleDateFormat("yyyy-MM-dd");
+            LocalDate crntDate = LocalDate.now();
+            Date dateCrnt = sdf.parse(String.valueOf(crntDate));
+            java.sql.Date resetDate = new java.sql.Date(dateCrnt.getTime());
+
             pstmt = con.prepareStatement(query);
             pstmt.setInt(1,empNo);
             pstmt.setInt(2,1);
@@ -550,9 +555,12 @@ public class AdminDAO extends EmployeeDAO {
             pstmt.setInt(4,0);
             pstmt.setInt(5,0);
             pstmt.setInt(6,100);
+            pstmt.setDate(7,resetDate);
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
             throw new RuntimeException(e);
         }
 
@@ -598,6 +606,7 @@ public class AdminDAO extends EmployeeDAO {
                 atdDTO.setLateCount(rset.getInt("LATE_COUNT"));
                 atdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
                 atdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
+                atdDTO.setLastReset(rset.getString("LAST_RESET"));
 
                 atdDTOList.add(atdDTO);
             }
@@ -726,15 +735,24 @@ public class AdminDAO extends EmployeeDAO {
                 if ( answer.equals("Y") ) {
                     String query = prop.getProperty("resetAtdInfo");
                     try {
+                        sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        LocalDate crntDate = LocalDate.now();
+                        Date dateCrnt = sdf.parse(String.valueOf(crntDate));
+                        java.sql.Date resetDate = new java.sql.Date(dateCrnt.getTime());
+
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,0);
                         pstmt.setInt(2,0);
                         pstmt.setInt(3,0);
                         pstmt.setInt(4,100);
                         pstmt.setInt(5,empNo);
+                        pstmt.setDate(6,resetDate);
+
                         result = pstmt.executeUpdate();
 
                     } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
 
