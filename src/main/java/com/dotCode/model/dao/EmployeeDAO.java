@@ -42,7 +42,7 @@ public class EmployeeDAO {
         }
     }
 
-    // 총 근무일자 데이터에 주입
+    // 총 근무일자 : 고용일자와 현재일자롤 비교해 로그인할때 db table 컬럼값에 주입
     public void totalDayCount(){
 
         int result = 0;
@@ -102,6 +102,7 @@ public class EmployeeDAO {
 
     }
 
+    // 상태 퇴근으로 강제 변경 > 퇴근하지않고 로그아웃 or 종료시 사용
     public void compulsionStatus(){
         if ( !empDTO.getStatusCode().equals("A2")){
 
