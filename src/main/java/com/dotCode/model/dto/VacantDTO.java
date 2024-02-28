@@ -92,15 +92,15 @@ public class VacantDTO implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return "VacantDTO{" +
-                "vacantNo=" + vacantNo +
-                ", empNo=" + empNo +
-                ", statusCode='" + statusCode + '\'' +
-                ", applyDate='" + applyDate + '\'' +
-                ", dayDate='" + dayDate + '\'' +
-                ", cause='" + cause + '\'' +
-                ", acceptStatus='" + acceptStatus + '\'' +
-                ", acceptCause='" + acceptCause + '\'' +
+        return "부재 신청 정보 {" +
+                " 번호=" + vacantNo +
+                ", 사번=" + empNo +
+                ", 부재 코드='" + statusCode + '\'' +
+                ", 신청 날짜='" + applyDate + '\'' +
+                ", 희망 날짜='" + dayDate + '\'' +
+                ", 사유='" + cause + '\'' +
+                ", 허가상태='" + acceptStatus + '\'' +
+                ", 거절사유='" + acceptCause + '\'' +
                 '}';
     }
 }

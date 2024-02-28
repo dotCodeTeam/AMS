@@ -89,6 +89,31 @@ public class AdminDAO extends EmployeeDAO {
     }
 
     // 사원 관련 기능 메소드
+    public EmployeeDTO getEmpInfo(int empNo){        // 내 정보 불러올 때
+        String query = prop.getProperty("getEmpNoInfo");
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empNo);
+            rset = pstmt.executeQuery();
+
+            if(rset.next()){
+                empDTO.setEmpNo(rset.getInt("EMP_NO"));
+                empDTO.setEmpId(rset.getString("EMP_ID"));
+                empDTO.setEmpPwd(rset.getString("EMP_PW"));
+                empDTO.setEmpName(rset.getString("EMP_NAME"));
+                empDTO.setStatusCode(rset.getString("STATUS_CODE"));
+                empDTO.setJobCode(rset.getString("JOB_CODE"));
+                empDTO.setHireDate(rset.getString("EMP_HIREDATE"));
+                empDTO.setPhone(rset.getString("PHONE"));
+                empDTO.setEmail(rset.getString("EMAIL"));
+                empDTO.setAdminCode(rset.getString("ADMIN_CODE"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return empDTO;
+    }
     public void getAllEmpInfo(){
         empDTOList.clear();
         String query = prop.getProperty("getAllEmpInfo");
@@ -115,31 +140,6 @@ public class AdminDAO extends EmployeeDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-    public EmployeeDTO getEmpInfo(int empNo){        // 내 정보 불러올 때
-        String query = prop.getProperty("getEmpNoInfo");
-        try {
-            pstmt = con.prepareStatement(query);
-            pstmt.setInt(1,empNo);
-            rset = pstmt.executeQuery();
-
-            if(rset.next()){
-                empDTO.setEmpNo(rset.getInt("EMP_NO"));
-                empDTO.setEmpId(rset.getString("EMP_ID"));
-                empDTO.setEmpPwd(rset.getString("EMP_PW"));
-                empDTO.setEmpName(rset.getString("EMP_NAME"));
-                empDTO.setStatusCode(rset.getString("STATUS_CODE"));
-                empDTO.setJobCode(rset.getString("JOB_CODE"));
-                empDTO.setHireDate(rset.getString("EMP_HIREDATE"));
-                empDTO.setPhone(rset.getString("PHONE"));
-                empDTO.setEmail(rset.getString("EMAIL"));
-                empDTO.setAdminCode(rset.getString("ADMIN_CODE"));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return empDTO;
     }
     public int getMaxEmpNo(){
         int empNo = 0;
