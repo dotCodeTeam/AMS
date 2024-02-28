@@ -161,8 +161,9 @@ public class AmsMenu {
                                     System.out.println("======= 사원 근태 관리 ========");
                                     System.out.println("1. 근태 정보 조회");
                                     System.out.println("2. 근태 정보 변경");
-                                    System.out.println("3. 부재 신청 관리");
-                                    System.out.println("4. 처음으로");
+                                    System.out.println("3. 근태 정보 초기화");
+                                    System.out.println("4. 부재 신청 관리");
+                                    System.out.println("5. 처음으로");
                                     System.out.println("=============================");
                                     System.out.print(">> ");
                                     adminChoice = sc.nextInt();
@@ -200,6 +201,9 @@ public class AmsMenu {
                                             adminDAO.updateAtdInfo();
                                             break;
                                         case 3:
+                                            adminDAO.resetAtdInfo();
+                                            break;
+                                        case 4:
                                             sc.nextLine();
                                             int selectVcnt;
                                             boolean isVcnt = true;
@@ -232,7 +236,7 @@ public class AmsMenu {
                                                 }
                                             }
                                             break;
-                                        case 4:
+                                        case 5:
                                             isAtn = false;
                                             break;
                                         default:

@@ -140,44 +140,55 @@
 
     <entry key="updateAtdTotalDayCount">
         UPDATE
-            ATTENDANCE A
+                ATTENDANCE A
         SET
-            A.TOTAL_DAY_COUNT = ?
+                A.TOTAL_DAY_COUNT = ?
         WHERE
-            A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
 
     <entry key="updateAtdOntimeCount">
         UPDATE
-            ATTENDANCE A
+                ATTENDANCE A
         SET
-            A.ONTIME_COUNT = ?
+                A.ONTIME_COUNT = ?
         WHERE
-            A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateAtdLateCount">
         UPDATE
-            ATTENDANCE A
+                ATTENDANCE A
         SET
-            A.LATE_COUNT = ?
+                A.LATE_COUNT = ?
         WHERE
-            A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateAtdAbsentCount">
         UPDATE
-            ATTENDANCE A
+                ATTENDANCE A
         SET
-            A.ABSENT_COUNT = ?
+                A.ABSENT_COUNT = ?
         WHERE
-            A.EMP_NO = ?
+                A.EMP_NO = ?
     </entry>
     <entry key="updateAtdTotalScore">
         UPDATE
-            ATTENDANCE A
+                ATTENDANCE A
         SET
-            A.TOTAL_SCORE = ?
+                A.TOTAL_SCORE = ?
         WHERE
-            A.EMP_NO = ?
+                A.EMP_NO = ?
+    </entry>
+    <entry key="resetAtdInfo">
+        UPDATE
+                ATTENDANCE A
+        SET
+                A.ONTIME_COUNT = ?
+           ,    A.LATE_COUNT = ?
+           ,    A.ABSENT_COUNT = ?
+           ,    A.TOTAL_SCORE = ?
+        WHERE
+                A.EMP_NO = ?
     </entry>
 
     <entry key="selectVcntInfo">

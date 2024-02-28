@@ -180,7 +180,7 @@ public class AdminDAO extends EmployeeDAO {
         if ( empDTO.getEmpNo() != 0 ){
             System.out.println(empDTO);
         } else {
-            System.out.println("해당하는 정보가 없습니다...");
+            System.out.println("    해당하는 정보가 없습니다...");
         }
         empDTO = getEmpInfo(this.empNo);
     }
@@ -194,7 +194,7 @@ public class AdminDAO extends EmployeeDAO {
         if ( atdDTO.getEmpNo() != 0 ){
             System.out.println(atdDTO);
         } else {
-            System.out.println("해당하는 정보가 없습니다...");
+            System.out.println("    해당하는 정보가 없습니다...");
         }
         atdDTO = getAtdInfo(this.empNo);
     }
@@ -245,7 +245,7 @@ public class AdminDAO extends EmployeeDAO {
         isTrue = true;
         while (isTrue){
             int checkId = 0;
-            System.out.print("     Job_Code ( J6 : 사장 / J5 : 부장 / J4 : 차장 / J3 : 과장 / J2 : 대리 / J1 : 사원 ) : ");
+            System.out.print("  Job_Code ( J6 : 사장 / J5 : 부장 / J4 : 차장 / J3 : 과장 / J2 : 대리 / J1 : 사원 ) : ");
             jobCode = sc.nextLine().toUpperCase();
             if ( !jobCode.equals("J6") & !jobCode.equals("J5") & !jobCode.equals("J4") & !jobCode.equals("J3") & !jobCode.equals("J2") & !jobCode.equals("J1") ) {
                 System.out.println("해당하는 코드는 없습니다... 다시 입력해주세요.");
@@ -262,7 +262,7 @@ public class AdminDAO extends EmployeeDAO {
         isTrue = true;
         while (isTrue){
             int checkId = 0;
-            System.out.print("     Admin_Code ( S0 : 관리자 / S1 : 일반 ) : ");
+            System.out.print("  Admin_Code ( S0 : 관리자 / S1 : 일반 ) : ");
             adminCode = sc.nextLine().toUpperCase();
 
             if ( !adminCode.equals("S0") & !adminCode.equals("S1") ){
@@ -295,7 +295,7 @@ public class AdminDAO extends EmployeeDAO {
 
             if (result > 0) {
                 empDTO = getEmpInfo(id);    // 신입 정보
-                System.out.println(empDTO.getEmpName() + "님의 사원 정보가 성공적으로 등록되었습니다.");
+                System.out.println("     " + empDTO.getEmpName() + "님의 사원 정보가 성공적으로 등록되었습니다.");
                 System.out.println(empDTO);
                 createAtdInfo(empDTO.getEmpNo());
                 // 리스트 초기화 후 최신화
@@ -304,7 +304,7 @@ public class AdminDAO extends EmployeeDAO {
                 atdDTO = getAtdInfo(this.empNo);    // 내 정보로 초기화
 
             } else {
-                System.out.println("사원 정보 등록에 실패했습니다.");
+                System.out.println("    사원 정보 등록에 실패했습니다.");
             }
         } catch (SQLException e) {
             System.out.println("처리 불가...");
@@ -328,9 +328,9 @@ public class AdminDAO extends EmployeeDAO {
             if ( empDTO.getEmpNo() != 0 ) {
                 sc.nextLine();
                 System.out.println("===== 변경할 항목 선택 =====");
-                System.out.println(" 1. 사원 ID");
-                System.out.println(" 2. 사원 PW");
-                System.out.println(" 3. 사원 이름");
+                System.out.println(" 1. ID");
+                System.out.println(" 2. PW");
+                System.out.println(" 3. 이름");
                 System.out.println(" 4. 근태 현황");
                 System.out.println(" 5. 직책 코드");
                 System.out.println(" 6. 전화번호");
@@ -351,7 +351,7 @@ public class AdminDAO extends EmployeeDAO {
                         sc.nextLine();
                         while (isTrue){
                             checkValue = 0;
-                            System.out.print("사원 ID 변경할 값 입력 >> ");
+                            System.out.print("ID 변경할 값 입력 >> ");
                             updateValue = sc.nextLine();
 
                             for (int i = 0 ; i < empDTOList.size(); i++ ){
@@ -373,7 +373,7 @@ public class AdminDAO extends EmployeeDAO {
                         break;
                     case 2:
                         sc.nextLine();
-                        System.out.print("사원 PW 변경할 값 입력 >> ");
+                        System.out.print("PW 변경할 값 입력 >> ");
                         updateValue = sc.nextLine();
                         query = prop.getProperty("updateEmpPw");
                         pstmt = con.prepareStatement(query);
@@ -383,7 +383,7 @@ public class AdminDAO extends EmployeeDAO {
                         break;
                     case 3:
                         sc.nextLine();
-                        System.out.print("사원 이름 변경할 값 입력 >> ");
+                        System.out.print("이름 변경할 값 입력 >> ");
                         updateValue = sc.nextLine();
                         query = prop.getProperty("updateEmpName");
                         pstmt = con.prepareStatement(query);
@@ -414,7 +414,7 @@ public class AdminDAO extends EmployeeDAO {
                         sc.nextLine();
                         while (isTrue){
                             checkValue = 0;
-                            System.out.print("     직책 코드 변경할 값 입력 ( J6 : 사장 / J5 : 부장 / J4 : 차장 / J3 : 과장 / J2 : 대리 / J1 : 사원 ) : ");
+                            System.out.print("직책 코드 변경할 값 입력 ( J6 : 사장 / J5 : 부장 / J4 : 차장 / J3 : 과장 / J2 : 대리 / J1 : 사원 ) : ");
                             updateValue = sc.nextLine().toUpperCase();
                             if ( !updateValue.equals("J6") & !updateValue.equals("J5") & !updateValue.equals("J4") & !updateValue.equals("J3") & !updateValue.equals("J2") & !updateValue.equals("J1") ) {
                                 System.out.println("해당하는 코드는 없습니다... 다시 입력해주세요.");
@@ -475,11 +475,11 @@ public class AdminDAO extends EmployeeDAO {
                     System.out.println(empDTO);
                     empDTO = getEmpInfo(this.empNo);
                 }
-                else {  System.out.println("변경 실패...");  }
+                else {  System.out.println("    변경 실패...");  }
 
             }
             else  {
-                System.out.println("해당하는 정보가 없습니다.");
+                System.out.println("    해당하는 정보가 없습니다.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -525,7 +525,7 @@ public class AdminDAO extends EmployeeDAO {
             if ( resultEmp > 0 & resultAtd > 0) {
                 System.out.println(empDTO);
                 System.out.println(atdDTO);
-                System.out.println(empNo + "번의 정보가 삭제되었습니다.");
+                System.out.println("     " +empNo + "번의 정보가 삭제되었습니다.");
                 empDTO = getEmpInfo(this.empNo);
                 atdDTO = getAtdInfo(this.empNo);        // 내 정보로 초기화
             } else {
@@ -533,7 +533,7 @@ public class AdminDAO extends EmployeeDAO {
             }
 
         } else {
-            System.out.println("해당 정보가 없습니다...");
+            System.out.println("    해당 정보가 없습니다...");
         }
 
     }
@@ -574,6 +574,7 @@ public class AdminDAO extends EmployeeDAO {
                 atdDTO.setTotalDayCount(rset.getInt("TOTAL_DAY_COUNT"));
                 atdDTO.setOntimeCount(rset.getInt("ONTIME_COUNT"));
                 atdDTO.setLateCount(rset.getInt("LATE_COUNT"));
+                atdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
                 atdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
             }
 
@@ -595,6 +596,7 @@ public class AdminDAO extends EmployeeDAO {
                 atdDTO.setTotalDayCount(rset.getInt("TOTAL_DAY_COUNT"));
                 atdDTO.setOntimeCount(rset.getInt("ONTIME_COUNT"));
                 atdDTO.setLateCount(rset.getInt("LATE_COUNT"));
+                atdDTO.setAbsentCount(rset.getInt("ABSENT_COUNT"));
                 atdDTO.setTotalScore(rset.getInt("TOTAL_SCORE"));
 
                 atdDTOList.add(atdDTO);
@@ -609,7 +611,7 @@ public class AdminDAO extends EmployeeDAO {
     public void updateAtdInfo(){
         sc = new Scanner(System.in);
 
-        System.out.print("근태 정보를 변경할 사원의 사번 입력 >> ");
+        System.out.print("정보를 변경할 사원의 사번 입력 >> ");
         int empNo = sc.nextInt();
 
         atdDTO = new AttendanceDTO();
@@ -674,10 +676,10 @@ public class AdminDAO extends EmployeeDAO {
                         result = pstmt.executeUpdate();
                         break;
                     case 5:
-                        System.out.println("이전으로 돌아갑니다...");
+                        System.out.println("    이전으로 돌아갑니다...");
                         break;
                     default:
-                        System.out.println("잘못된 입력입니다...");
+                        System.out.println("    잘못된 입력입니다...");
                         break;
                 }
             } catch (SQLException e) {
@@ -690,17 +692,71 @@ public class AdminDAO extends EmployeeDAO {
             if ( result > 0 ) {
                 atdDTO = getAtdInfo(empNo);
                 System.out.println(atdDTO);
-                System.out.println(atdDTO.getEmpNo() + "번 사원의 근태 정보가 변경되었습니다.");
+                System.out.println("    " + atdDTO.getEmpNo() + "번 사원의 근태 정보가 변경되었습니다.");
                 getAllAtdInfo();
                 atdDTO = getAtdInfo(this.empNo);
             }
             else {
                 System.out.println(atdDTO);
-                System.out.println("정보 변경에 실패 했습니다...");
+                System.out.println("    정보 변경에 실패 했습니다...");
             }
         }
         else  {
-            System.out.println("해당하는 정보가 없습니다...");
+            System.out.println("    해당하는 정보가 없습니다...");
+        }
+    }
+    public void resetAtdInfo(){
+        sc = new Scanner(System.in);
+
+        System.out.print("초기화할 사원의 사번 입력 >> ");
+        int empNo = sc.nextInt();
+
+        atdDTO = new AttendanceDTO();
+        atdDTO = getAtdInfo(empNo);
+
+        if ( atdDTO.getEmpNo() != 0 ) {
+            sc.nextLine();
+            boolean isTrue = true;
+            while (isTrue) {
+                System.out.println("초기화 하시겠습니까? (Y/N) ");
+                System.out.print(">> ");
+                String answer = sc.nextLine().toUpperCase();
+
+                int result = 0;
+                String query;
+                if ( answer.equals("Y") ) {
+                    query = prop.getProperty("updateAtdTotalDayCount");
+                    try {
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setInt(1,0);
+                        pstmt.setInt(2,0);
+                        pstmt.setInt(3,0);
+                        pstmt.setInt(4,100);
+                        result = pstmt.executeUpdate();
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    if ( result > 0 ) {
+                        atdDTO = getAtdInfo(empNo);
+                        System.out.println(atdDTO.getEmpNo() + "번 사원의 근태 정보가 초기화되었습니다...");
+                        getAllAtdInfo();
+                        atdDTO = getAtdInfo(this.empNo);
+                        isTrue = false;
+                    } else {
+                        System.out.println("처리할 수 없습니다...");
+                    }
+                } else if( answer.equals("N")){
+                    System.out.println("메뉴로 돌아갑니다...");
+                    isTrue = false;
+                }  else {
+                    System.out.println("입력이 잘못되었습니다...");
+                }
+            }
+        }
+        else  {
+            System.out.println("    해당하는 정보가 없습니다...");
         }
     }
 
@@ -748,7 +804,7 @@ public class AdminDAO extends EmployeeDAO {
                     if( result > 0 ) {
                         vcntDTO = selectVcntInfo(vcntNo);
                         System.out.println(vcntDTO);
-                        System.out.println(vcntDTO.getEmpNo() + "번 사원의 부재 신청이 허가됩니다.");
+                        System.out.println("     " + vcntDTO.getEmpNo() + "번 사원의 부재 신청이 허가됩니다.");
                     } else {System.out.println("처리 불가...");}
 
                 } else if ( answer.equals("N") ) {
@@ -764,7 +820,7 @@ public class AdminDAO extends EmployeeDAO {
                     if( result > 0 ) {
                         vcntDTO = selectVcntInfo(vcntNo);
                         System.out.println(vcntDTO);
-                        System.out.println(vcntDTO.getEmpNo() + "번 사원의 부재 신청이 거부됩니다.");
+                        System.out.println("     " + vcntDTO.getEmpNo() + "번 사원의 부재 신청이 거부됩니다.");
                     } else {System.out.println("처리 불가...");}
 
                 } else {
