@@ -71,13 +71,16 @@
 #### <물리모델>
 ![ams_ver6_4_물리](https://github.com/dotCodeTeam/AMS/assets/90615404/8e4dce9a-4cda-469a-83d3-85ad5b6af414)
 
-** 3. 스크럼 보드 **
+** 1-4. Class Diagram **
+![KakaoTalk_20240228_190315277](https://github.com/dotCodeTeam/.github/assets/134928447/9f3f6eb6-d89a-469b-8c46-f16d8e35aabf)
 
-** 4. 기타 내용 **
+** 2. 기타 내용 **
 
 ## Impression (느낀점)
 - 조은성 :
 - 윤수빈 :
 - 임찬울 :
 - 고영상 :
-- 박진현 : 
+- 박진현 :
+
+## Documents 
