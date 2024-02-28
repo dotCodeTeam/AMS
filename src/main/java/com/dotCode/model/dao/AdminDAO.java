@@ -671,7 +671,6 @@ public class AdminDAO extends EmployeeDAO {
                     switch (selectCulumn){
                         case 1:
                             sc.nextLine();
-                            System.out.println(atdDTO);
                             System.out.print("총 근무 일자 변경 값 >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdTotalDayCount");
@@ -682,7 +681,6 @@ public class AdminDAO extends EmployeeDAO {
                             break;
                         case 2:
                             sc.nextLine();
-                            System.out.println(atdDTO);
                             System.out.print("정시 출근 일자 변경 값  >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdOntimeCount");
@@ -693,7 +691,6 @@ public class AdminDAO extends EmployeeDAO {
                             break;
                         case 3:
                             sc.nextLine();
-                            System.out.println(atdDTO);
                             System.out.print("지각 횟수 변경 값 >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdLateCount");
@@ -704,7 +701,6 @@ public class AdminDAO extends EmployeeDAO {
                             break;
                         case 4:
                             sc.nextLine();
-                            System.out.println(atdDTO);
                             System.out.print("근태 점수 변경 값 >> ");
                             updateValue = sc.nextInt();
                             query = prop.getProperty("updateAtdTotalScore");
@@ -724,7 +720,7 @@ public class AdminDAO extends EmployeeDAO {
                     if ( result > 0 ) {
                         atdDTO = getAtdInfo(empNo);
                         System.out.println(atdDTO);
-                        System.out.println("    " + atdDTO.getEmpNo() + "번 사원의 근태 정보가 변경되었습니다.");
+                        System.out.println(atdDTO.getEmpNo() + "번 사원의 근태 정보가 변경되었습니다.");
                         getAllAtdInfo();
                         atdDTO = getAtdInfo(this.empNo);
                     } else if( result == -1 ){
