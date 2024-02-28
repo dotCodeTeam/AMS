@@ -62,7 +62,7 @@
 ![스프린트 추적](https://github.com/dotCodeTeam/dotCode/assets/134928447/4ab9f1c0-c943-403f-88fb-041f03417b8a)
 
 ** 1-2. Use Case Diagram **
-![스프린트 추적](https://github.com/dotCodeTeam/dotCode/assets/134928447/216f7cbb-5f38-42f5-ae7a-85c5724c1eb8)
+![ams_usecase](https://github.com/dotCodeTeam/AMS/assets/90615404/bcc9eab0-091f-4a8e-887d-b9fc19d7ad06)
 
 ** 1-3. DataBase Modeling
 - [단계별 보기](https://docs.google.com/spreadsheets/d/1C87q15x0XjstHbo-en2ivPs50yKtqrOh5AFT1MqlvHg/edit?usp=sharing)
