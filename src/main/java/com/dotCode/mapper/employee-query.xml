@@ -49,6 +49,15 @@
         WHERE
                 A.EMP_NO = ?
     </entry>
+    <entry key="updateAtdAbsentCount">
+        UPDATE
+                ATTENDANCE A
+        SET
+                A.ABSENT_COUNT = (A.ABSENT_COUNT + ?)
+        ,       A.TOTAL_SCORE = (A.TOTAL_SCORE - ?)
+        WHERE
+                A.EMP_NO = ?
+    </entry>
     <entry key="setVcntInfo">
         INSERT INTO
                 VACANT

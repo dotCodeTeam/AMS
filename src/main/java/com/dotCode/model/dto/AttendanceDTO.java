@@ -6,15 +6,17 @@ public class AttendanceDTO implements java.io.Serializable{
     private int totalDayCount;
     private int ontimeCount;
     private int lateCount;
+    private int absentCount;
     private int totalScore;
 
     public AttendanceDTO(){}
 
-    public AttendanceDTO(int empNo, int totalDayCount, int ontimeCount, int lateCount, int totalScore) {
+    public AttendanceDTO(int empNo, int totalDayCount, int ontimeCount, int lateCount, int absentCount, int totalScore) {
         this.empNo = empNo;
         this.totalDayCount = totalDayCount;
         this.ontimeCount = ontimeCount;
         this.lateCount = lateCount;
+        this.absentCount = absentCount;
         this.totalScore = totalScore;
     }
 
@@ -50,6 +52,14 @@ public class AttendanceDTO implements java.io.Serializable{
         this.lateCount = lateCount;
     }
 
+    public int getAbsentCount() {
+        return absentCount;
+    }
+
+    public void setAbsentCount(int absentCount) {
+        this.absentCount = absentCount;
+    }
+
     public int getTotalScore() {
         return totalScore;
     }
@@ -60,12 +70,14 @@ public class AttendanceDTO implements java.io.Serializable{
 
     @Override
     public String toString() {
-        return  "근태 현황\n{" +
-                " 사번=" + empNo +
-                ", 총 근무 일자=" + totalDayCount +
-                ", 정시 출근 일자=" + ontimeCount +
+        return "    근태 정보\n{" +
+                "사번=" + empNo +
+                ", 총 근무일자=" + totalDayCount +
+                ", 정시 출근=" + ontimeCount +
                 ", 지각=" + lateCount +
+                ", 결근=" + absentCount +
                 ", 근태점수=" + totalScore +
                 '}';
     }
 }
+

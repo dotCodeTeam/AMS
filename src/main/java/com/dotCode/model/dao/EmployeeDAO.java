@@ -69,9 +69,9 @@ public class EmployeeDAO {
         }
 
         if ( result > 0 ) {
-            System.out.println("총 근무일자 업데이트 완료...");
+            System.out.println("    총 근무일자 업데이트 완료...");
         } else {
-            System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
+            System.out.println("    처리할 수 없습니다... 관리자에게 문의하세요.");
         }
     }
 
@@ -84,9 +84,9 @@ public class EmployeeDAO {
             totalDayCount();
             System.out.println("=============================");
             LocalDate currentDate = LocalDate.now();
-            System.out.print(currentDate);
+            System.out.print("  " + currentDate);
             System.out.println(" 로그인 성공...");
-            System.out.println(empDTO.getEmpName()+ "님 환영합니다!!");
+            System.out.println("    " + empDTO.getEmpName() + "님 환영합니다!!");
             isTrue = true;
         }
 
@@ -94,8 +94,8 @@ public class EmployeeDAO {
     }
     public void logOut(){
         System.out.println("=============================");
-        System.out.println("로그아웃 성공... " );
-        System.out.println(empDTO.getEmpName()+"님 오늘도 수고하셨습니다!");
+        System.out.println("    로그아웃 성공... " );
+        System.out.println("    " + empDTO.getEmpName()+"님 오늘도 수고하셨습니다!");
     }
 
     public int checkInTime(){
@@ -106,30 +106,39 @@ public class EmployeeDAO {
         String now = sc.nextLine();
 
         int result = 0;
-        boolean isLate = false;
+        int nowType = 0;
         try {
-            Date workStartTime = sdf.parse("09:00");        // 출근시간
+            Date workStartTime = sdf.parse("09:00");        // 정시출근시간
+            Date absentTime = sdf.parse("10:00");           // 결근시간
             Date actualTime = sdf.parse(now);
 
-            String query = prop.getProperty("updateAtdLateCount");
-
+            String query;
             if (actualTime.after(workStartTime)) {
+                query = prop.getProperty("updateAtdLateCount");
                 pstmt = con.prepareStatement(query);
                 pstmt.setInt(1,1);
                 pstmt.setInt(2,1);
                 pstmt.setInt(3,empDTO.getEmpNo());
                 result = pstmt.executeUpdate();
+                nowType = 1;
+            } else if ( actualTime.after(absentTime)){
+                query = prop.getProperty("updateAtdAbsentCount");
+                pstmt = con.prepareStatement(query);
+                pstmt.setInt(1,1);
+                pstmt.setInt(2,5);
+                pstmt.setInt(3,empDTO.getEmpNo());
+                result = pstmt.executeUpdate();
+                nowType = -1;
             } else {
                 query = prop.getProperty("updateAtdOntimeCount");
                 pstmt = con.prepareStatement(query);
-                pstmt.setInt(1,1);
+                pstmt.setInt(1,5);
                 pstmt.setInt(2,empDTO.getEmpNo());
                 result = pstmt.executeUpdate();
-                isLate = true;
             }
         } catch (ParseException e) {
             result = -1;
-            System.out.println("입력 형식이 올바르지 않습니다. (HH:mm 형식으로 입력하세요)");
+            System.out.println("    입력 형식이 올바르지 않습니다. (HH:mm 형식으로 입력하세요)");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -137,12 +146,14 @@ public class EmployeeDAO {
             close(pstmt);
         }
 
-        if ( isLate == true ) {
-            System.out.println("정시 출근 되었습니다...");
-        } else if ( result > 0 & isLate == false ){
-            System.out.println("지각 처리 되었습니다...");
+        if ( result > 0 & nowType == 0 ) {
+            System.out.println("    정시 출근 되었습니다...");
+        } else if ( result > 0 & nowType == 1 ){
+            System.out.println("    지각 처리 되었습니다...");
+        } else if ( result > 0 & nowType == -1 ){
+            System.out.println("    결근 처리 되었습니다...");
         } else if ( result == 0 ){
-            System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
+            System.out.println("    처리할 수 없습니다... 관리자에게 문의하세요.");
         }
 
 
@@ -150,7 +161,7 @@ public class EmployeeDAO {
     }
     public void checkIn(){
         if(empDTO.getStatusCode().equals("A1")){
-            System.out.println("이미 근무 중 입니다...");
+            System.out.println("    이미 근무 중 입니다...");
         }
         else {
             int checkInTime = checkInTime();
@@ -176,9 +187,9 @@ public class EmployeeDAO {
             }
 
             if ( result > 0 & checkInTime == 1) {
-                System.out.println("오늘 하루도 화이팅입니다!");
+                System.out.println("    오늘 하루도 화이팅입니다!");
             }   else if ( result == 0 ){
-                System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
+                System.out.println("    처리 할 수 없습니다... 관리자에게 문의하세요.");
             }
         }
     }
@@ -231,13 +242,13 @@ public class EmployeeDAO {
 
             if(result > 0 & checkOutTime == 1) {
                 getEmpInfo();
-                System.out.println("퇴근 처리 되었습니다.");
+                System.out.println("    퇴근 처리 되었습니다.");
             } else if ( result == 0 & checkOutTime == 0 ){
-                System.out.println("아직 퇴근할 수 없습니다!");
+                System.out.println("    아직 퇴근할 수 없습니다!");
             } else if ( result == 0 & checkOutTime == -1 ){
                 System.out.println("입력 형식이 올바르지 않습니다. (HH:mm 형식으로 입력하세요)");
             } else {
-                System.out.println("처리할 수 없습니다... 관리자에게 문의하세요.");
+                System.out.println("    처리할 수 없습니다... 관리자에게 문의하세요.");
             }
 
         }
@@ -389,7 +400,7 @@ public class EmployeeDAO {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ParseException e) {
-                System.out.println("날짜 입력 형식을 맞춰주세요...");
+                System.out.println("    날짜 입력 형식을 맞춰주세요...");
                 result = -1;
             }
         }
