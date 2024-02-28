@@ -42,6 +42,7 @@ public class EmployeeDAO {
         }
     }
 
+    // 총 근무일자 데이터에 주입
     public void totalDayCount(){
 
         int result = 0;
@@ -75,6 +76,7 @@ public class EmployeeDAO {
         }
     }
 
+    // 로그인/로그아웃
     public boolean logIn(String id, String pwd) {
         boolean isTrue = false;
 
@@ -98,6 +100,14 @@ public class EmployeeDAO {
         System.out.println("    " + empDTO.getEmpName()+"님 오늘도 수고하셨습니다!");
     }
 
+    // 관리자사번 확인하기
+    public int checkAdmin(){
+        int result = 1;
+        if ( empDTO.getAdminCode().equals("S0") ) {    result = 0;   }
+        return result;
+    }
+
+    // 출퇴근 시간 확인하기
     public int checkInTime(){
         sdf = new SimpleDateFormat("HH:mm");
         sc = new Scanner(System.in);
@@ -258,12 +268,7 @@ public class EmployeeDAO {
 
     }
 
-    public int checkAdmin(){
-        int result = 1;
-        if ( empDTO.getAdminCode().equals("S0") ) {    result = 0;   }
-        return result;
-    }
-
+    // 내 개인정보 가져오기
     public EmployeeDTO getEmpInfo(){
         String query = prop.getProperty("getEmpInfo");
         try {
@@ -327,6 +332,7 @@ public class EmployeeDAO {
         return empDTO;
     }
 
+    // 내 근태정보 가져오기
     public void getAtdInfo(){
         String query = prop.getProperty("getAtdInfo");
 
@@ -354,6 +360,7 @@ public class EmployeeDAO {
 
     }
 
+    // 부재신청하기
     public void setVcntInfo(){
         sc = new Scanner(System.in);
         vcntDTO = new VacantDTO();

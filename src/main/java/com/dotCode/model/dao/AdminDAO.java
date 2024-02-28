@@ -723,15 +723,15 @@ public class AdminDAO extends EmployeeDAO {
                 String answer = sc.nextLine().toUpperCase();
 
                 int result = 0;
-                String query;
                 if ( answer.equals("Y") ) {
-                    query = prop.getProperty("updateAtdTotalDayCount");
+                    String query = prop.getProperty("resetAtdInfo");
                     try {
                         pstmt = con.prepareStatement(query);
                         pstmt.setInt(1,0);
                         pstmt.setInt(2,0);
                         pstmt.setInt(3,0);
                         pstmt.setInt(4,100);
+                        pstmt.setInt(5,empNo);
                         result = pstmt.executeUpdate();
 
                     } catch (SQLException e) {
