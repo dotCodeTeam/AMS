@@ -19,12 +19,16 @@
         SELECT *
         FROM    EMPLOYEE
     </entry>
+    <entry key="getMaxEmpNo">
+        SELECT MAX(EMP_NO)
+        FROM   EMPLOYEE
+    </entry>
 
     <entry key="insertEmp">
         INSERT INTO
                         EMPLOYEE
         VALUES (
-                        NULL
+                        ?
                         , ?
                         , ?
                         , ?

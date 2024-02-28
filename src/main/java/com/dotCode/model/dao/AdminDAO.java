@@ -257,6 +257,22 @@ public class AdminDAO extends EmployeeDAO {
     }
 
     // 사원 관련 기능 메소드
+    public int getMaxEmpNo(){
+        int empNo = 0;
+        String query = prop.getProperty("getMaxEmpNo");
+        try {
+            pstmt = con.prepareStatement(query);
+            rset = pstmt.executeQuery();
+
+            if ( rset.next()){
+                empNo = rset.getInt("MAX(EMP_NO)");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return empNo;
+    }
     public void createEmpInfo() {
         sc = new Scanner(System.in);
         System.out.println("============ 사원 등록 ============");
@@ -279,18 +295,6 @@ public class AdminDAO extends EmployeeDAO {
         String pw = sc.nextLine();
         System.out.print("     NAME : ");
         String name = sc.nextLine();
-//        String statusCode = "";
-//        isTrue = true;
-//        while (isTrue){
-//            int checkId = 0;
-//            System.out.print("근태 현황 변경할 값 입력 ( A1 : 근무중 / A2 : 퇴근 / B1 : 출장 / B2 : 외출 / C1 : 월차 / C2 : 연차 / D1 : 병가 ) >> ");
-//            statusCode = sc.nextLine().toUpperCase();
-//            if ( !statusCode.equals("A1") & !statusCode.equals("A2") & !statusCode.equals("B1") & !statusCode.equals("B2") & !statusCode.equals("J2") & !statusCode.equals("J1") ) {
-//                System.out.println("해당하는 코드는 없습니다... 다시 입력해주세요.");
-//                checkId = 1;
-//            }
-//            if ( checkId == 0 ){    isTrue = false;     }
-//        }
         String jobCode = "";
         isTrue = true;
         while (isTrue){
@@ -324,23 +328,27 @@ public class AdminDAO extends EmployeeDAO {
 
         java.sql.Date hireDate;
         int result = 0;
-        String query = prop.getProperty("insertEmp");
+        String query;
         try {
+            int empNo = getMaxEmpNo()+1;
+
             sdf = new SimpleDateFormat("yyyy-MM-dd");
             LocalDate crntDate = LocalDate.now();
             Date dateCrnt = sdf.parse(String.valueOf(crntDate));
             hireDate = new java.sql.Date(dateCrnt.getTime());
 
+            query = prop.getProperty("insertEmp");
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1, id);
-            pstmt.setString(2, pw);
-            pstmt.setString(3, name);
-            pstmt.setString(4, "A2");
-            pstmt.setString(5, jobCode);
-            pstmt.setDate(6, hireDate);
-            pstmt.setString(7, phone);
-            pstmt.setString(8, email);
-            pstmt.setString(9, adminCode);
+            pstmt.setInt(1, empNo);
+            pstmt.setString(2, id);
+            pstmt.setString(3, pw);
+            pstmt.setString(4, name);
+            pstmt.setString(5, "A2");
+            pstmt.setString(6, jobCode);
+            pstmt.setDate(7, hireDate);
+            pstmt.setString(8, phone);
+            pstmt.setString(9, email);
+            pstmt.setString(10, adminCode);
 
             result = pstmt.executeUpdate();
 
