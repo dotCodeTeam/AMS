@@ -631,7 +631,6 @@ public class AdminDAO extends EmployeeDAO {
             pstmt.setInt(4,0);
             pstmt.setInt(5,0);
             pstmt.setInt(6,100);
-            pstmt.setDate(7,resetDate);
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
