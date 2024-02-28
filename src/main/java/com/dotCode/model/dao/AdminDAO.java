@@ -740,6 +740,7 @@ public class AdminDAO extends EmployeeDAO {
 
                     if ( result > 0 ) {
                         atdDTO = getAtdInfo(empNo);
+                        System.out.println(atdDTO);
                         System.out.println(atdDTO.getEmpNo() + "번 사원의 근태 정보가 초기화되었습니다...");
                         getAllAtdInfo();
                         atdDTO = getAtdInfo(this.empNo);
