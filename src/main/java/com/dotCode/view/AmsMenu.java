@@ -251,6 +251,7 @@ public class AmsMenu {
                                         }
                                         break;
                                     case 0:
+                                        empDAO.compulsionStatus();
                                         isLogin = false;
                                         isMenu = false;
                                         break;

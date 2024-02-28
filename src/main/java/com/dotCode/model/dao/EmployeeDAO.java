@@ -97,7 +97,33 @@ public class EmployeeDAO {
     public void logOut(){
         System.out.println("=============================");
         System.out.println("    로그아웃 성공... " );
+        compulsionStatus();
         System.out.println("    " + empDTO.getEmpName()+"님 오늘도 수고하셨습니다!");
+
+    }
+
+    public void compulsionStatus(){
+        if ( !empDTO.getStatusCode().equals("A2")){
+
+            int result = 0;
+            String query = prop.getProperty("updateStatus");
+            try {
+                pstmt = con.prepareStatement(query);
+                pstmt.setString(1,"A2");
+                pstmt.setInt(2,empDTO.getEmpNo());
+
+                result = pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            if ( result > 0 ) {
+                System.out.println("    퇴근 처리 됩니다...");
+            } else {
+                System.out.println("처리 할 수 없습니다...");
+            }
+        }
     }
 
     // 관리자사번 확인하기

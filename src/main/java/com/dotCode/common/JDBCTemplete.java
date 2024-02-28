@@ -22,7 +22,7 @@ public class JDBCTemplete {
             Class.forName(driver);
 
             con = DriverManager.getConnection(url, prop);
-
+            con.setCatalog("amsdb");
 //            con.setAutoCommit(false);
 
         } catch (IOException e) {

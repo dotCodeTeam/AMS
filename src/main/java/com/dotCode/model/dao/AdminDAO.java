@@ -140,121 +140,8 @@ public class AdminDAO extends EmployeeDAO {
         }
         return empDTO;
     }
-    public EmployeeDTO getEmpInfo(String empId){     // 사원등록 할 때
-        String query = prop.getProperty("getEmpIdInfo");
-        try {
-            pstmt = con.prepareStatement(query);
-            pstmt.setString(1,empId);
-            rset = pstmt.executeQuery();
-
-            if(rset.next()){
-                empDTO.setEmpNo(rset.getInt("EMP_NO"));
-                empDTO.setEmpId(rset.getString("EMP_ID"));
-                empDTO.setEmpPwd(rset.getString("EMP_PW"));
-                empDTO.setEmpName(rset.getString("EMP_NAME"));
-                empDTO.setStatusCode(rset.getString("STATUS_CODE"));
-                empDTO.setJobCode(rset.getString("JOB_CODE"));
-                empDTO.setHireDate(rset.getString("EMP_HIREDATE"));
-                empDTO.setPhone(rset.getString("PHONE"));
-                empDTO.setEmail(rset.getString("EMAIL"));
-                empDTO.setAdminCode(rset.getString("ADMIN_CODE"));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return empDTO;
-    }
 
     // 검색 기능 메소드
-    public void searchEmpInfo(){
-        boolean isInt = true;
-        while (isInt) {
-            sc = new Scanner(System.in);
-            try{
-                int empNo = 0;
-                sc = new Scanner(System.in);
-                System.out.print("조회할 사번 입력 >> ");
-                empNo = sc.nextInt();
-
-                empDTO = new EmployeeDTO();
-                empDTO = getEmpInfo(empNo);
-                if ( empDTO.getEmpNo() != 0 ){
-                    System.out.println(empDTO);
-                } else {
-                    System.out.println("    해당하는 정보가 없습니다...");
-                }
-                empDTO = getEmpInfo(this.empNo);
-
-                isInt = false;
-            }
-            catch (NumberFormatException e){
-                System.out.println("입력이 잘못되었습니다...");
-            } catch (InputMismatchException e){
-                System.out.println("입력이 잘못되었습니다...");
-            }
-        }
-    }
-    public void searchAtdInfo(){
-        boolean isInt = true;
-        while (isInt) {
-            sc = new Scanner(System.in);
-            try{
-                int empNo = 0;
-                sc = new Scanner(System.in);
-                System.out.print("조회할 사번 입력 >> ");
-                empNo = sc.nextInt();
-
-                atdDTO = new AttendanceDTO();
-                atdDTO = getAtdInfo(empNo);
-                if ( atdDTO.getEmpNo() != 0 ){
-                    System.out.println(atdDTO);
-                } else {
-                    System.out.println("    해당하는 정보가 없습니다...");
-                }
-                atdDTO = getAtdInfo(this.empNo);
-
-                isInt = false;
-            }
-            catch (NumberFormatException e){
-                System.out.println("입력이 잘못되었습니다...");
-            } catch (InputMismatchException e){
-                System.out.println("입력이 잘못되었습니다...");
-            }
-        }
-    }
-    public void searchVcntInfo(){
-        boolean isInt = true;
-        while (isInt) {
-            sc = new Scanner(System.in);
-            try{
-                int empNo = 0 ;
-                sc = new Scanner(System.in);
-                System.out.print("조회할 사번 입력 >> ");
-                empNo = sc.nextInt();
-
-                vcntDTO = new VacantDTO();
-                vcntDTO = getVcntInfo(empNo);
-
-                if ( vcntDTO.getEmpNo() != 0 ){
-                    for ( int i = 0 ; i < vcntDTOList.size(); i++ ){
-                        if ( empNo == vcntDTOList.get(i).getEmpNo()){
-                            System.out.println(vcntDTOList.get(i));
-                        }
-                    }
-                } else {
-                    System.out.println("해당하는 정보가 없습니다...");
-                }
-
-                isInt = false;
-            }
-            catch (NumberFormatException e){
-                System.out.println("입력이 잘못되었습니다...");
-            } catch (InputMismatchException e){
-                System.out.println("입력이 잘못되었습니다...");
-            }
-        }
-    }
 
     // 사원 관련 기능 메소드
     public int getMaxEmpNo(){
@@ -353,7 +240,7 @@ public class AdminDAO extends EmployeeDAO {
             result = pstmt.executeUpdate();
 
             if (result > 0) {
-                empDTO = getEmpInfo(id);    // 신입 정보
+                empDTO = getEmpInfo(empNo);    // 신입 정보
                 System.out.println("     " + empDTO.getEmpName() + "님의 사원 정보가 성공적으로 등록되었습니다.");
                 System.out.println(empDTO);
                 createAtdInfo(empDTO.getEmpNo());
@@ -374,13 +261,41 @@ public class AdminDAO extends EmployeeDAO {
             close(pstmt);
         }
     }
+    public void searchEmpInfo(){
+        boolean isInt = true;
+        while (isInt) {
+            sc = new Scanner(System.in);
+            try{
+                int empNo;
+                sc = new Scanner(System.in);
+                System.out.print("조회할 사번 입력 >> ");
+                empNo = sc.nextInt();
+
+                empDTO = new EmployeeDTO();
+                empDTO = getEmpInfo(empNo);
+                if ( empDTO.getEmpNo() != 0 ){
+                    System.out.println(empDTO);
+                } else {
+                    System.out.println("    해당하는 정보가 없습니다...");
+                }
+                empDTO = getEmpInfo(this.empNo);
+
+                isInt = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("입력이 잘못되었습니다...");
+            } catch (InputMismatchException e){
+                System.out.println("입력이 잘못되었습니다...");
+            }
+        }
+    }
     public void updateEmpInfo(){
         boolean isInt = true;
         while (isInt) {
             sc = new Scanner(System.in);
             try{
-                int empNo = 0;
-                int culumn = 0;
+                int empNo;
+                int culumn;
                 sc = new Scanner(System.in);
                 printAllEmpInfo();
                 System.out.print("정보를 변경할 사원의 사번 입력 >> ");
@@ -563,7 +478,7 @@ public class AdminDAO extends EmployeeDAO {
         while (isInt) {
             sc = new Scanner(System.in);
             try{
-                int empNo = 0 ;
+                int empNo;
                 sc = new Scanner(System.in);
 
                 printAllEmpInfo();
@@ -578,24 +493,17 @@ public class AdminDAO extends EmployeeDAO {
                     int resultEmp = 0;
                     int resultAtd = 0;
                     String query;
-                    try {
-                        query = prop.getProperty("deleteAtdInfo");
-                        pstmt = con.prepareStatement(query);
-                        pstmt.setInt(1,empNo);
+                    query = prop.getProperty("deleteAtdInfo");
+                    pstmt = con.prepareStatement(query);
+                    pstmt.setInt(1,empNo);
 
-                        resultEmp = pstmt.executeUpdate();
+                    resultEmp = pstmt.executeUpdate();
 
-                        query = prop.getProperty("deleteEmpInfo");
-                        pstmt = con.prepareStatement(query);
-                        pstmt.setInt(1,empNo);
+                    query = prop.getProperty("deleteEmpInfo");
+                    pstmt = con.prepareStatement(query);
+                    pstmt.setInt(1,empNo);
 
-                        resultAtd = pstmt.executeUpdate();
-
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    } finally {
-                        close(pstmt);
-                    }
+                    resultAtd = pstmt.executeUpdate();
 
                     if ( resultEmp > 0 & resultAtd > 0) {
                         System.out.println(empDTO);
@@ -617,42 +525,16 @@ public class AdminDAO extends EmployeeDAO {
                 System.out.println("입력이 잘못되었습니다...");
             } catch (InputMismatchException e){
                 System.out.println("입력이 잘못되었습니다...");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                close(pstmt);
             }
         }
 
     }
 
     // 근태 관련 기능 메소드
-    public void createAtdInfo(int empNo){
-        int result = 0;
-        String query = prop.getProperty("insertAtd");
-        try {
-            sdf = new SimpleDateFormat("yyyy-MM-dd");
-            LocalDate crntDate = LocalDate.now();
-            Date dateCrnt = sdf.parse(String.valueOf(crntDate));
-            java.sql.Date resetDate = new java.sql.Date(dateCrnt.getTime());
-
-            pstmt = con.prepareStatement(query);
-            pstmt.setInt(1,empNo);
-            pstmt.setInt(2,1);
-            pstmt.setInt(3,1);
-            pstmt.setInt(4,0);
-            pstmt.setInt(5,0);
-            pstmt.setInt(6,100);
-
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        if ( result > 0 ) {
-            System.out.println(getAtdInfo(empNo));
-        } else {
-            System.out.println("처리할 수 없습니다.");
-        }
-    }
     public AttendanceDTO getAtdInfo(int empNo){
         String query = prop.getProperty("getAtdInfo");
         try {
@@ -701,12 +583,70 @@ public class AdminDAO extends EmployeeDAO {
             close(pstmt);
         }
     }
+    public void createAtdInfo(int empNo){
+        int result = 0;
+        String query = prop.getProperty("insertAtd");
+        try {
+            sdf = new SimpleDateFormat("yyyy-MM-dd");
+            LocalDate crntDate = LocalDate.now();
+            Date dateCrnt = sdf.parse(String.valueOf(crntDate));
+            java.sql.Date resetDate = new java.sql.Date(dateCrnt.getTime());
+
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empNo);
+            pstmt.setInt(2,1);
+            pstmt.setInt(3,1);
+            pstmt.setInt(4,0);
+            pstmt.setInt(5,0);
+            pstmt.setInt(6,100);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        if ( result > 0 ) {
+            System.out.println(getAtdInfo(empNo));
+        } else {
+            System.out.println("처리할 수 없습니다.");
+        }
+    }
+    public void searchAtdInfo(){
+        boolean isInt = true;
+        while (isInt) {
+            sc = new Scanner(System.in);
+            try{
+                int empNo;
+                sc = new Scanner(System.in);
+                System.out.print("조회할 사번 입력 >> ");
+                empNo = sc.nextInt();
+
+                atdDTO = new AttendanceDTO();
+                atdDTO = getAtdInfo(empNo);
+                if ( atdDTO.getEmpNo() != 0 ){
+                    System.out.println(atdDTO);
+                } else {
+                    System.out.println("    해당하는 정보가 없습니다...");
+                }
+                atdDTO = getAtdInfo(this.empNo);
+
+                isInt = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("입력이 잘못되었습니다...");
+            } catch (InputMismatchException e){
+                System.out.println("입력이 잘못되었습니다...");
+            }
+        }
+    }
     public void updateAtdInfo(){
         boolean isInt = true;
         while (isInt) {
             sc = new Scanner(System.in);
             try{
-                int empNo = 0;
+                int empNo;
                 sc = new Scanner(System.in);
 
                 System.out.print("정보를 변경할 사원의 사번 입력 >> ");
@@ -730,60 +670,54 @@ public class AdminDAO extends EmployeeDAO {
                     String query;
                     int updateValue;
                     int result = 0;
-
-                    try {
-                        switch (selectCulumn){
-                            case 1:
-                                sc.nextLine();
-                                System.out.print("총 근무 일자 변경할 값 입력 >> ");
-                                updateValue = sc.nextInt();
-                                query = prop.getProperty("updateAtdTotalDayCount");
-                                pstmt = con.prepareStatement(query);
-                                pstmt.setInt(1,updateValue);
-                                pstmt.setInt(2,atdDTO.getEmpNo());
-                                result = pstmt.executeUpdate();
-                                break;
-                            case 2:
-                                sc.nextLine();
-                                System.out.print("정시 출근 일자 변경할 값 입력 >> ");
-                                updateValue = sc.nextInt();
-                                query = prop.getProperty("updateAtdOntimeCount");
-                                pstmt = con.prepareStatement(query);
-                                pstmt.setInt(1,updateValue);
-                                pstmt.setInt(2,atdDTO.getEmpNo());
-                                result = pstmt.executeUpdate();
-                                break;
-                            case 3:
-                                sc.nextLine();
-                                System.out.print("지각 변경할 값 입력 >> ");
-                                updateValue = sc.nextInt();
-                                query = prop.getProperty("updateAtdLateCount");
-                                pstmt = con.prepareStatement(query);
-                                pstmt.setInt(1,updateValue);
-                                pstmt.setInt(2,atdDTO.getEmpNo());
-                                result = pstmt.executeUpdate();
-                                break;
-                            case 4:
-                                sc.nextLine();
-                                System.out.print("근태 점수 변경할 값 입력 >> ");
-                                updateValue = sc.nextInt();
-                                query = prop.getProperty("updateAtdTotalScore");
-                                pstmt = con.prepareStatement(query);
-                                pstmt.setInt(1,updateValue);
-                                pstmt.setInt(2,atdDTO.getEmpNo());
-                                result = pstmt.executeUpdate();
-                                break;
-                            case 5:
-                                System.out.println("    이전으로 돌아갑니다...");
-                                break;
-                            default:
-                                System.out.println("    잘못된 입력입니다...");
-                                break;
-                        }
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    } finally {
-                        close(pstmt);
+                    System.out.println(atdDTO);
+                    switch (selectCulumn){
+                        case 1:
+                            sc.nextLine();
+                            System.out.print("총 근무 일자 변경 값 >> ");
+                            updateValue = sc.nextInt();
+                            query = prop.getProperty("updateAtdTotalDayCount");
+                            pstmt = con.prepareStatement(query);
+                            pstmt.setInt(1,updateValue);
+                            pstmt.setInt(2,atdDTO.getEmpNo());
+                            result = pstmt.executeUpdate();
+                            break;
+                        case 2:
+                            sc.nextLine();
+                            System.out.print("정시 출근 일자 변경 값  >> ");
+                            updateValue = sc.nextInt();
+                            query = prop.getProperty("updateAtdOntimeCount");
+                            pstmt = con.prepareStatement(query);
+                            pstmt.setInt(1,updateValue);
+                            pstmt.setInt(2,atdDTO.getEmpNo());
+                            result = pstmt.executeUpdate();
+                            break;
+                        case 3:
+                            sc.nextLine();
+                            System.out.print("지각 횟수 변경 값 >> ");
+                            updateValue = sc.nextInt();
+                            query = prop.getProperty("updateAtdLateCount");
+                            pstmt = con.prepareStatement(query);
+                            pstmt.setInt(1,updateValue);
+                            pstmt.setInt(2,atdDTO.getEmpNo());
+                            result = pstmt.executeUpdate();
+                            break;
+                        case 4:
+                            sc.nextLine();
+                            System.out.print("근태 점수 변경 값 >> ");
+                            updateValue = sc.nextInt();
+                            query = prop.getProperty("updateAtdTotalScore");
+                            pstmt = con.prepareStatement(query);
+                            pstmt.setInt(1,updateValue);
+                            pstmt.setInt(2,atdDTO.getEmpNo());
+                            result = pstmt.executeUpdate();
+                            break;
+                        case 5:
+                            System.out.println("    이전으로 돌아갑니다...");
+                            break;
+                        default:
+                            System.out.println("    잘못된 입력입니다...");
+                            break;
                     }
 
                     if ( result > 0 ) {
@@ -808,6 +742,10 @@ public class AdminDAO extends EmployeeDAO {
                 System.out.println("입력이 잘못되었습니다...");
             } catch (InputMismatchException e){
                 System.out.println("입력이 잘못되었습니다...");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                close(pstmt);
             }
         }
     }
@@ -836,29 +774,20 @@ public class AdminDAO extends EmployeeDAO {
                         int result = 0;
                         if ( answer.equals("Y") ) {
                             String query = prop.getProperty("resetAtdInfo");
-                            try {
-                                sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                LocalDate crntDate = LocalDate.now();
-                                Date dateCrnt = sdf.parse(String.valueOf(crntDate));
-                                java.sql.Date resetDate = new java.sql.Date(dateCrnt.getTime());
+                            sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            LocalDate crntDate = LocalDate.now();
+                            Date dateCrnt = sdf.parse(String.valueOf(crntDate));
+                            java.sql.Date resetDate = new java.sql.Date(dateCrnt.getTime());
 
-                                pstmt = con.prepareStatement(query);
-                                pstmt.setInt(1,0);
-                                pstmt.setInt(2,0);
-                                pstmt.setInt(3,0);
-                                pstmt.setInt(4,100);
-                                pstmt.setDate(5,resetDate);
-                                pstmt.setInt(6,empNo);
+                            pstmt = con.prepareStatement(query);
+                            pstmt.setInt(1,0);
+                            pstmt.setInt(2,0);
+                            pstmt.setInt(3,0);
+                            pstmt.setInt(4,100);
+                            pstmt.setDate(5,resetDate);
+                            pstmt.setInt(6,empNo);
 
-                                result = pstmt.executeUpdate();
-
-                            } catch (SQLException e) {
-                                throw new RuntimeException(e);
-                            } catch (ParseException e) {
-                                throw new RuntimeException(e);
-                            } finally {
-                                close(pstmt);
-                            }
+                            result = pstmt.executeUpdate();
 
                             if ( result > 0 ) {
                                 atdDTO = getAtdInfo(empNo);
@@ -888,6 +817,12 @@ public class AdminDAO extends EmployeeDAO {
                 System.out.println("입력이 잘못되었습니다...");
             } catch (InputMismatchException e){
                 System.out.println("입력이 잘못되었습니다...");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            } finally {
+                close(pstmt);
             }
         }
     }
@@ -928,49 +863,79 @@ public class AdminDAO extends EmployeeDAO {
                     String answer = sc.nextLine().toUpperCase();
 
                     String query = prop.getProperty("updateVcntAcpt");
-                    try {
-                        if ( answer.equals("Y") ) {
-                            pstmt = con.prepareStatement(query);
-                            pstmt.setString(1,"Y");
-                            pstmt.setString(2,"NULL");
-                            pstmt.setInt(3,vcntNo);
-                            result = pstmt.executeUpdate();
+                    if ( answer.equals("Y") ) {
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setString(1,"Y");
+                        pstmt.setString(2,"NULL");
+                        pstmt.setInt(3,vcntNo);
+                        result = pstmt.executeUpdate();
 
-                            if( result > 0 ) {
-                                vcntDTO = selectVcntInfo(vcntNo);
-                                System.out.println(vcntDTO);
-                                System.out.println("     " + vcntDTO.getEmpNo() + "번 사원의 부재 신청이 허가됩니다.");
-                            } else {System.out.println("처리 불가...");}
+                        if( result > 0 ) {
+                            vcntDTO = selectVcntInfo(vcntNo);
+                            System.out.println(vcntDTO);
+                            System.out.println("     " + vcntDTO.getEmpNo() + "번 사원의 부재 신청이 허가됩니다.");
+                        } else {System.out.println("처리 불가...");}
 
-                        } else if ( answer.equals("N") ) {
-                            System.out.print("사유를 입력해 주세요 >> ");
-                            String cause = sc.nextLine();
+                    } else if ( answer.equals("N") ) {
+                        System.out.print("사유를 입력해 주세요 >> ");
+                        String cause = sc.nextLine();
 
-                            pstmt = con.prepareStatement(query);
-                            pstmt.setString(1,"N");
-                            pstmt.setString(2,cause);
-                            pstmt.setInt(3,vcntNo);
-                            result = pstmt.executeUpdate();
+                        pstmt = con.prepareStatement(query);
+                        pstmt.setString(1,"N");
+                        pstmt.setString(2,cause);
+                        pstmt.setInt(3,vcntNo);
+                        result = pstmt.executeUpdate();
 
-                            if( result > 0 ) {
-                                vcntDTO = selectVcntInfo(vcntNo);
-                                System.out.println(vcntDTO);
-                                System.out.println("     " + vcntDTO.getEmpNo() + "번 사원의 부재 신청이 거부됩니다.");
-                            } else {System.out.println("처리 불가...");}
+                        if( result > 0 ) {
+                            vcntDTO = selectVcntInfo(vcntNo);
+                            System.out.println(vcntDTO);
+                            System.out.println("     " + vcntDTO.getEmpNo() + "번 사원의 부재 신청이 거부됩니다.");
+                        } else {System.out.println("처리 불가...");}
 
-                        } else {
-                            System.out.println("입력이 잘못되었습니다...");
-                        }
-
-                        getAllVcntInfo();
-
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    } finally {
-                        close(pstmt);
+                    } else {
+                        System.out.println("입력이 잘못되었습니다...");
                     }
+
+                    getAllVcntInfo();
+
                 } else  {
                     System.out.println("해당하는 사원의 부재 신청 정보가 없습니다...");
+                }
+
+                isInt = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("입력이 잘못되었습니다...");
+            } catch (InputMismatchException e){
+                System.out.println("입력이 잘못되었습니다...");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                close(pstmt);
+            }
+        }
+    }
+    public void searchVcntInfo(){
+        boolean isInt = true;
+        while (isInt) {
+            sc = new Scanner(System.in);
+            try{
+                int empNo;
+                sc = new Scanner(System.in);
+                System.out.print("조회할 사번 입력 >> ");
+                empNo = sc.nextInt();
+
+                vcntDTO = new VacantDTO();
+                vcntDTO = getVcntInfo(empNo);
+
+                if ( vcntDTO.getEmpNo() != 0 ){
+                    for ( int i = 0 ; i < vcntDTOList.size(); i++ ){
+                        if ( empNo == vcntDTOList.get(i).getEmpNo()){
+                            System.out.println(vcntDTOList.get(i));
+                        }
+                    }
+                } else {
+                    System.out.println("해당하는 정보가 없습니다...");
                 }
 
                 isInt = false;
@@ -1073,8 +1038,5 @@ public class AdminDAO extends EmployeeDAO {
             System.out.println(vcntDTO);
         }
     }
-
-
-
 
 }
