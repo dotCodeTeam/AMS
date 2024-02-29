@@ -13,9 +13,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.dotCode.common.JDBCTemplete.close;
 import static com.dotCode.common.JDBCTemplete.getConnection;
@@ -412,6 +410,7 @@ public class EmployeeDAO {
         String query = prop.getProperty("setVcntInfo");
         int result = 0;
         isTrue = true;
+        boolean checkAnswer = true;
         while ( isTrue ){
             try {
                 System.out.print("  부재 희망하는 날짜 입력 (YYYY-MM-DD) >> ");
@@ -426,15 +425,24 @@ public class EmployeeDAO {
                 System.out.print("  사유 >> ");
                 String cause = sc.nextLine();
 
-                pstmt = con.prepareStatement(query);
-                pstmt.setInt(1,empNo);
-                pstmt.setString(2,vacantCode);
-                pstmt.setDate(3,currentDate);
-                pstmt.setDate(4,dayDate);
-                pstmt.setString(5,cause);
+                System.out.println("  신청하시겠습니까? (Y/N) ");
+                System.out.print("  >> ");
+                String answer = sc.nextLine().toUpperCase();
 
-                result = pstmt.executeUpdate();
-                isTrue = false;
+                if ( answer.equals("Y") ) {
+                    pstmt = con.prepareStatement(query);
+                    pstmt.setInt(1,empNo);
+                    pstmt.setString(2,vacantCode);
+                    pstmt.setDate(3,currentDate);
+                    pstmt.setDate(4,dayDate);
+                    pstmt.setString(5,cause);
+
+                    result = pstmt.executeUpdate();
+                } else if ( answer.equals("N")){
+                    checkAnswer = false;
+                } else {
+                    System.out.println("잘못된 입력입니다...");
+                }
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -442,16 +450,103 @@ public class EmployeeDAO {
                 System.out.println("날짜 입력 형식을 맞춰주세요...");
                 result = -1;
             }
+
+            if( result > 0 & checkAnswer ){
+                vcntDTO = getVcntInfo(getMaxVcntNoInfo(empNo));
+                System.out.println(vcntDTO);
+                System.out.println("정상적으로 신청이 완료되었습니다!");
+                vcntDTO = new VacantDTO();
+                isTrue = false;
+            } else if ( result == 0 & !checkAnswer){
+                System.out.println("이전메뉴로 돌아갑니다...");
+                isTrue = false;
+            } else {
+                System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
+                isTrue = false;
+            }
         }
 
-        if( result > 0 ){
-            System.out.println("    정상적으로 신청이 완료되었습니다!");
-        } else {
-            System.out.println("처리 할 수 없습니다... 관리자에게 문의하세요.");
-        }
 
 
     }
+
+    public VacantDTO getVcntInfo(int vcntNo){
+        String query = prop.getProperty("getVcntNoInfo");
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,vcntNo);
+            rset = pstmt.executeQuery();
+
+            if ( rset.next() ) {
+                vcntDTO.setVacantNo(rset.getInt("VACANT_NO"));
+                vcntDTO.setEmpNo(rset.getInt("EMP_NO"));
+                vcntDTO.setStatusCode(rset.getString("STATUS_CODE"));
+                vcntDTO.setApplyDate(rset.getString("APPLY_DATE"));
+                vcntDTO.setDayDate(rset.getString("DAY_DATE"));
+                vcntDTO.setCause(rset.getString("CAUSE"));
+                vcntDTO.setAcceptStatus(rset.getString("ACCEPT_STATUS"));
+                vcntDTO.setAcceptCause(rset.getString("ACCEPT_CAUSE"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return vcntDTO;
+    }
+
+    public int getMaxVcntNoInfo(int empNo){
+        int result = 0;
+        String query = prop.getProperty("getMaxVcntNo");
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empNo);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()){
+                result = rset.getInt("MAX(VACANT_NO)");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if ( result == 0){
+            System.out.println("처리할 수 없습니다...");
+        }
+
+        return result;
+    }
+
+    public void printVcntInfo(){
+        List<VacantDTO> vcntDTOList = new ArrayList<>();
+        int empNo = empDTO.getEmpNo();
+        String query = prop.getProperty("getVcntInfo");
+        int result = 0;
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,empNo);
+            rset = pstmt.executeQuery();
+            while ( rset.next() ) {
+                vcntDTO = new VacantDTO();
+                vcntDTO.setVacantNo(rset.getInt("VACANT_NO"));
+                vcntDTO.setEmpNo(rset.getInt("EMP_NO"));
+                vcntDTO.setStatusCode(rset.getString("STATUS_CODE"));
+                vcntDTO.setApplyDate(rset.getString("APPLY_DATE"));
+                vcntDTO.setDayDate(rset.getString("DAY_DATE"));
+                vcntDTO.setCause(rset.getString("CAUSE"));
+                vcntDTO.setAcceptStatus(rset.getString("ACCEPT_STATUS"));
+                vcntDTO.setAcceptCause(rset.getString("ACCEPT_CAUSE"));
+
+                vcntDTOList.add(vcntDTO);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (VacantDTO vacantDTO : vcntDTOList){
+            System.out.println(vacantDTO);
+        }
+    }
+
 
 
 }

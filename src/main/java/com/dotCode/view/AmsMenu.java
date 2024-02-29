@@ -63,7 +63,30 @@ public class AmsMenu {
                                         empDAO.getAtdInfo();
                                         break;
                                     case 4:
-                                        empDAO.setVcntInfo();
+                                        boolean isVcnt = true;
+                                        while (isVcnt){
+                                            System.out.println("========== 부재 신청 =========");
+                                            System.out.println("1. 부재 신청");
+                                            System.out.println("2. 내 신청 정보 조회");
+                                            System.out.println("3. 이전으로");
+                                            System.out.println("================================");
+                                            System.out.print(">> ");
+                                            int choiseVcnt = sc.nextInt();
+                                            switch (choiseVcnt) {
+                                                case 1:
+                                                    empDAO.setVcntInfo();
+                                                    break;
+                                                case 2:
+                                                    empDAO.printVcntInfo();
+                                                    break;
+                                                case 3:
+                                                    isVcnt = false;
+                                                    break;
+                                                default:
+                                                    System.out.println("잘못된 입력입니다...");
+                                                    break;
+                                            }
+                                        }
                                         break;
                                     case 5:
                                         empDAO.logOut();
@@ -94,7 +117,30 @@ public class AmsMenu {
                                         empDAO.getAtdInfo();
                                         break;
                                     case 4:
-                                        empDAO.setVcntInfo();
+                                        boolean isVcnt = true;
+                                        while (isVcnt){
+                                            System.out.println("========== 부재 신청 =========");
+                                            System.out.println("1. 부재 신청");
+                                            System.out.println("2. 내 신청 정보 조회");
+                                            System.out.println("3. 이전으로");
+                                            System.out.println("================================");
+                                            System.out.print(">> ");
+                                            int choiseVcnt = sc.nextInt();
+                                            switch (choiseVcnt) {
+                                                case 1:
+                                                    empDAO.setVcntInfo();
+                                                    break;
+                                                case 2:
+                                                    empDAO.printVcntInfo();
+                                                    break;
+                                                case 3:
+                                                    isVcnt = false;
+                                                    break;
+                                                default:
+                                                    System.out.println("잘못된 입력입니다...");
+                                                    break;
+                                            }
+                                        }
                                         break;
                                     case 5:
                                         empDAO.logOut();
@@ -211,8 +257,8 @@ public class AmsMenu {
                                                 case 4:
                                                     sc.nextLine();
                                                     int selectVcnt;
-                                                    boolean isVcnt = true;
-                                                    while (isVcnt) {
+                                                    boolean isCareVcnt = true;
+                                                    while (isCareVcnt) {
                                                         System.out.println("======= 부재 신청 관리 ========");
                                                         System.out.println("1. 부재 신청 허가");
                                                         System.out.println("2. 사번 조회");
@@ -232,7 +278,7 @@ public class AmsMenu {
                                                                 adminDAO.printAllVcntInfo();
                                                                 break;
                                                             case 4:
-                                                                isVcnt = false;
+                                                                isCareVcnt = false;
                                                                 System.out.println("이전으로 돌아갑니다...");
                                                                 break;
                                                             default:

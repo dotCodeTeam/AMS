@@ -72,4 +72,27 @@
                 ,   NULL
                         )
     </entry>
+    <entry key="getVcntNoInfo">
+        SELECT
+                *
+        FROM
+                VACANT
+        WHERE
+                VACANT_NO = ?
+    </entry>
+    <entry key="getVcntInfo">
+        SELECT
+                *
+        FROM
+                VACANT
+        WHERE
+                EMP_NO = ?
+    </entry>
+
+    <entry key="getMaxVcntNo">
+        SELECT MAX(VACANT_NO)
+        FROM   VACANT
+        WHERE  EMP_NO = ?
+    </entry>
+
 </properties>
